@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence, Variants } from 'framer-motion';
+import Image from 'next/image';
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -177,25 +178,45 @@ const Header = () => {
                   className="relative group"
                   variants={menuItemVariants}
                 >
-                  {/* Large faint index number behind link */}
-                  <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-[15rem] sm:text-[20rem] font-bold text-white/[0.02] select-none pointer-events-none transition-all duration-500 group-hover:text-crimson/10">
+                  {/* Ghost Background Number - subtle watermark */}
+                  <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-[15rem] sm:text-[20rem] font-extralight text-white/[0.02] leading-none select-none pointer-events-none transition-all duration-500 group-hover:text-crimson/[0.06]">
                     {String(index + 1).padStart(2, '0')}
                   </span>
 
-                  {/* Menu Link */}
+                  {/* Main Navigation Link - original clean typography */}
                   <a
                     href={`#${item.id}`}
                     onClick={(e) => handleNavClick(e, item.id)}
-                    className="relative block py-4 sm:py-6 text-[4rem] sm:text-[5rem] md:text-[6rem] font-extralight uppercase tracking-[0.5rem] text-white/80 hover:text-white transition-all duration-300"
+                    className="relative z-10 block py-4 sm:py-6 text-[4rem] sm:text-[5rem] md:text-[6rem] font-extralight uppercase tracking-[0.5rem] text-white/80 hover:text-white transition-all duration-300"
                   >
-                    <span className="relative z-10">
+                    <span className="relative">
                       {item.label}
-                      {/* Crimson accent on hover */}
                       <span className="absolute -bottom-2 left-0 w-0 h-[2px] bg-crimson transition-all duration-500 ease-out group-hover:w-full" />
                     </span>
                   </a>
                 </motion.div>
               ))}
+
+              {/* Logo Icon - Centered with spacious margin */}
+              <motion.div
+                className="mt-32"
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.5, duration: 0.5, ease: "easeOut" }}
+              >
+                <motion.div
+                  animate={{ scale: [1, 1.05, 1] }}
+                  transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                >
+                  <Image
+                    src="/favicon/apple-touch-icon.png"
+                    alt="SmileySolutions Logo"
+                    width={64}
+                    height={64}
+                    className="drop-shadow-[0_0_15px_rgba(220,20,60,0.4)]"
+                  />
+                </motion.div>
+              </motion.div>
 
               {/* Bottom decorative element */}
               <motion.div

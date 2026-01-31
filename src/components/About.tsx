@@ -1,7 +1,7 @@
 "use client";
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { FaGithub, FaLinkedin, FaEnvelope, FaDownload } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaWhatsapp, FaDownload } from 'react-icons/fa';
 
 export default function About() {
   const skills = ['React', 'Next.js', 'TypeScript', 'Node.js', 'TailwindCSS', 'MongoDB'];
@@ -124,11 +124,13 @@ export default function About() {
                 <FaLinkedin />
               </a>
               <a
-                href="mailto:krollkimdev@gmail.com"
+                href="https://wa.me/972525890252?text=Hi%20Kim%2C%20I%20found%20your%20portfolio%20and%20I%27m%20interested%20in%20discussing%20a%20project%20opportunity."
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-12 h-12 flex items-center justify-center rounded-full border border-gray-700 text-[1.8rem] text-gray-400 hover:border-crimson hover:text-crimson hover:bg-crimson/10 transition-all duration-300"
-                aria-label="Email Me"
+                aria-label="WhatsApp"
               >
-                <FaEnvelope />
+                <FaWhatsapp />
               </a>
             </div>
 

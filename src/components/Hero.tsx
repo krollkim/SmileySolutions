@@ -1,11 +1,11 @@
 "use client";
 import { useEffect, useState, useMemo } from 'react';
-import { motion, Variants } from 'framer-motion';
+import { motion } from 'framer-motion';
 
 export default function Hero() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
-  // Pre-generate particle positions to avoid Math.random() in render
+  // Pre-generate particle positions
   const particles = useMemo(() => {
     return Array.from({ length: 20 }, (_, i) => ({
       id: i,
@@ -16,73 +16,21 @@ export default function Hero() {
     }));
   }, []);
 
-  // Subtle mouse parallax for background
+  // Mouse parallax
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       const x = (e.clientX / window.innerWidth - 0.5) * 20;
       const y = (e.clientY / window.innerHeight - 0.5) * 20;
       setMousePosition({ x, y });
     };
-
     window.addEventListener('mousemove', handleMouseMove);
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
-  // Text reveal animation variants
-  const containerVariants: Variants = {
-    hidden: {},
-    visible: {
-      transition: {
-        staggerChildren: 0.8,
-        delayChildren: 0.3
-      }
-    }
-  };
-
-  const lineVariants: Variants = {
-    hidden: {},
-    visible: {
-      transition: {
-        staggerChildren: 0.02
-      }
-    }
-  };
-
-  const letterVariants: Variants = {
-    hidden: {
-      opacity: 0,
-      y: 50,
-      rotateX: -90
-    },
-    visible: {
-      opacity: 1,
-      y: 0,
-      rotateX: 0,
-      transition: {
-        duration: 0.6,
-        ease: "easeOut"
-      }
-    }
-  };
-
-  // Reveal box animation
-  const boxVariants: Variants = {
-    hidden: { scaleX: 0, originX: 0 },
-    visible: {
-      scaleX: [0, 1, 1, 0],
-      originX: [0, 0, 1, 1],
-      transition: {
-        duration: 1.2,
-        ease: "easeInOut",
-        times: [0, 0.4, 0.6, 1]
-      }
-    }
-  };
-
   const lines = [
-    { text: 'Hello,', isName: false },
-    { text: 'My Name Is', isName: false },
-    { text: 'Kim Kroll', isName: true }
+    { text: 'Hello,', isName: false, delay: 0.5 },
+    { text: 'My Name Is', isName: false, delay: 1.1 },
+    { text: 'Kim Kroll', isName: true, delay: 1.7 }
   ];
 
   return (
@@ -90,17 +38,11 @@ export default function Hero() {
       id="hero"
       className="relative min-h-screen w-full flex items-center overflow-hidden bg-[#0a0a0a]"
     >
-      {/* Animated Background with Breathing Effect */}
+      {/* Animated Background */}
       <motion.div
         className="absolute inset-0 z-0"
-        animate={{
-          scale: [1, 1.05, 1],
-        }}
-        transition={{
-          duration: 8,
-          repeat: Infinity,
-          ease: "easeInOut"
-        }}
+        animate={{ scale: [1, 1.05, 1] }}
+        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
       >
         <motion.div
           className="absolute inset-0 bg-cover bg-center"
@@ -117,20 +59,14 @@ export default function Hero() {
       <div className="absolute inset-0 bg-linear-to-b from-black/70 via-black/50 to-[#0a0a0a] z-[1]" />
       <div className="absolute inset-0 bg-linear-to-r from-black/60 via-transparent to-transparent z-[1]" />
 
-      {/* Floating Particles Effect - Using pre-generated values */}
+      {/* Floating Particles */}
       <div className="absolute inset-0 z-[2] overflow-hidden pointer-events-none">
         {particles.map((particle) => (
           <motion.div
             key={particle.id}
             className="absolute w-1 h-1 rounded-full bg-crimson/30"
-            style={{
-              left: particle.left,
-              top: particle.top,
-            }}
-            animate={{
-              y: [0, -100, 0],
-              opacity: [0, 1, 0],
-            }}
+            style={{ left: particle.left, top: particle.top }}
+            animate={{ y: [0, -100, 0], opacity: [0, 1, 0] }}
             transition={{
               duration: particle.duration,
               repeat: Infinity,
@@ -143,51 +79,48 @@ export default function Hero() {
 
       {/* Main Content */}
       <div className="relative z-10 container mx-auto px-6 lg:px-12">
-        <motion.div
-          className="max-w-[900px]"
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-        >
-          {lines.map((line, lineIndex) => (
-            <div key={lineIndex} className="relative overflow-hidden mb-2">
-              {/* Text Line */}
-              <motion.div
-                className="relative"
-                variants={lineVariants}
-              >
-                <h1
-                  className={`text-[4rem] sm:text-[5rem] md:text-[6rem] lg:text-[7rem] font-bold leading-[1.1] tracking-tight ${
+        <div className="max-w-[900px]">
+          {lines.map((line, index) => (
+            <div key={index} className="mb-1">
+              {/* Inline-block wrapper ensures box matches text width exactly */}
+              <span className="relative inline-block overflow-hidden">
+                {/* The text - clips from left to right */}
+                <motion.span
+                  className={`inline-block text-[4rem] sm:text-[5rem] md:text-[6rem] lg:text-[7rem] font-bold leading-[1.15] tracking-tight ${
                     line.isName ? 'text-crimson' : 'text-white'
                   }`}
+                  initial={{ clipPath: 'inset(0 100% 0 0)' }}
+                  animate={{ clipPath: 'inset(0 0% 0 0)' }}
+                  transition={{
+                    delay: line.delay,
+                    duration: 0.5,
+                    ease: "easeOut"
+                  }}
                 >
-                  {line.text.split('').map((char, charIndex) => (
-                    <motion.span
-                      key={charIndex}
-                      className="inline-block"
-                      variants={letterVariants}
-                      style={{ display: char === ' ' ? 'inline' : 'inline-block' }}
-                    >
-                      {char === ' ' ? '\u00A0' : char}
-                    </motion.span>
-                  ))}
-                </h1>
+                  {line.text}
+                </motion.span>
 
-                {/* Crimson Reveal Box */}
-                <motion.div
-                  className="absolute top-0 left-0 h-full w-full bg-crimson z-10"
-                  variants={boxVariants}
+                {/* Crimson reveal bar - follows the clip edge */}
+                <motion.span
+                  className="absolute top-0 h-full w-[4px] bg-crimson"
+                  initial={{ left: '0%' }}
+                  animate={{ left: '100%' }}
+                  transition={{
+                    delay: line.delay,
+                    duration: 0.5,
+                    ease: "easeOut"
+                  }}
                 />
-              </motion.div>
+              </span>
             </div>
           ))}
 
           {/* Subtitle */}
           <motion.p
             className="text-[1.6rem] sm:text-[1.8rem] text-gray-400 mt-8 max-w-[500px] leading-relaxed"
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 3, duration: 0.8, ease: "easeOut" }}
+            transition={{ delay: 2.5, duration: 0.6, ease: "easeOut" }}
           >
             Full Stack Developer crafting modern web experiences
           </motion.p>
@@ -195,9 +128,9 @@ export default function Hero() {
           {/* CTA Button */}
           <motion.div
             className="mt-10"
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 3.3, duration: 0.8, ease: "easeOut" }}
+            transition={{ delay: 2.8, duration: 0.6, ease: "easeOut" }}
           >
             <a
               href="#projects"
@@ -207,7 +140,6 @@ export default function Hero() {
               }}
               className="group relative inline-flex items-center gap-4 px-8 py-4 text-[1.6rem] font-medium uppercase tracking-[0.3rem] text-white border-2 border-crimson overflow-hidden transition-colors duration-500 hover:text-white"
             >
-              {/* Button background animation */}
               <span className="absolute inset-0 bg-crimson transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500 ease-out" />
               <span className="relative">View My Work</span>
               <motion.span
@@ -219,14 +151,14 @@ export default function Hero() {
               </motion.span>
             </a>
           </motion.div>
-        </motion.div>
+        </div>
 
         {/* Scroll Indicator */}
         <motion.div
           className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 4, ease: "easeOut" }}
+          transition={{ delay: 3.2, ease: "easeOut" }}
         >
           <span className="text-[1.2rem] uppercase tracking-[0.3rem] text-gray-500">Scroll</span>
           <motion.div
