@@ -199,7 +199,7 @@ const Header = () => {
 
               {/* Logo Icon - Centered with spacious margin */}
               <motion.div
-                className="mt-32"
+                className="mt-26"
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.5, duration: 0.5, ease: "easeOut" }}
