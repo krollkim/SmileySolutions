@@ -1,26 +1,151 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-montserrat: "Montserrat", sans-serif;
+  --color-crimson: crimson;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ===== Base Styles ===== */
+:root {
+  font-size: 10px; /* 1rem = 10px */
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-montserrat), 'Montserrat', sans-serif;
+  overflow-x: hidden;
+  margin: 0;
+  background-color: #0a0a0a;
+  color: white;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ===== Section Title - Standardized ===== */
+.section-title {
+  font-size: 3.5rem;
+  font-weight: 300;
+  letter-spacing: 1.5rem;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+@media (min-width: 640px) {
+  .section-title {
+    font-size: 4rem;
+    letter-spacing: 2rem;
+  }
+}
+
+.section-title span {
+  color: crimson;
+}
+
+/* ===== CTA Button - Modern Style ===== */
+.cta {
+  display: inline-block;
+  padding: 12px 32px;
+  color: white;
+  background-color: transparent;
+  border: 2px solid crimson;
+  font-size: 1.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5rem;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.cta::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background-color: crimson;
+  transition: left 0.3s ease;
+  z-index: -1;
+}
+
+.cta:hover::before {
+  left: 0;
+}
+
+.cta:hover {
+  color: white;
+}
+
+@media (min-width: 640px) {
+  .cta {
+    font-size: 1.8rem;
+    letter-spacing: 0.8rem;
+    padding: 14px 40px;
+  }
+}
+
+/* ===== Service Card ===== */
+.service-card {
+  background: linear-gradient(135deg, rgba(41, 50, 60, 0.8) 0%, rgba(72, 85, 99, 0.6) 100%);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.service-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+  border-color: rgba(220, 20, 60, 0.3);
+}
+
+/* ===== Smooth Scrollbar ===== */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0a0a0a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: crimson;
+}
+
+/* ===== Selection Color ===== */
+::selection {
+  background-color: crimson;
+  color: white;
+}
+
+/* ===== Focus Styles for Accessibility ===== */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid crimson;
+  outline-offset: 2px;
+}
+
+/* ===== Image Optimization ===== */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* ===== Container Max Widths ===== */
+.container {
+  width: 100%;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
 }
