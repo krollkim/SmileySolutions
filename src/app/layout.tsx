@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 import "./globals.css";
+import AccessibilityMenu from "@/components/AccessibilityMenu";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -130,6 +131,7 @@ export default function RootLayout({
           }}
         />
         {children}
+        <AccessibilityMenu />
       </body>
     </html>
   );

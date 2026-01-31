@@ -149,3 +149,106 @@ img {
   margin-left: auto;
   margin-right: auto;
 }
+
+/* ===== Accessibility Modes ===== */
+
+/* Large Text Mode */
+html.accessibility-large-text {
+  font-size: 12px; /* Increases base from 10px to 12px (20% larger) */
+}
+
+html.accessibility-large-text body {
+  line-height: 1.6;
+}
+
+/* High Contrast Mode */
+html.accessibility-high-contrast {
+  --high-contrast-bg: #000000;
+  --high-contrast-text: #ffffff;
+  --high-contrast-accent: #ff3333;
+}
+
+html.accessibility-high-contrast body {
+  background-color: var(--high-contrast-bg) !important;
+  color: var(--high-contrast-text) !important;
+}
+
+html.accessibility-high-contrast *:not([class*="accessibility-"]) {
+  border-color: var(--high-contrast-text) !important;
+}
+
+html.accessibility-high-contrast .text-gray-400,
+html.accessibility-high-contrast .text-gray-500,
+html.accessibility-high-contrast .text-gray-300 {
+  color: #e0e0e0 !important;
+}
+
+html.accessibility-high-contrast a,
+html.accessibility-high-contrast button {
+  text-decoration: underline;
+}
+
+html.accessibility-high-contrast .bg-crimson,
+html.accessibility-high-contrast [class*="bg-crimson"] {
+  background-color: var(--high-contrast-accent) !important;
+}
+
+html.accessibility-high-contrast .text-crimson,
+html.accessibility-high-contrast [class*="text-crimson"] {
+  color: var(--high-contrast-accent) !important;
+}
+
+html.accessibility-high-contrast .border-crimson,
+html.accessibility-high-contrast [class*="border-crimson"] {
+  border-color: var(--high-contrast-accent) !important;
+}
+
+html.accessibility-high-contrast img {
+  filter: contrast(1.1);
+}
+
+/* Reduce Motion Mode - Disables all animations including Framer Motion */
+html.accessibility-reduce-motion,
+html.accessibility-reduce-motion * {
+  animation-duration: 0.001ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.001ms !important;
+  scroll-behavior: auto !important;
+}
+
+/* This targets Framer Motion's transform-based animations */
+html.accessibility-reduce-motion [style*="transform"],
+html.accessibility-reduce-motion [style*="opacity"] {
+  transition: none !important;
+  animation: none !important;
+}
+
+/* Prefers reduced motion media query support */
+@media (prefers-reduced-motion: reduce) {
+  html:not(.accessibility-reduce-motion) *,
+  html:not(.accessibility-reduce-motion) *::before,
+  html:not(.accessibility-reduce-motion) *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Custom scrollbar for accessibility menu */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 2px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: crimson;
+}
