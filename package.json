@@ -1,7 +1,28 @@
 {
-  "name": "my-portfolio",
-  "version": "0.1.0",
+  "name": "smileysolutions",
+  "version": "1.0.0",
+  "description": "SmileySolutions - Professional portfolio website for Kim Kroll, Full Stack Developer. Built with Next.js 15, React 19, TailwindCSS v4, and Framer Motion.",
+  "author": {
+    "name": "Kim Kroll",
+    "email": "krollkimdev@gmail.com",
+    "url": "https://smileysolutions.netlify.app"
+  },
+  "license": "MIT",
   "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/krollkim/smileysolutions.git"
+  },
+  "keywords": [
+    "portfolio",
+    "next.js",
+    "react",
+    "tailwindcss",
+    "framer-motion",
+    "full-stack",
+    "developer",
+    "smileysolutions"
+  ],
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -24,5 +45,8 @@
     "eslint-config-next": "16.1.6",
     "tailwindcss": "^4",
     "typescript": "^5"
+  },
+  "engines": {
+    "node": ">=18.0.0"
   }
 }

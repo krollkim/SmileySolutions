@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import { FaGithub, FaLinkedin, FaWhatsapp, FaDownload } from 'react-icons/fa';
 
 export default function About() {
-  const skills = ['React', 'Next.js', 'TypeScript', 'Node.js', 'TailwindCSS', 'MongoDB'];
+  const skills = ['React', 'Next.js', 'TypeScript', 'Node.js', 'TailwindCSS', 'MongoDB', 'Docker', 'AWS'];
 
   return (
     <section id="about" className="py-[10rem] lg:py-[12rem] bg-[#0a0a0a] relative overflow-hidden">
@@ -69,26 +69,21 @@ export default function About() {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <h3 className="text-[2.4rem] sm:text-[2.8rem] font-bold text-white mb-2">
-              Full Stack Developer
+            <h3 className="text-[1.8rem] sm:text-[2.2rem] font-bold text-white mb-2 whitespace-nowrap">
+              SMILEYSOLUTIONS | KIM KROLL
             </h3>
 
-            <p className="text-[1.4rem] text-crimson uppercase tracking-[0.3rem] mb-6">
-              Based in Tel Aviv, Israel
+            <p className="text-[1.4rem] text-crimson uppercase tracking-[0.5rem] mb-6">
+              Digital Nomad · Remote
             </p>
 
             <div className="w-16 h-[3px] bg-crimson mb-6 rounded-full" />
 
-            <p className="text-[1.5rem] sm:text-[1.6rem] text-gray-300 leading-relaxed mb-6">
-              I&apos;m a passionate Full Stack Developer specializing in building
-              modern web applications from concept to deployment. With expertise in React,
-              Next.js, Node.js, and TypeScript, I create scalable solutions that deliver
-              exceptional user experiences.
-            </p>
-
             <p className="text-[1.5rem] sm:text-[1.6rem] text-gray-300 leading-relaxed mb-8">
-              My approach combines clean code practices with user-centered design,
-              ensuring every project is both technically robust and visually appealing.
+              I&apos;m a Full-Stack Developer working remotely, focused on building production-ready
+              web applications. I&apos;ve worked on SaaS frontends (React/Next.js), improving UI structure,
+              reliability, and code quality through reviews and testing. On the backend and infrastructure
+              side, I build APIs and ship deployments with Docker and AWS.
             </p>
 
             {/* Skills Tags */}

@@ -11,20 +11,51 @@ const montserrat = Montserrat({
 
 export const metadata: Metadata = {
   title: "SmileySolutions | Kim Kroll | Full Stack Developer",
-  description: "High-end web development solutions by Kim Kroll.",
-  keywords: ["Full Stack Developer", "React", "Next.js", "Kim Kroll", "Web Development"],
-  authors: [{ name: "Kim Kroll" }],
+  description: "Full-Stack Developer working remotely, focused on building production-ready web applications. Specializing in React, Next.js, Node.js, TypeScript, Docker, and AWS.",
+  keywords: [
+    "Full Stack Developer",
+    "SmileySolutions",
+    "Kim Kroll",
+    "React Developer",
+    "Next.js Developer",
+    "TypeScript",
+    "Node.js",
+    "TailwindCSS",
+    "MongoDB",
+    "Docker",
+    "AWS",
+    "Remote Developer",
+    "Digital Nomad",
+    "Web Development",
+    "SaaS Development",
+    "Frontend Developer",
+    "Backend Developer"
+  ],
+  authors: [{ name: "Kim Kroll", url: "https://github.com/krollkim" }],
+  creator: "Kim Kroll",
+  publisher: "SmileySolutions",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
   openGraph: {
-    title: "Kim Kroll | Full Stack Developer Portfolio",
-    description: "Modern, scalable web applications built with passion and precision.",
-    url: "https://kimkroll.netlify.app",
-    siteName: "Kim Kroll Portfolio",
+    title: "SmileySolutions | Kim Kroll | Full Stack Developer",
+    description: "Full-Stack Developer building production-ready web applications with React, Next.js, Node.js, Docker, and AWS.",
+    url: "https://smileysolutions.dev",
+    siteName: "SmileySolutions",
     images: [
       {
         url: "/images/profile_picture_portfolio.png",
         width: 1200,
         height: 630,
-        alt: "Kim Kroll Portfolio Preview",
+        alt: "Kim Kroll - SmileySolutions Full Stack Developer",
       },
     ],
     locale: "en_US",
@@ -32,19 +63,25 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Kim Kroll | Full Stack Developer",
-    description: "Professional portfolio of Kim Kroll.",
-    images: ["/images/hero-background.png"],
+    title: "SmileySolutions | Kim Kroll | Full Stack Developer",
+    description: "Full-Stack Developer building production-ready web applications remotely.",
+    images: ["/images/profile_picture_portfolio.png"],
+    creator: "@krollkim",
   },
-  metadataBase: new URL("https://kimkroll.netlify.app"),
+  metadataBase: new URL("https://smileysolutions.dev"),
   icons: {
     icon: [
-      { url: '/favicon/favicon-32x32.png', sizes: '32x32' },
-      { url: '/favicon/favicon-16x16.png', sizes: '16x16' },
+      { url: "/favicon/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+      { url: "/favicon/favicon-16x16.png", sizes: "16x16", type: "image/png" },
     ],
-    apple: '/favicon/apple-touch-icon.png',
+    apple: "/favicon/apple-touch-icon.png",
+    shortcut: "/favicon/favicon.ico",
   },
-  manifest: '/favicon/site.webmanifest',
+  manifest: "/favicon/site.webmanifest",
+  alternates: {
+    canonical: "https://smileysolutions.dev",
+  },
+  category: "technology",
 };
 
 export default function RootLayout({
@@ -54,6 +91,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={montserrat.variable}>
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+      </head>
       <body className="font-sans antialiased">
         <script
           type="application/ld+json"
@@ -62,13 +103,29 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "Person",
               "name": "Kim Kroll",
-              "url": "https://kimkroll.netlify.app",
+              "alternateName": "SmileySolutions",
+              "url": "https://smileysolutions.dev",
+              "image": "https://smileysolutions.dev/images/profile_picture_portfolio.png",
               "jobTitle": "Full Stack Developer",
-              "knowsAbout": ["React", "Next.js", "Node.js", "TypeScript", "TailwindCSS"],
+              "description": "Full-Stack Developer working remotely, focused on building production-ready web applications.",
+              "knowsAbout": [
+                "React",
+                "Next.js",
+                "Node.js",
+                "TypeScript",
+                "TailwindCSS",
+                "MongoDB",
+                "Docker",
+                "AWS"
+              ],
               "sameAs": [
                 "https://github.com/krollkim",
                 "https://www.linkedin.com/in/krollkimdev/"
-              ]
+              ],
+              "worksFor": {
+                "@type": "Organization",
+                "name": "SmileySolutions"
+              }
             }),
           }}
         />
