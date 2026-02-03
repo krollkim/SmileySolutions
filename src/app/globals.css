@@ -205,10 +205,10 @@ html.accessibility-high-contrast #projects img {
   opacity: 1 !important;
 }
 
-/* Blur decorations - keep subtle/transparent */
-html.accessibility-high-contrast div[class*="blur-"] {
-  background-color: transparent !important;
-  opacity: 0.3 !important;
+/* Blur decorations (red dots) - keep visible in high contrast */
+html.accessibility-high-contrast div[class*="blur-"][class*="bg-crimson"] {
+  background-color: var(--high-contrast-accent) !important;
+  opacity: 1 !important;
 }
 
 /* Crimson text stays red */
@@ -256,6 +256,31 @@ html.accessibility-high-contrast img {
 /* All image containers - preserve original appearance */
 html.accessibility-high-contrast div:has(> img) {
   background-color: transparent !important;
+}
+
+/* Accessibility menu panel - keep opaque and readable */
+html.accessibility-high-contrast [role="dialog"] {
+  background-color: #0f0f0f !important;
+  border-color: var(--high-contrast-accent) !important;
+}
+
+html.accessibility-high-contrast [role="dialog"] * {
+  color: #ffffff !important;
+}
+
+html.accessibility-high-contrast [role="dialog"] svg {
+  color: #ffffff !important;
+}
+
+/* Contact section - Location card visible */
+html.accessibility-high-contrast #contact .space-y-5 > div > div,
+html.accessibility-high-contrast #contact .space-y-5 > div > a {
+  background-color: #1a1a1a !important;
+  border-color: var(--high-contrast-accent) !important;
+}
+
+html.accessibility-high-contrast #contact .space-y-5 p {
+  color: #ffffff !important;
 }
 
 /* Next.js Image wrapper - ensure no color modifications */
