@@ -112,7 +112,7 @@ export default function Contact() {
                   <FaLinkedin />
                 </a>
                 <a
-                  href="https://wa.me/972525890252?text=Hi%20Kim%2C%20I%20found%20your%20portfolio%20and%20I%27m%20interested%20in%20discussing%20a%20project%20opportunity."
+                  href="https://wa.me/972525890252?text=Hi%20Kim!%20I%20found%20SmileySolutions%20and%20I'm%20interested%20in%20your%20Full-Stack%20development%20services.%20Let's%20connect!"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="group w-14 h-14 flex items-center justify-center rounded-full border border-gray-700 text-[2rem] text-gray-400 hover:border-crimson hover:text-crimson hover:bg-crimson/10 transition-all duration-300"
@@ -124,7 +124,7 @@ export default function Contact() {
 
               {/* CTA Button */}
               <a
-                href="https://wa.me/972525890252?text=Hi%20Kim%2C%20I%20found%20your%20portfolio%20and%20I%27m%20interested%20in%20discussing%20a%20project%20opportunity."
+                href="https://wa.me/972525890252?text=Hi%20Kim!%20I%20found%20SmileySolutions%20and%20I'm%20interested%20in%20your%20Full-Stack%20development%20services.%20Let's%20connect!"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group inline-flex items-center gap-4 px-8 py-4 text-[1.6rem] font-medium uppercase tracking-[0.2rem] text-white bg-crimson rounded-lg overflow-hidden transition-all duration-300 hover:bg-crimson/90 hover:gap-6"
@@ -175,7 +175,7 @@ export default function Contact() {
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true }}
-                    style={{ marginLeft: i % 2 === 1 ? '30px' : '0' }}
+                    className={i % 2 === 1 ? 'lg:ml-[30px]' : ''}
                   >
                     {card.clickable && card.href ? (
                       <a href={card.href} className={cardClassName}>
