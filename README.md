@@ -1,6 +1,6 @@
 # SmileySolutions
 
-A high-end, modern portfolio website for **Kim Kroll** - Full Stack Developer working remotely as a Digital Nomad.
+A high-end, modern website for **Kim Kroll** - Full Stack Developer working remotely as a Digital Nomad.
 
 ## Live Demo
 
