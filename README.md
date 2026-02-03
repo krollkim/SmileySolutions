@@ -1,4 +1,4 @@
-# SmileySolutions Portfolio
+# SmileySolutions
 
 A high-end, modern portfolio website for **Kim Kroll** - Full Stack Developer working remotely as a Digital Nomad.
 
@@ -8,7 +8,7 @@ A high-end, modern portfolio website for **Kim Kroll** - Full Stack Developer wo
 
 ## About
 
-This portfolio showcases professional work and skills in full-stack web development. Built with a focus on performance, accessibility, and modern design aesthetics featuring smooth animations and a premium user experience.
+This website showcases professional work and skills in full-stack web development. Built with a focus on performance, accessibility, and modern design aesthetics featuring smooth animations and a premium user experience.
 
 ## Tech Stack
 
@@ -110,7 +110,7 @@ npm start
 
 ## License
 
-MIT License - feel free to use this as inspiration for your own portfolio.
+MIT License - feel free to use this as inspiration for your own website.
 
 ---
 
