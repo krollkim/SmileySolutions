@@ -1,6 +1,6 @@
 "use client";
 import { motion, Variants } from 'framer-motion';
-import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaGithub, FaLinkedin, FaWhatsapp, FaArrowRight } from 'react-icons/fa';
+import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaGithub, FaLinkedin, FaWhatsapp, FaCalendarAlt } from 'react-icons/fa';
 
 interface ContactCard {
   icon: React.ReactNode;
@@ -16,7 +16,7 @@ export default function Contact() {
       icon: <FaEnvelope />,
       label: 'Email',
       value: 'krollkimdev@gmail.com',
-      href: 'mailto:krollkimdev@gmail.com',
+      href: 'mailto:krollkimdev@gmail.com?subject=SmileySolutions%20Inquiry&body=Hi%20Kim!%20I%20found%20SmileySolutions%20and%20I%27m%20interested%20in%20your%20Full-Stack%20development%20services.%20Let%27s%20connect!',
       clickable: true
     },
     {
@@ -124,13 +124,13 @@ export default function Contact() {
 
               {/* CTA Button */}
               <a
-                href="https://wa.me/972525890252?text=Hi%20Kim!%20I%20found%20SmileySolutions%20and%20I'm%20interested%20in%20your%20Full-Stack%20development%20services.%20Let's%20connect!"
+                href="https://calendar.app.google/i5TALc1oJahNDeRw8"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group inline-flex items-center gap-4 px-8 py-4 text-[1.6rem] font-medium uppercase tracking-[0.2rem] text-white bg-crimson rounded-lg overflow-hidden transition-all duration-300 hover:bg-crimson/90 hover:gap-6"
               >
-                <span>Get In Touch</span>
-                <FaArrowRight className="transition-transform duration-300 group-hover:translate-x-1" />
+                <FaCalendarAlt className="text-[1.8rem]" />
+                <span>Book Appointment</span>
               </a>
             </div>
           </motion.div>
