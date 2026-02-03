@@ -173,38 +173,97 @@ html.accessibility-high-contrast body {
   color: var(--high-contrast-text) !important;
 }
 
-html.accessibility-high-contrast *:not([class*="accessibility-"]) {
-  border-color: var(--high-contrast-text) !important;
-}
-
+/* Gray text becomes white for readability */
 html.accessibility-high-contrast .text-gray-400,
 html.accessibility-high-contrast .text-gray-500,
 html.accessibility-high-contrast .text-gray-300 {
-  color: #e0e0e0 !important;
+  color: #ffffff !important;
 }
 
+/* Links and buttons - underline for visibility */
 html.accessibility-high-contrast a,
 html.accessibility-high-contrast button {
   text-decoration: underline;
 }
 
-html.accessibility-high-contrast .bg-crimson,
-html.accessibility-high-contrast [class*="bg-crimson"] {
+/* Only solid crimson backgrounds - NOT transparent overlays like bg-crimson/0 */
+html.accessibility-high-contrast .bg-crimson {
   background-color: var(--high-contrast-accent) !important;
 }
 
+/* Project section - preserve image visibility */
+html.accessibility-high-contrast #projects a {
+  background-color: #1a1a1a !important;
+}
+
+html.accessibility-high-contrast #projects a > div {
+  background-color: transparent !important;
+}
+
+html.accessibility-high-contrast #projects img {
+  filter: none !important;
+  opacity: 1 !important;
+}
+
+/* Blur decorations - keep subtle/transparent */
+html.accessibility-high-contrast div[class*="blur-"] {
+  background-color: transparent !important;
+  opacity: 0.3 !important;
+}
+
+/* Crimson text stays red */
 html.accessibility-high-contrast .text-crimson,
 html.accessibility-high-contrast [class*="text-crimson"] {
   color: var(--high-contrast-accent) !important;
 }
 
+/* Crimson borders stay red */
 html.accessibility-high-contrast .border-crimson,
 html.accessibility-high-contrast [class*="border-crimson"] {
   border-color: var(--high-contrast-accent) !important;
 }
 
+/* Gray borders become crimson for visibility */
+html.accessibility-high-contrast .border-gray-800,
+html.accessibility-high-contrast .border-gray-700,
+html.accessibility-high-contrast .border-gray-900 {
+  border-color: var(--high-contrast-accent) !important;
+}
+
+/* ABOUT section: Skill tags - white text on red background */
+html.accessibility-high-contrast #about .flex-wrap span {
+  background-color: var(--high-contrast-accent) !important;
+  color: #ffffff !important;
+  border-color: var(--high-contrast-accent) !important;
+}
+
+/* Icons should be white for better contrast */
+html.accessibility-high-contrast svg {
+  color: #ffffff !important;
+}
+
+/* Service card icons stay white */
+html.accessibility-high-contrast .service-card svg {
+  color: #ffffff !important;
+}
+
+/* IMAGES: Do NOT apply any color filters - keep original */
 html.accessibility-high-contrast img {
-  filter: contrast(1.1);
+  filter: none !important;
+  mix-blend-mode: normal !important;
+}
+
+/* All image containers - preserve original appearance */
+html.accessibility-high-contrast div:has(> img) {
+  background-color: transparent !important;
+}
+
+/* Next.js Image wrapper - ensure no color modifications */
+html.accessibility-high-contrast [data-nimg],
+html.accessibility-high-contrast img[data-nimg] {
+  filter: none !important;
+  background-color: transparent !important;
+  mix-blend-mode: normal !important;
 }
 
 /* Reduce Motion Mode - Disables all animations including Framer Motion */
