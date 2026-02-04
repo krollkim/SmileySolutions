@@ -58,7 +58,7 @@ export default function Contact() {
         {/* Section Header */}
         <div className="text-center mb-20">
           <motion.h2
-            className="section-title text-white"
+            className="section-title text-white motion-gpu"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -73,7 +73,7 @@ export default function Contact() {
 
           {/* LEFT SIDE - Bold CTA */}
           <motion.div
-            className="w-full lg:w-1/2"
+            className="w-full lg:w-1/2 motion-gpu"
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
@@ -137,7 +137,7 @@ export default function Contact() {
 
           {/* RIGHT SIDE - Staggered Contact Cards */}
           <motion.div
-            className="w-full lg:w-1/2"
+            className="w-full lg:w-1/2 motion-gpu"
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
@@ -175,7 +175,7 @@ export default function Contact() {
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true }}
-                    className={i % 2 === 1 ? 'lg:ml-[30px]' : ''}
+                    className={`motion-gpu ${i % 2 === 1 ? 'lg:ml-[30px]' : ''}`}
                   >
                     {card.clickable && card.href ? (
                       <a href={card.href} className={cardClassName}>
@@ -193,7 +193,7 @@ export default function Contact() {
 
             {/* Decorative Line */}
             <motion.div
-              className="hidden lg:block absolute right-0 top-1/2 -translate-y-1/2 w-[1px] h-[200px] bg-linear-to-b from-transparent via-crimson/30 to-transparent"
+              className="hidden lg:block absolute right-0 top-1/2 -translate-y-1/2 w-[1px] h-[200px] bg-linear-to-b from-transparent via-crimson/30 to-transparent motion-gpu"
               initial={{ scaleY: 0 }}
               whileInView={{ scaleY: 1 }}
               viewport={{ once: true }}

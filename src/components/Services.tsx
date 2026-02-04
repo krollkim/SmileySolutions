@@ -41,7 +41,7 @@ export default function Services() {
       <div className="container mx-auto px-6 lg:px-12 relative z-10">
         {/* Section Header */}
         <motion.div
-          className="text-center mb-16 lg:mb-20"
+          className="text-center mb-16 lg:mb-20 motion-gpu"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -60,7 +60,7 @@ export default function Services() {
           {services.map((service, index) => (
             <motion.div
               key={index}
-              className="service-card group p-8 rounded-2xl text-center flex flex-col items-center"
+              className="service-card group p-8 rounded-2xl text-center flex flex-col items-center motion-gpu"
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}

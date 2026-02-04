@@ -40,12 +40,12 @@ export default function Hero() {
     >
       {/* Animated Background */}
       <motion.div
-        className="absolute inset-0 z-0"
+        className="absolute inset-0 z-0 motion-gpu"
         animate={{ scale: [1, 1.05, 1] }}
         transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
       >
         <motion.div
-          className="absolute inset-0 bg-cover bg-center"
+          className="absolute inset-0 bg-cover bg-center motion-gpu"
           style={{
             backgroundImage: "url('/images/hero-background.png')",
             x: mousePosition.x,
@@ -86,7 +86,7 @@ export default function Hero() {
               <span className="relative inline-block overflow-hidden">
                 {/* The text - clips from left to right */}
                 <motion.span
-                  className={`inline-block text-[4rem] sm:text-[5rem] md:text-[6rem] lg:text-[7rem] font-bold leading-[1.15] tracking-tight ${
+                  className={`inline-block text-[4rem] sm:text-[5rem] md:text-[6rem] lg:text-[7rem] font-bold leading-[1.15] tracking-tight motion-gpu ${
                     line.isName ? 'text-crimson' : 'text-white'
                   }`}
                   initial={{ clipPath: 'inset(0 100% 0 0)' }}
@@ -102,7 +102,7 @@ export default function Hero() {
 
                 {/* Crimson reveal bar - follows the clip edge */}
                 <motion.span
-                  className="absolute top-0 h-full w-[4px] bg-crimson"
+                  className="absolute top-0 h-full w-[4px] bg-crimson motion-gpu"
                   initial={{ left: '0%' }}
                   animate={{ left: '100%' }}
                   transition={{
@@ -117,7 +117,7 @@ export default function Hero() {
 
           {/* Subtitle */}
           <motion.p
-            className="text-[1.6rem] sm:text-[1.8rem] text-gray-400 mt-8 max-w-[500px] leading-relaxed"
+            className="text-[1.6rem] sm:text-[1.8rem] text-gray-400 mt-8 max-w-[500px] leading-relaxed motion-gpu"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 2.5, duration: 0.6, ease: "easeOut" }}
@@ -127,7 +127,7 @@ export default function Hero() {
 
           {/* CTA Button */}
           <motion.div
-            className="mt-10"
+            className="mt-10 motion-gpu"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 2.8, duration: 0.6, ease: "easeOut" }}
@@ -143,7 +143,7 @@ export default function Hero() {
               <span className="absolute inset-0 bg-crimson transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500 ease-out" />
               <span className="relative">View My Work</span>
               <motion.span
-                className="relative"
+                className="relative motion-gpu"
                 animate={{ x: [0, 5, 0] }}
                 transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
               >
@@ -155,14 +155,14 @@ export default function Hero() {
 
         {/* Scroll Indicator */}
         <motion.div
-          className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+          className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 motion-gpu"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 3.2, ease: "easeOut" }}
         >
           <span className="text-[1.2rem] uppercase tracking-[0.3rem] text-gray-500">Scroll</span>
           <motion.div
-            className="w-[1px] h-[40px] bg-linear-to-b from-crimson to-transparent"
+            className="w-[1px] h-[40px] bg-linear-to-b from-crimson to-transparent motion-gpu"
             animate={{ scaleY: [1, 0.5, 1] }}
             transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
           />

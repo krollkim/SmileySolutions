@@ -65,7 +65,7 @@ export default function Projects() {
       <div className="container mx-auto px-6 lg:px-12 relative z-10">
         {/* Section Header */}
         <motion.div
-          className="text-center mb-16 lg:mb-20"
+          className="text-center mb-16 lg:mb-20 motion-gpu"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -87,7 +87,7 @@ export default function Projects() {
             return (
               <motion.div
                 key={project.title}
-                className={`flex flex-col ${isEven ? 'lg:flex-row' : 'lg:flex-row-reverse'} items-center gap-10 lg:gap-16`}
+                className={`flex flex-col ${isEven ? 'lg:flex-row' : 'lg:flex-row-reverse'} items-center gap-10 lg:gap-16 motion-gpu`}
                 custom={isEven}
                 variants={cardVariants}
                 initial="hidden"

@@ -73,7 +73,7 @@ const Header = () => {
   return (
     <>
       <motion.header
-        className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
+        className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 motion-gpu ${
           isScrolled
             ? 'bg-[#0a0a0a]/95 backdrop-blur-xl shadow-2xl shadow-black/30'
             : 'bg-transparent'
@@ -124,7 +124,7 @@ const Header = () => {
               <div className="relative w-[28px] h-[14px]">
                 {/* Top line */}
                 <motion.span
-                  className="absolute left-0 w-full h-[2px] bg-white rounded-full origin-center"
+                  className="absolute left-0 w-full h-[2px] bg-white rounded-full origin-center motion-gpu"
                   initial={false}
                   animate={{
                     top: isOpen ? '50%' : '0%',
@@ -135,7 +135,7 @@ const Header = () => {
                 />
                 {/* Bottom line */}
                 <motion.span
-                  className="absolute left-0 w-full h-[2px] bg-white rounded-full origin-center"
+                  className="absolute left-0 w-full h-[2px] bg-white rounded-full origin-center motion-gpu"
                   initial={false}
                   animate={{
                     bottom: isOpen ? '50%' : '0%',
@@ -155,7 +155,7 @@ const Header = () => {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            className="fixed inset-0 z-40 lg:hidden"
+            className="fixed inset-0 z-40 lg:hidden motion-gpu"
             variants={overlayVariants}
             initial="closed"
             animate="open"
@@ -166,7 +166,7 @@ const Header = () => {
 
             {/* Menu Content */}
             <motion.nav
-              className="relative h-full flex flex-col items-center justify-center"
+              className="relative h-full flex flex-col items-center justify-center motion-gpu"
               variants={menuContainerVariants}
               initial="closed"
               animate="open"
@@ -175,7 +175,7 @@ const Header = () => {
               {navItems.map((item, index) => (
                 <motion.div
                   key={item.label}
-                  className="relative group"
+                  className="relative group motion-gpu"
                   variants={menuItemVariants}
                 >
                   {/* Ghost Background Number - subtle watermark */}
@@ -199,12 +199,14 @@ const Header = () => {
 
               {/* Logo Icon - Centered with spacious margin */}
               <motion.div
-                className="mt-26"
+                className="mt-26 motion-gpu"
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.8, transition: { duration: 0.3, ease: "easeIn" } }}
                 transition={{ delay: 0.5, duration: 0.5, ease: "easeOut" }}
               >
                 <motion.div
+                  className="motion-gpu"
                   animate={{ scale: [1, 1.05, 1] }}
                   transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
                 >
@@ -220,9 +222,10 @@ const Header = () => {
 
               {/* Bottom decorative element */}
               <motion.div
-                className="absolute bottom-10 left-1/2 -translate-x-1/2"
+                className="absolute bottom-10 left-1/2 -translate-x-1/2 motion-gpu"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 20, transition: { duration: 0.3, ease: "easeIn" } }}
                 transition={{ delay: 0.6, duration: 0.5, ease: "easeOut" }}
               >
                 <div className="flex items-center gap-4">

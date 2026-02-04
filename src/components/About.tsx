@@ -14,7 +14,7 @@ export default function About() {
       <div className="container mx-auto px-6 lg:px-12 relative z-10">
         {/* Section Header */}
         <motion.div
-          className="text-center mb-16 lg:mb-20"
+          className="text-center mb-16 lg:mb-20 motion-gpu"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -29,7 +29,7 @@ export default function About() {
         <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20 max-w-6xl mx-auto">
           {/* Profile Image with Crimson Offset Border */}
           <motion.div
-            className="w-full lg:w-2/5 flex justify-center"
+            className="w-full lg:w-2/5 flex justify-center motion-gpu"
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
@@ -63,7 +63,7 @@ export default function About() {
 
           {/* Text Content */}
           <motion.div
-            className="w-full lg:w-3/5"
+            className="w-full lg:w-3/5 motion-gpu"
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
