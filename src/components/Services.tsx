@@ -61,8 +61,8 @@ export default function Services() {
             <motion.div
               key={index}
               className="service-card group p-8 rounded-2xl text-center flex flex-col items-center motion-gpu"
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, transform: "translate3d(0,40px,0)" }}
+              whileInView={{ opacity: 1, transform: "translate3d(0,0,0)" }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
             >
