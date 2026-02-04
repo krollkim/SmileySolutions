@@ -94,14 +94,26 @@ body {
 
 /* ===== Service Card ===== */
 .service-card {
-  background: linear-gradient(135deg, rgba(41, 50, 60, 0.8) 0%, rgba(72, 85, 99, 0.6) 100%);
-  backdrop-filter: blur(10px);
+  background: linear-gradient(135deg, rgba(41, 50, 60, 0.9) 0%, rgba(72, 85, 99, 0.8) 100%);
   border: 1px solid rgba(255, 255, 255, 0.05);
   transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  /* GPU layer persistence - prevents end-animation flicker on mobile */
+  /* GPU layer persistence */
   will-change: transform, opacity;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
+  transform: translate3d(0,0,0);
+  -webkit-transform: translate3d(0,0,0);
+  perspective: 1000px;
+  -webkit-perspective: 1000px;
+}
+
+/* Desktop only: restore backdrop blur */
+@media (min-width: 1024px) {
+  .service-card {
+    background: linear-gradient(135deg, rgba(41, 50, 60, 0.8) 0%, rgba(72, 85, 99, 0.6) 100%);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
 }
 
 /* ===== GPU Acceleration for Motion Elements (Mobile Flicker Fix) ===== */
