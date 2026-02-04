@@ -66,18 +66,20 @@ export default function Services() {
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
             >
-              {/* Icon */}
-              <div className="mb-6 w-20 h-20 flex items-center justify-center rounded-2xl bg-crimson/10 text-[3rem] text-crimson transition-all duration-300 group-hover:bg-crimson group-hover:text-white group-hover:scale-110">
-                {service.icon}
+              <div className="gpu-layer flex flex-col items-center">
+                {/* Icon */}
+                <div className="mb-6 w-20 h-20 flex items-center justify-center rounded-2xl bg-crimson/10 text-[3rem] text-crimson transition-all duration-300 group-hover:bg-crimson group-hover:text-white group-hover:scale-110">
+                  {service.icon}
+                </div>
+
+                <h3 className="text-[2rem] font-semibold mb-4 text-white group-hover:text-crimson transition-colors duration-300">
+                  {service.title}
+                </h3>
+
+                <p className="text-[1.4rem] text-gray-400 leading-relaxed">
+                  {service.description}
+                </p>
               </div>
-
-              <h3 className="text-[2rem] font-semibold mb-4 text-white group-hover:text-crimson transition-colors duration-300">
-                {service.title}
-              </h3>
-
-              <p className="text-[1.4rem] text-gray-400 leading-relaxed">
-                {service.description}
-              </p>
             </motion.div>
           ))}
         </div>
