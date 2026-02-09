@@ -12,7 +12,7 @@ const montserrat = Montserrat({
 
 export const metadata: Metadata = {
   title: "SmileySolutions | Kim Kroll | Full Stack Developer",
-  description: "Full-Stack Developer working remotely, focused on building production-ready web applications. Specializing in React, Next.js, Node.js, TypeScript, Docker, and AWS.",
+  description: "Full-Stack Developer building production-ready SaaS applications with React, Next.js, TailwindCSS, and Node.js. Deployed and scaled with Docker and AWS for high-performance web experiences.",
   keywords: [
     "Full Stack Developer",
     "SmileySolutions",
@@ -48,8 +48,8 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "SmileySolutions | Kim Kroll | Full Stack Developer",
-    description: "Full-Stack Developer building production-ready web applications with React, Next.js, Node.js, Docker, and AWS.",
-    url: "https://smileysolutions.dev",
+    description: "Full-Stack Developer building production-ready SaaS applications with React, Next.js, TailwindCSS, and Node.js. Deployed and scaled with Docker and AWS.",
+    url: "https://smileysolutions.netlify.app",
     siteName: "SmileySolutions",
     images: [
       {
@@ -65,11 +65,11 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "SmileySolutions | Kim Kroll | Full Stack Developer",
-    description: "Full-Stack Developer building production-ready web applications remotely.",
+    description: "Full-Stack Developer building production-ready SaaS applications with React, Next.js, TailwindCSS, and Node.js. Deployed and scaled with Docker and AWS.",
     images: ["/images/profile_picture_portfolio.png"],
     creator: "@krollkim",
   },
-  metadataBase: new URL("https://smileysolutions.dev"),
+  metadataBase: new URL("https://smileysolutions.netlify.app"),
   icons: {
     icon: [
       { url: "/favicon/favicon-32x32.png", sizes: "32x32", type: "image/png" },
@@ -80,7 +80,7 @@ export const metadata: Metadata = {
   },
   manifest: "/favicon/site.webmanifest",
   alternates: {
-    canonical: "https://smileysolutions.dev",
+    canonical: "https://smileysolutions.netlify.app",
   },
   category: "technology",
 };
@@ -105,10 +105,10 @@ export default function RootLayout({
               "@type": "Person",
               "name": "Kim Kroll",
               "alternateName": "SmileySolutions",
-              "url": "https://smileysolutions.dev",
-              "image": "https://smileysolutions.dev/images/profile_picture_portfolio.png",
+              "url": "https://smileysolutions.netlify.app",
+              "image": "https://smileysolutions.netlify.app/images/profile_picture_portfolio.png",
               "jobTitle": "Full Stack Developer",
-              "description": "Full-Stack Developer working remotely, focused on building production-ready web applications.",
+              "description": "Full-Stack Developer building production-ready SaaS applications with React, Next.js, TailwindCSS, and Node.js. Deployed and scaled with Docker and AWS.",
               "knowsAbout": [
                 "React",
                 "Next.js",
@@ -117,7 +117,9 @@ export default function RootLayout({
                 "TailwindCSS",
                 "MongoDB",
                 "Docker",
-                "AWS"
+                "AWS",
+                "SaaS Development",
+                "Figma"
               ],
               "sameAs": [
                 "https://github.com/krollkim",

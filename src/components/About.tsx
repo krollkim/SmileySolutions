@@ -79,11 +79,16 @@ export default function About() {
 
             <div className="w-16 h-[3px] bg-crimson mb-6 rounded-full" />
 
-            <p className="text-[1.5rem] sm:text-[1.6rem] text-gray-300 leading-relaxed mb-8">
+            <p className="text-[1.5rem] sm:text-[1.6rem] text-gray-300 leading-relaxed mb-4">
               I&apos;m a Full-Stack Developer working remotely, focused on building production-ready
               web applications. I&apos;ve worked on SaaS frontends (React/Next.js), improving UI structure,
               reliability, and code quality through reviews and testing. On the backend and infrastructure
               side, I build APIs and ship deployments with Docker and AWS.
+            </p>
+
+            <p className="text-[1.4rem] sm:text-[1.5rem] text-gray-400 italic leading-relaxed mb-8">
+              Currently deepening my knowledge of scalable architecture patterns to help
+              SaaS platforms handle rapid user growth and complex data states.
             </p>
 
             {/* Skills Tags */}

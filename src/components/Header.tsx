@@ -28,11 +28,11 @@ const Header = () => {
   };
 
   const navItems = [
-    { label: 'Home', id: 'hero' },
-    { label: 'Services', id: 'services' },
-    { label: 'Projects', id: 'projects' },
-    { label: 'About', id: 'about' },
-    { label: 'Contact', id: 'contact' },
+    { label: 'Home', id: 'hero', ariaLabel: 'Home — Kim Kroll Full Stack Developer' },
+    { label: 'Services', id: 'services', ariaLabel: 'Full Stack Development and SaaS services' },
+    { label: 'Projects', id: 'projects', ariaLabel: 'View Full Stack Development projects and SaaS portfolio' },
+    { label: 'About', id: 'about', ariaLabel: 'About Kim Kroll — Remote Full Stack Developer' },
+    { label: 'Contact', id: 'contact', ariaLabel: 'Contact Kim Kroll for development projects' },
   ];
 
   // Full-screen menu animation variants
@@ -106,6 +106,7 @@ const Header = () => {
                   key={item.label}
                   href={`#${item.id}`}
                   onClick={(e) => handleNavClick(e, item.id)}
+                  aria-label={item.ariaLabel}
                   className="group relative text-[1.4rem] font-medium uppercase tracking-[0.25rem] text-gray-400 hover:text-white transition-colors duration-300"
                 >
                   {item.label}
@@ -187,6 +188,7 @@ const Header = () => {
                   <a
                     href={`#${item.id}`}
                     onClick={(e) => handleNavClick(e, item.id)}
+                    aria-label={item.ariaLabel}
                     className="relative z-10 block py-4 sm:py-6 text-[4rem] sm:text-[5rem] md:text-[6rem] font-extralight uppercase tracking-[0.5rem] text-white/80 hover:text-white transition-all duration-300"
                   >
                     <span className="relative">

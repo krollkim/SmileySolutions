@@ -27,10 +27,10 @@ export default function Hero() {
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
-  const lines = [
-    { text: 'Hello,', isName: false, delay: 0.5 },
-    { text: 'My Name Is', isName: false, delay: 1.1 },
-    { text: 'Kim Kroll', isName: true, delay: 1.7 }
+  const h1Lines = [
+    { text: 'Kim Kroll', isName: true, delay: 0.5 },
+    { text: 'Full Stack', isName: false, delay: 1.1 },
+    { text: 'Developer', isName: false, delay: 1.7 }
   ];
 
   return (
@@ -80,49 +80,52 @@ export default function Hero() {
       {/* Main Content */}
       <div className="relative z-10 container mx-auto px-6 lg:px-12">
         <div className="max-w-[900px]">
-          {lines.map((line, index) => (
-            <div key={index} className="mb-1">
-              {/* Inline-block wrapper ensures box matches text width exactly */}
-              <span className="relative inline-block overflow-hidden">
-                {/* The text - clips from left to right */}
-                <motion.span
-                  className={`inline-block text-[4rem] sm:text-[5rem] md:text-[6rem] lg:text-[7rem] font-bold leading-[1.15] tracking-tight motion-gpu ${
-                    line.isName ? 'text-crimson' : 'text-white'
-                  }`}
-                  initial={{ clipPath: 'inset(0 100% 0 0)' }}
-                  animate={{ clipPath: 'inset(0 0% 0 0)' }}
-                  transition={{
-                    delay: line.delay,
-                    duration: 0.5,
-                    ease: "easeOut"
-                  }}
-                >
-                  {line.text}
-                </motion.span>
+          {/* H1 — primary SEO heading */}
+          <h1>
+            {h1Lines.map((line, index) => (
+              <div key={index} className="-mb-2 sm:-mb-3">
+                {/* Inline-block wrapper ensures box matches text width exactly */}
+                <span className="relative inline-block overflow-hidden">
+                  {/* The text - clips from left to right */}
+                  <motion.span
+                    className={`inline-block text-[3.2rem] sm:text-[4rem] md:text-[5rem] lg:text-[6rem] font-bold leading-[1.1] tracking-tight motion-gpu ${
+                      line.isName ? 'text-crimson' : 'text-white'
+                    }`}
+                    initial={{ clipPath: 'inset(0 100% 0 0)' }}
+                    animate={{ clipPath: 'inset(0 0% 0 0)' }}
+                    transition={{
+                      delay: line.delay,
+                      duration: 0.5,
+                      ease: "easeOut"
+                    }}
+                  >
+                    {line.text}
+                  </motion.span>
 
-                {/* Crimson reveal bar - follows the clip edge */}
-                <motion.span
-                  className="absolute top-0 h-full w-[4px] bg-crimson motion-gpu"
-                  initial={{ left: '0%' }}
-                  animate={{ left: '100%' }}
-                  transition={{
-                    delay: line.delay,
-                    duration: 0.5,
-                    ease: "easeOut"
-                  }}
-                />
-              </span>
-            </div>
-          ))}
+                  {/* Crimson reveal bar - follows the clip edge */}
+                  <motion.span
+                    className="absolute top-0 h-full w-[4px] bg-crimson motion-gpu"
+                    initial={{ left: '0%' }}
+                    animate={{ left: '100%' }}
+                    transition={{
+                      delay: line.delay,
+                      duration: 0.5,
+                      ease: "easeOut"
+                    }}
+                  />
+                </span>
+              </div>
+            ))}
+          </h1>
 
-          {/* Subtitle */}
+          {/* Subtitle — reinforces meta description keywords */}
           <motion.p
             className="text-[1.6rem] sm:text-[1.8rem] text-gray-400 mt-8 max-w-[500px] leading-relaxed motion-gpu"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 2.5, duration: 0.6, ease: "easeOut" }}
           >
-            Full Stack Developer crafting modern web experiences
+            Crafting modern, production-ready web experiences
           </motion.p>
 
           {/* CTA Button */}
