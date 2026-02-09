@@ -41,7 +41,7 @@ export default function Hero() {
       {/* Animated Background */}
       <motion.div
         className="absolute inset-0 z-0 motion-gpu"
-        animate={{ scale: [1, 1.05, 1] }}
+        animate={{ scale: [0.999, 1.05, 0.999] }}
         transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
       >
         <motion.div
@@ -121,8 +121,9 @@ export default function Hero() {
           {/* Subtitle — reinforces meta description keywords */}
           <motion.p
             className="text-[1.6rem] sm:text-[1.8rem] text-gray-400 mt-8 max-w-[500px] leading-relaxed motion-gpu"
+            style={{ backfaceVisibility: "hidden" }}
             initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
+            animate={{ opacity: 0.999, y: 0.01 }}
             transition={{ delay: 2.5, duration: 0.6, ease: "easeOut" }}
           >
             Crafting modern, production-ready web experiences
@@ -131,8 +132,9 @@ export default function Hero() {
           {/* CTA Button */}
           <motion.div
             className="mt-10 motion-gpu"
+            style={{ backfaceVisibility: "hidden" }}
             initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
+            animate={{ opacity: 0.999, y: 0.01 }}
             transition={{ delay: 2.8, duration: 0.6, ease: "easeOut" }}
           >
             <a
@@ -159,8 +161,9 @@ export default function Hero() {
         {/* Scroll Indicator */}
         <motion.div
           className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 motion-gpu"
+          style={{ backfaceVisibility: "hidden" }}
           initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
+          animate={{ opacity: 0.999 }}
           transition={{ delay: 3.2, ease: "easeOut" }}
         >
           <span className="text-[1.2rem] uppercase tracking-[0.3rem] text-gray-500">Scroll</span>

@@ -42,8 +42,9 @@ export default function Services() {
         {/* Section Header */}
         <motion.div
           className="text-center mb-16 lg:mb-20 motion-gpu"
+          style={{ backfaceVisibility: "hidden" }}
           initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          whileInView={{ opacity: 0.999, y: 0.01 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
@@ -61,8 +62,9 @@ export default function Services() {
             <motion.div
               key={index}
               className="service-card group p-8 rounded-2xl text-center flex flex-col items-center motion-gpu"
+              style={{ backfaceVisibility: "hidden" }}
               initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              whileInView={{ opacity: 0.999, y: 0.01 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
             >
