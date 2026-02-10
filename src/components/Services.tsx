@@ -1,7 +1,7 @@
 "use client";
-import { useEffect, useRef } from 'react';
 import { FaCode, FaPaintBrush, FaRocket, FaTools } from 'react-icons/fa';
 import { ReactNode } from 'react';
+import { motion, Variants } from 'framer-motion';
 
 interface Service {
   title: string;
@@ -32,28 +32,47 @@ const services: Service[] = [
   }
 ];
 
+const containerVariants: Variants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.2
+    }
+  }
+};
+
+const cardVariants: Variants = {
+  hidden: {
+    opacity: 0,
+    y: 40
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.6,
+      ease: "easeOut"
+    }
+  }
+};
+
+const headerVariants: Variants = {
+  hidden: {
+    opacity: 0,
+    y: 30
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.6,
+      ease: "easeOut"
+    }
+  }
+};
+
 export default function Services() {
-  const sectionRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const section = sectionRef.current;
-    if (!section) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          const cards = section.querySelectorAll('.service-card');
-          cards.forEach((card) => card.classList.add('visible'));
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.2 }
-    );
-
-    observer.observe(section);
-    return () => observer.disconnect();
-  }, []);
-
   return (
     <section
       id="services"
@@ -65,25 +84,42 @@ export default function Services() {
 
       <div className="container mx-auto px-6 lg:px-12 relative z-10">
         {/* Section Header */}
-        <div className="text-center mb-16 lg:mb-20">
+        <motion.div
+          className="text-center mb-16 lg:mb-20 transform-gpu"
+          style={{
+            backfaceVisibility: "hidden",
+            perspective: 1000,
+          }}
+          variants={headerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+        >
           <h2 className="section-title text-white">
             Serv<span>i</span>ces
           </h2>
           <p className="mt-6 text-[1.5rem] sm:text-[1.6rem] text-gray-400 max-w-2xl mx-auto leading-relaxed">
             I build modern, scalable applications with full-stack expertise and deliver pixel-perfect designs.
           </p>
-        </div>
+        </motion.div>
 
-        {/* Services — flex layout with IntersectionObserver trigger */}
-        <div
-          ref={sectionRef}
-          className="flex flex-wrap justify-center gap-6 lg:gap-8"
+        {/* Services Grid */}
+        <motion.div
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
         >
           {services.map((service, index) => (
-            <div
+            <motion.div
               key={index}
-              className="service-card group p-8 rounded-2xl text-center flex flex-col items-center w-full sm:w-[calc(50%-12px)] lg:w-[calc(25%-18px)]"
-              style={{ transitionDelay: `${index * 0.1}s` }}
+              className="service-card group p-8 rounded-2xl text-center flex flex-col items-center transform-gpu"
+              style={{
+                backfaceVisibility: "hidden",
+                perspective: 1000,
+              }}
+              variants={cardVariants}
             >
               {/* Icon */}
               <div className="mb-6 w-20 h-20 flex items-center justify-center rounded-2xl bg-crimson/10 text-[3rem] text-crimson transition-all duration-300 group-hover:bg-crimson group-hover:text-white group-hover:scale-110">
@@ -97,9 +133,9 @@ export default function Services() {
               <p className="text-[1.4rem] text-gray-400 leading-relaxed">
                 {service.description}
               </p>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

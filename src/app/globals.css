@@ -94,22 +94,21 @@ body {
 
 /* ===== Service Card ===== */
 .service-card {
-  background: rgba(15, 15, 15, 0.9);
+  background: linear-gradient(135deg, rgba(41, 50, 60, 0.8) 0%, rgba(72, 85, 99, 0.6) 100%);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(255, 255, 255, 0.05);
   overflow: hidden;
-  opacity: 0;
-  transform: translateY(40px);
-  transition: opacity 0.8s ease, transform 0.8s ease;
-}
-
-.service-card.visible {
-  opacity: 1;
-  transform: translateY(0);
+  will-change: transform, opacity;
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              box-shadow 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              border-color 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .service-card:hover {
-  border-color: rgba(220, 20, 60, 0.3);
+  transform: translateY(-10px);
   box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+  border-color: rgba(220, 20, 60, 0.3);
 }
 
 /* ===== GPU Acceleration for Motion Elements (Mobile Flicker Fix) ===== */
