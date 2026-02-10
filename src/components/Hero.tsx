@@ -36,24 +36,32 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative min-h-screen w-full flex items-center overflow-hidden bg-[#0a0a0a]"
+      className="relative min-h-screen w-full flex items-center overflow-hidden isolate bg-[#0a0a0a]"
     >
-      {/* Animated Background */}
-      <motion.div
-        className="absolute inset-0 z-0 motion-gpu"
-        animate={{ scale: [0.999, 1.05, 0.999] }}
-        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-      >
+      {/* Animated Background — isolated stacking context to prevent sub-pixel bleeding */}
+      <div className="absolute inset-0 z-0 overflow-hidden isolate">
         <motion.div
-          className="absolute inset-0 bg-cover bg-center motion-gpu"
+          className="absolute inset-0 motion-gpu"
           style={{
-            backgroundImage: "url('/images/hero-background.png')",
-            x: mousePosition.x,
-            y: mousePosition.y,
+            scale: 1.1,
+            outline: "1px solid transparent",
+            backfaceVisibility: "hidden",
+            willChange: "transform",
           }}
-          transition={{ type: 'spring', stiffness: 50, damping: 30 }}
-        />
-      </motion.div>
+          animate={{ scale: [1.1, 1.15, 1.1] }}
+          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+        >
+          <motion.div
+            className="absolute inset-0 bg-cover bg-center motion-gpu"
+            style={{
+              backgroundImage: "url('/images/hero-background.png')",
+              x: mousePosition.x,
+              y: mousePosition.y,
+            }}
+            transition={{ type: 'spring', stiffness: 50, damping: 30 }}
+          />
+        </motion.div>
+      </div>
 
       {/* Gradient Overlays */}
       <div className="absolute inset-0 bg-linear-to-b from-black/70 via-black/50 to-[#0a0a0a] z-[1]" />
