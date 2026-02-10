@@ -1,4 +1,5 @@
 "use client";
+import { useRef, useCallback } from 'react';
 import { FaCode, FaPaintBrush, FaRocket, FaTools } from 'react-icons/fa';
 import { ReactNode } from 'react';
 import { motion } from 'framer-motion';
@@ -33,6 +34,17 @@ const services: Service[] = [
 ];
 
 export default function Services() {
+  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  // Force Safari to drop the GPU layer once animation completes
+  const handleComplete = useCallback((index: number) => {
+    const el = cardRefs.current[index];
+    if (el) {
+      el.style.transform = 'none';
+      el.style.willChange = 'auto';
+    }
+  }, []);
+
   return (
     <section id="services" className="py-[10rem] lg:py-[12rem] bg-[#0a0a0a] relative overflow-hidden" style={{ marginTop: "-1px", paddingTop: "1px" }}>
       {/* Background Glow — disabled for flicker stress test */}
@@ -54,11 +66,13 @@ export default function Services() {
           {services.map((service, index) => (
             <motion.div
               key={index}
+              ref={(el) => { cardRefs.current[index] = el; }}
+              layout={false}
               className="service-card group p-8 text-center flex flex-col items-center"
-              style={{ transform: "translateZ(0)" }}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ type: "tween", ease: "easeOut", duration: 0.5, delay: index * 0.15 }}
+              transition={{ ease: "linear", duration: 0.5, delay: index * 0.15 }}
+              onAnimationComplete={() => handleComplete(index)}
             >
               {/* Icon */}
               <div className="mb-6 w-20 h-20 flex items-center justify-center bg-crimson/10 text-[3rem] text-crimson">
