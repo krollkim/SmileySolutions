@@ -89,6 +89,7 @@ export default function Services() {
           style={{
             backfaceVisibility: "hidden",
             perspective: 1000,
+            transformStyle: "preserve-3d",
             willChange: "transform, opacity",
           }}
           variants={headerVariants}
@@ -97,14 +98,24 @@ export default function Services() {
           viewport={{ once: true }}
         >
           <h2
-            className="section-title text-white transform-gpu"
-            style={{ backfaceVisibility: "hidden", willChange: "transform" }}
+            className="section-title text-white transform-gpu antialiased"
+            style={{
+              backfaceVisibility: "hidden",
+              willChange: "transform, opacity",
+              transform: "translateZ(0)",
+              WebkitFontSmoothing: "antialiased",
+            }}
           >
             Serv<span>i</span>ces
           </h2>
           <p
-            className="mt-6 text-[1.5rem] sm:text-[1.6rem] text-gray-400 max-w-2xl mx-auto leading-relaxed transform-gpu"
-            style={{ backfaceVisibility: "hidden", willChange: "transform" }}
+            className="mt-6 text-[1.5rem] sm:text-[1.6rem] text-gray-400 max-w-2xl mx-auto leading-relaxed transform-gpu antialiased"
+            style={{
+              backfaceVisibility: "hidden",
+              willChange: "transform, opacity",
+              transform: "translateZ(0)",
+              WebkitFontSmoothing: "antialiased",
+            }}
           >
             I build modern, scalable applications with full-stack expertise and deliver pixel-perfect designs.
           </p>
