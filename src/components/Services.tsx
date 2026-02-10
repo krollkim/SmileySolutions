@@ -64,10 +64,13 @@ export default function Services() {
           {services.map((service, index) => (
             <div
               key={index}
-              className={`service-card group p-8 rounded-2xl text-center flex flex-col items-center transition-all duration-700 ease-out transform-gpu ${
+              className={`service-card group p-8 text-center flex flex-col items-center transition-all duration-[3000ms] ease-linear transform-gpu ${
                 isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
               }`}
-              style={{ transitionDelay: `${index * 100}ms` }}
+              style={{
+                transitionDelay: `${index * 500}ms`,
+                border: '2px solid green',
+              }}
             >
               {/* Icon */}
               <div className="mb-6 w-20 h-20 flex items-center justify-center rounded-2xl bg-crimson/10 text-[3rem] text-crimson transition-all duration-300 group-hover:bg-crimson group-hover:text-white group-hover:scale-110">
