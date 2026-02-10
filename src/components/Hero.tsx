@@ -88,37 +88,40 @@ export default function Hero() {
       {/* Main Content */}
       <div className="relative z-10 container mx-auto px-6 lg:px-12">
         <div className="max-w-[900px]">
-          {/* H1 — primary SEO heading */}
+          {/* H1 — primary SEO heading, GPU-anchored */}
           <h1>
             {h1Lines.map((line, index) => (
               <div key={index} className="-mb-2 sm:-mb-3">
-                {/* Inline-block wrapper ensures box matches text width exactly */}
                 <span className="relative inline-block overflow-hidden">
-                  {/* The text - clips from left to right */}
                   <motion.span
-                    className={`inline-block text-[3.2rem] sm:text-[4rem] md:text-[5rem] lg:text-[6rem] font-bold leading-[1.1] tracking-tight motion-gpu ${
+                    className={`inline-block text-[3.2rem] sm:text-[4rem] md:text-[5rem] lg:text-[6rem] font-bold leading-[1.1] tracking-tight transform-gpu antialiased ${
                       line.isName ? 'text-crimson' : 'text-white'
                     }`}
+                    style={{
+                      backfaceVisibility: "hidden",
+                      willChange: "transform, opacity",
+                      WebkitFontSmoothing: "antialiased",
+                    }}
                     initial={{ clipPath: 'inset(0 100% 0 0)' }}
-                    animate={{ clipPath: 'inset(0 0% 0 0)' }}
+                    animate={{ clipPath: 'inset(0 0% 0 0)', z: 0.1 }}
                     transition={{
                       delay: line.delay,
                       duration: 0.5,
-                      ease: "easeOut"
+                      ease: [0.2, 0, 0.2, 1]
                     }}
                   >
                     {line.text}
                   </motion.span>
 
-                  {/* Crimson reveal bar - follows the clip edge */}
                   <motion.span
-                    className="absolute top-0 h-full w-[4px] bg-crimson motion-gpu"
+                    className="absolute top-0 h-full w-[4px] bg-crimson transform-gpu"
+                    style={{ backfaceVisibility: "hidden" }}
                     initial={{ left: '0%' }}
                     animate={{ left: '100%' }}
                     transition={{
                       delay: line.delay,
                       duration: 0.5,
-                      ease: "easeOut"
+                      ease: [0.2, 0, 0.2, 1]
                     }}
                   />
                 </span>
@@ -128,22 +131,29 @@ export default function Hero() {
 
           {/* Subtitle — reinforces meta description keywords */}
           <motion.p
-            className="text-[1.6rem] sm:text-[1.8rem] text-gray-400 mt-8 max-w-[500px] leading-relaxed motion-gpu"
-            style={{ backfaceVisibility: "hidden" }}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 0.999, y: 0.01 }}
-            transition={{ delay: 2.5, duration: 0.6, ease: "easeOut" }}
+            className="text-[1.6rem] sm:text-[1.8rem] text-gray-400 mt-8 max-w-[500px] leading-relaxed transform-gpu antialiased"
+            style={{
+              backfaceVisibility: "hidden",
+              willChange: "transform, opacity",
+              WebkitFontSmoothing: "antialiased",
+            }}
+            initial={{ opacity: 0, y: 15, z: 0.1 }}
+            animate={{ opacity: 1, y: -0.02, z: 0.1 }}
+            transition={{ delay: 2.5, duration: 0.6, ease: [0.2, 0, 0.2, 1] }}
           >
             Crafting modern, production-ready web experiences
           </motion.p>
 
           {/* CTA Button */}
           <motion.div
-            className="mt-10 motion-gpu"
-            style={{ backfaceVisibility: "hidden" }}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 0.999, y: 0.01 }}
-            transition={{ delay: 2.8, duration: 0.6, ease: "easeOut" }}
+            className="mt-10 transform-gpu"
+            style={{
+              backfaceVisibility: "hidden",
+              willChange: "transform, opacity",
+            }}
+            initial={{ opacity: 0, y: 15, z: 0.1 }}
+            animate={{ opacity: 1, y: -0.02, z: 0.1 }}
+            transition={{ delay: 2.8, duration: 0.6, ease: [0.2, 0, 0.2, 1] }}
           >
             <a
               href="#projects"
@@ -168,11 +178,14 @@ export default function Hero() {
 
         {/* Scroll Indicator */}
         <motion.div
-          className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 motion-gpu"
-          style={{ backfaceVisibility: "hidden" }}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 0.999 }}
-          transition={{ delay: 3.2, ease: "easeOut" }}
+          className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 transform-gpu"
+          style={{
+            backfaceVisibility: "hidden",
+            willChange: "transform, opacity",
+          }}
+          initial={{ opacity: 0, z: 0.1 }}
+          animate={{ opacity: 1, z: 0.1 }}
+          transition={{ delay: 3.2, ease: [0.2, 0, 0.2, 1] }}
         >
           <span className="text-[1.2rem] uppercase tracking-[0.3rem] text-gray-500">Scroll</span>
           <motion.div
