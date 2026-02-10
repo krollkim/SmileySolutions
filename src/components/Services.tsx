@@ -35,8 +35,8 @@ const services: Service[] = [
 export default function Services() {
   return (
     <section id="services" className="py-[10rem] lg:py-[12rem] bg-[#0a0a0a] relative overflow-hidden">
-      {/* Background Glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-crimson/5 rounded-full blur-[200px]" />
+      {/* Background Glow — disabled for flicker stress test */}
+      {/* <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-crimson/5 rounded-full blur-[200px]" /> */}
 
       <div className="container mx-auto px-6 lg:px-12 relative z-10">
         {/* Section Header — opacity and transform split */}
@@ -78,7 +78,7 @@ export default function Services() {
             >
               {/* Inner: transform only */}
               <motion.div
-                className="service-card group p-8 rounded-2xl text-center flex flex-col items-center"
+                className="service-card group p-8 text-center flex flex-col items-center"
                 initial={{ y: 40 }}
                 whileInView={{ y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
