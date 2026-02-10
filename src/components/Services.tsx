@@ -78,7 +78,7 @@ export default function Services() {
             >
               {/* Inner: transform only */}
               <motion.div
-                className="service-card group p-8 text-center flex flex-col items-center"
+                className="service-card group p-8 rounded-2xl text-center flex flex-col items-center"
                 initial={{ y: 40 }}
                 whileInView={{ y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
