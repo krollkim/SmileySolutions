@@ -83,22 +83,29 @@ export default function Services() {
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-crimson/5 rounded-full blur-[200px]" />
 
       <div className="container mx-auto px-6 lg:px-12 relative z-10">
-        {/* Section Header */}
+        {/* Section Header — isolated GPU layer */}
         <motion.div
-          className="text-center mb-16 lg:mb-20 transform-gpu"
+          className="text-center mb-16 lg:mb-20 transform-gpu isolate"
           style={{
             backfaceVisibility: "hidden",
             perspective: 1000,
+            willChange: "transform, opacity",
           }}
           variants={headerVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
         >
-          <h2 className="section-title text-white">
+          <h2
+            className="section-title text-white transform-gpu"
+            style={{ backfaceVisibility: "hidden", willChange: "transform" }}
+          >
             Serv<span>i</span>ces
           </h2>
-          <p className="mt-6 text-[1.5rem] sm:text-[1.6rem] text-gray-400 max-w-2xl mx-auto leading-relaxed">
+          <p
+            className="mt-6 text-[1.5rem] sm:text-[1.6rem] text-gray-400 max-w-2xl mx-auto leading-relaxed transform-gpu"
+            style={{ backfaceVisibility: "hidden", willChange: "transform" }}
+          >
             I build modern, scalable applications with full-stack expertise and deliver pixel-perfect designs.
           </p>
         </motion.div>
