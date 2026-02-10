@@ -1,4 +1,5 @@
 "use client";
+import { useEffect, useRef } from 'react';
 import { FaCode, FaPaintBrush, FaRocket, FaTools } from 'react-icons/fa';
 import { ReactNode } from 'react';
 
@@ -32,6 +33,27 @@ const services: Service[] = [
 ];
 
 export default function Services() {
+  const sectionRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          const cards = section.querySelectorAll('.service-card');
+          cards.forEach((card) => card.classList.add('visible'));
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.2 }
+    );
+
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <section
       id="services"
@@ -52,13 +74,16 @@ export default function Services() {
           </p>
         </div>
 
-        {/* Services Grid — CSS keyframe animation, no JS animation runtime */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+        {/* Services — flex layout with IntersectionObserver trigger */}
+        <div
+          ref={sectionRef}
+          className="flex flex-wrap justify-center gap-6 lg:gap-8"
+        >
           {services.map((service, index) => (
             <div
               key={index}
-              className="service-card service-card-animate group p-8 rounded-2xl text-center flex flex-col items-center"
-              style={{ animationDelay: `${index * 150}ms` }}
+              className="service-card group p-8 rounded-2xl text-center flex flex-col items-center w-full sm:w-[calc(50%-12px)] lg:w-[calc(25%-18px)]"
+              style={{ transitionDelay: `${index * 0.1}s` }}
             >
               {/* Icon */}
               <div className="mb-6 w-20 h-20 flex items-center justify-center rounded-2xl bg-crimson/10 text-[3rem] text-crimson transition-all duration-300 group-hover:bg-crimson group-hover:text-white group-hover:scale-110">
