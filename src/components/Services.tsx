@@ -34,7 +34,7 @@ const services: Service[] = [
 
 export default function Services() {
   return (
-    <section id="services" className="py-[10rem] lg:py-[12rem] bg-[#0a0a0a] relative overflow-hidden">
+    <section id="services" className="py-[10rem] lg:py-[12rem] bg-[#0a0a0a] relative overflow-hidden" style={{ marginTop: "-1px", paddingTop: "1px" }}>
       {/* Background Glow — disabled for flicker stress test */}
       {/* <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-crimson/5 rounded-full blur-[200px]" /> */}
 
@@ -45,13 +45,13 @@ export default function Services() {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          transition={{ type: "tween", ease: "easeOut", duration: 0.6 }}
         >
           <motion.div
             initial={{ y: 30 }}
             whileInView={{ y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+            transition={{ type: "tween", ease: "easeOut", duration: 0.6 }}
           >
             <h2 className="section-title text-white">
               Serv<span>i</span>ces
@@ -74,7 +74,7 @@ export default function Services() {
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
+              transition={{ type: "tween", ease: "easeOut", duration: 0.5, delay: index * 0.1 }}
             >
               {/* Inner: transform only */}
               <motion.div
@@ -82,7 +82,7 @@ export default function Services() {
                 initial={{ y: 40 }}
                 whileInView={{ y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
+                transition={{ type: "tween", ease: "easeOut", duration: 0.5, delay: index * 0.1 }}
               >
                 {/* Icon */}
                 <div className="mb-6 w-20 h-20 flex items-center justify-center rounded-2xl bg-crimson/10 text-[3rem] text-crimson transition-all duration-300 group-hover:bg-crimson group-hover:text-white group-hover:scale-110">

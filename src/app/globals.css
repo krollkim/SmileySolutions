@@ -108,10 +108,9 @@ body {
 }
 
 .service-card:hover {
-  /* STRESS TEST: hover effects disabled */
-  /* transform: translateY(-10px); */
-  /* box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4); */
-  /* border-color: rgba(220, 20, 60, 0.3); */
+  transform: translateY(-10px);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+  border-color: rgba(220, 20, 60, 0.3);
 }
 
 /* ===== Smooth Scrollbar ===== */
