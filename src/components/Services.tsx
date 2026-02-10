@@ -1,8 +1,7 @@
 "use client";
-import { useRef, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 import { FaCode, FaPaintBrush, FaRocket, FaTools } from 'react-icons/fa';
 import { ReactNode } from 'react';
-import { motion } from 'framer-motion';
 
 interface Service {
   title: string;
@@ -34,24 +33,23 @@ const services: Service[] = [
 ];
 
 export default function Services() {
-  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const [isLoaded, setIsLoaded] = useState(false);
 
-  // Force Safari to drop the GPU layer once animation completes
-  const handleComplete = useCallback((index: number) => {
-    const el = cardRefs.current[index];
-    if (el) {
-      el.style.transform = 'none';
-      el.style.willChange = 'auto';
-    }
+  useEffect(() => {
+    requestAnimationFrame(() => setIsLoaded(true));
   }, []);
 
   return (
-    <section id="services" className="py-[10rem] lg:py-[12rem] bg-[#0a0a0a] relative overflow-hidden" style={{ marginTop: "-1px", paddingTop: "1px" }}>
+    <section
+      id="services"
+      className="py-[10rem] lg:py-[12rem] bg-[#0a0a0a] relative overflow-hidden isolate"
+      style={{ marginTop: "-1px", paddingTop: "1px" }}
+    >
       {/* Background Glow — disabled for flicker stress test */}
       {/* <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-crimson/5 rounded-full blur-[200px]" /> */}
 
       <div className="container mx-auto px-6 lg:px-12 relative z-10">
-        {/* Section Header — static, no animation */}
+        {/* Section Header */}
         <div className="text-center mb-16 lg:mb-20">
           <h2 className="section-title text-white">
             Serv<span>i</span>ces
@@ -61,32 +59,29 @@ export default function Services() {
           </p>
         </div>
 
-        {/* Services Grid — STATIC-FIRST TEST: opacity-only fade, no transforms, no whileInView */}
+        {/* Services Grid — pure CSS hardware-accelerated transitions */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
           {services.map((service, index) => (
-            <motion.div
+            <div
               key={index}
-              ref={(el) => { cardRefs.current[index] = el; }}
-              layout={false}
-              className="service-card group p-8 text-center flex flex-col items-center"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ ease: "linear", duration: 0.5, delay: index * 0.15 }}
-              onAnimationComplete={() => handleComplete(index)}
+              className={`service-card group p-8 rounded-2xl text-center flex flex-col items-center transition-all duration-700 ease-out transform-gpu ${
+                isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+              }`}
+              style={{ transitionDelay: `${index * 100}ms` }}
             >
               {/* Icon */}
-              <div className="mb-6 w-20 h-20 flex items-center justify-center bg-crimson/10 text-[3rem] text-crimson">
+              <div className="mb-6 w-20 h-20 flex items-center justify-center rounded-2xl bg-crimson/10 text-[3rem] text-crimson transition-all duration-300 group-hover:bg-crimson group-hover:text-white group-hover:scale-110">
                 {service.icon}
               </div>
 
-              <h3 className="text-[2rem] font-semibold mb-4 text-white">
+              <h3 className="text-[2rem] font-semibold mb-4 text-white group-hover:text-crimson transition-colors duration-300">
                 {service.title}
               </h3>
 
               <p className="text-[1.4rem] text-gray-400 leading-relaxed">
                 {service.description}
               </p>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>
