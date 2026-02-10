@@ -60,14 +60,16 @@ const cardVariants: Variants = {
 const headerVariants: Variants = {
   hidden: {
     opacity: 0,
-    y: 30
+    y: 30,
+    z: 0.1
   },
   visible: {
     opacity: 1,
-    y: 0,
+    y: -0.01,
+    z: 0.1,
     transition: {
       duration: 0.6,
-      ease: "easeOut"
+      ease: [0.2, 0, 0.2, 1]
     }
   }
 };
@@ -84,42 +86,39 @@ export default function Services() {
 
       <div className="container mx-auto px-6 lg:px-12 relative z-10">
         {/* Section Header — isolated GPU layer */}
-        <motion.div
-          className="text-center mb-16 lg:mb-20 transform-gpu isolate"
-          style={{
-            backfaceVisibility: "hidden",
-            perspective: 1000,
-            transformStyle: "preserve-3d",
-            willChange: "transform, opacity",
-          }}
-          variants={headerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
+        <div
+          className="text-center mb-16 lg:mb-20 isolate"
+          style={{ perspective: 1000, transformStyle: "preserve-3d" }}
         >
-          <h2
-            className="section-title text-white transform-gpu antialiased"
+          <motion.h2
+            className="section-title text-white transform-gpu antialiased inline-block"
             style={{
               backfaceVisibility: "hidden",
               willChange: "transform, opacity",
-              transform: "translateZ(0)",
               WebkitFontSmoothing: "antialiased",
             }}
+            variants={headerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
           >
             Serv<span>i</span>ces
-          </h2>
-          <p
+          </motion.h2>
+          <motion.p
             className="mt-6 text-[1.5rem] sm:text-[1.6rem] text-gray-400 max-w-2xl mx-auto leading-relaxed transform-gpu antialiased"
             style={{
               backfaceVisibility: "hidden",
               willChange: "transform, opacity",
-              transform: "translateZ(0)",
               WebkitFontSmoothing: "antialiased",
             }}
+            variants={headerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
           >
             I build modern, scalable applications with full-stack expertise and deliver pixel-perfect designs.
-          </p>
-        </motion.div>
+          </motion.p>
+        </div>
 
         {/* Services Grid */}
         <motion.div
