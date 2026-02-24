@@ -44,6 +44,30 @@ export default function Services() {
   const cardsRef = useRef<HTMLDivElement[]>([]);
 
   useLayoutEffect(() => {
+    // 3D floating transforms for each card - unique values for independent movement
+    const cardTransforms = [
+      {
+        // Card 1: Drifts up-left with slight clockwise rotation
+        from: { y: 35, x: 15, rotation: 2, scale: 0.96 },
+        to: { y: -35, x: -15, rotation: -2, scale: 1.04 },
+      },
+      {
+        // Card 2: Drifts down-right with counter-clockwise rotation
+        from: { y: -40, x: -20, rotation: -3, scale: 1.05 },
+        to: { y: 40, x: 20, rotation: 3, scale: 0.95 },
+      },
+      {
+        // Card 3: Larger vertical drift, subtle horizontal
+        from: { y: 50, x: -10, rotation: 1.5, scale: 0.94 },
+        to: { y: -50, x: 10, rotation: -1.5, scale: 1.06 },
+      },
+      {
+        // Card 4: Opposite of card 1, different magnitude
+        from: { y: -30, x: 18, rotation: -2.5, scale: 1.03 },
+        to: { y: 30, x: -18, rotation: 2.5, scale: 0.97 },
+      },
+    ];
+
     const ctx = gsap.context(() => {
       // Header animations
       const headerTl = gsap.timeline({
@@ -64,7 +88,6 @@ export default function Services() {
           duration: 0.6,
           ease: "power2.out",
           force3D: true,
-          clearProps: "all",
         }
       ).fromTo(
         subtitleRef.current,
@@ -75,23 +98,20 @@ export default function Services() {
           duration: 0.6,
           ease: "power2.out",
           force3D: true,
-          clearProps: "all",
         },
         "-=0.4"
       );
 
-      // Cards animation with stagger
+      // Cards entry animation with stagger (opacity only)
       gsap.fromTo(
         cardsRef.current,
-        { opacity: 0, y: 40 },
+        { opacity: 0 },
         {
           opacity: 1,
-          y: 0,
-          duration: 0.6,
-          stagger: 0.1,
+          duration: 0.8,
+          stagger: 0.12,
           ease: "power2.out",
           force3D: true,
-          clearProps: "all",
           scrollTrigger: {
             trigger: cardsRef.current[0],
             start: "top 85%",
@@ -101,10 +121,40 @@ export default function Services() {
         }
       );
 
+      // 3D scroll-scrub floating effect for each card
+      cardsRef.current.forEach((card, index) => {
+        if (!card) return;
+
+        const transform = cardTransforms[index] || cardTransforms[0];
+
+        gsap.fromTo(
+          card,
+          {
+            y: transform.from.y,
+            x: transform.from.x,
+            rotation: transform.from.rotation,
+            scale: transform.from.scale,
+          },
+          {
+            y: transform.to.y,
+            x: transform.to.x,
+            rotation: transform.to.rotation,
+            scale: transform.to.scale,
+            ease: "sine.inOut",
+            force3D: true,
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: "top bottom",
+              end: "bottom top",
+              scrub: 2,
+            },
+          }
+        );
+      });
+
     }, sectionRef);
 
     return () => {
-      // Cleanup ScrollTrigger instances to prevent memory leaks
       ScrollTrigger.getAll().forEach(t => t.kill());
       ctx.revert();
     };
@@ -143,20 +193,29 @@ export default function Services() {
         </div>
 
         {/* Services Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+        <div
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8"
+          style={{ perspective: "1000px" }}
+        >
           {services.map((service, index) => (
             <div
               key={index}
               ref={(el) => { if (el) cardsRef.current[index] = el; }}
-              className="service-card group p-8 rounded-2xl text-center flex flex-col items-center"
-              style={{ opacity: 0, transform: "translateY(40px)" }}
+              className="service-card p-8 rounded-2xl text-center flex flex-col items-center"
+              style={{
+                opacity: 0,
+                transform: "translateZ(0)",
+                willChange: "transform, opacity",
+                backfaceVisibility: "hidden",
+                transformStyle: "preserve-3d",
+              }}
             >
               {/* Icon */}
-              <div className="mb-6 w-20 h-20 flex items-center justify-center rounded-2xl bg-crimson/10 text-[3rem] text-crimson transition-all duration-300 group-hover:bg-crimson group-hover:text-white group-hover:scale-110">
+              <div className="mb-6 w-20 h-20 flex items-center justify-center rounded-2xl bg-crimson/10 text-[3rem] text-crimson">
                 {service.icon}
               </div>
 
-              <h3 className="text-[2rem] font-semibold mb-4 text-white group-hover:text-crimson transition-colors duration-300">
+              <h3 className="text-[2rem] font-semibold mb-4 text-white">
                 {service.title}
               </h3>
 

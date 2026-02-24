@@ -101,16 +101,6 @@ body {
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(255, 255, 255, 0.05);
   overflow: hidden;
-  will-change: transform, opacity;
-  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-              box-shadow 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-              border-color 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-.service-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
-  border-color: rgba(220, 20, 60, 0.3);
 }
 
 /* ===== GPU Acceleration for Motion Elements (Mobile Flicker Fix) ===== */
@@ -118,12 +108,6 @@ body {
   will-change: transform, opacity;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
-}
-
-.service-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
-  border-color: rgba(220, 20, 60, 0.3);
 }
 
 /* ===== Smooth Scrollbar ===== */
@@ -371,3 +355,4 @@ html.accessibility-reduce-motion [style*="opacity"] {
 .animate-pulse-slow {
   animation: pulse-slow 3s ease-in-out infinite;
 }
+
