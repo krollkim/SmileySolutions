@@ -1,37 +1,60 @@
 "use client";
-import { useEffect, useState } from 'react';
-import { motion, useSpring } from 'framer-motion';
+import { useRef, useLayoutEffect, useState } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function ProgressBar() {
-  const [scrollProgress, setScrollProgress] = useState(0);
+  const barRef = useRef<HTMLDivElement>(null);
+  const [progress, setProgress] = useState(0);
 
-  // Smooth spring animation for the progress bar
-  const scaleX = useSpring(0, {
-    stiffness: 100,
-    damping: 30,
-    restDelta: 0.001
-  });
+  useLayoutEffect(() => {
+    const bar = barRef.current;
+    if (!bar) return;
 
-  useEffect(() => {
-    const calculateScrollProgress = () => {
-      const scrollTop = window.scrollY;
-      const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-      const progress = docHeight > 0 ? scrollTop / docHeight : 0;
-      setScrollProgress(progress);
-      scaleX.set(progress);
+    // Set initial state
+    gsap.set(bar, {
+      scaleX: 0,
+      transformOrigin: "left center",
+      force3D: true,
+    });
+
+    // Create ScrollTrigger for progress
+    const trigger = ScrollTrigger.create({
+      trigger: document.documentElement,
+      start: "top top",
+      end: "bottom bottom",
+      scrub: 0.1,
+      anticipatePin: 1,
+      onUpdate: (self) => {
+        gsap.to(bar, {
+          scaleX: self.progress,
+          duration: 0.1,
+          ease: "none",
+          force3D: true,
+          overwrite: true,
+        });
+        setProgress(Math.round(self.progress * 100));
+      },
+    });
+
+    return () => {
+      trigger.kill();
     };
-
-    calculateScrollProgress();
-    window.addEventListener('scroll', calculateScrollProgress);
-    return () => window.removeEventListener('scroll', calculateScrollProgress);
-  }, [scaleX]);
+  }, []);
 
   return (
-    <motion.div
-      className="fixed top-0 left-0 right-0 h-[3px] bg-crimson z-[100] origin-left"
-      style={{ scaleX }}
+    <div
+      ref={barRef}
+      className="fixed top-0 left-0 right-0 h-[3px] bg-crimson z-[100]"
+      style={{
+        transform: "scaleX(0)",
+        transformOrigin: "left center",
+        backfaceVisibility: "hidden",
+      }}
       role="progressbar"
-      aria-valuenow={Math.round(scrollProgress * 100)}
+      aria-valuenow={progress}
       aria-valuemin={0}
       aria-valuemax={100}
       aria-label="Page scroll progress"

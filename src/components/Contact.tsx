@@ -1,6 +1,10 @@
 "use client";
-import { motion, Variants } from 'framer-motion';
+import { useRef, useLayoutEffect } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaGithub, FaLinkedin, FaWhatsapp, FaCalendarAlt } from 'react-icons/fa';
+
+gsap.registerPlugin(ScrollTrigger);
 
 interface ContactCard {
   icon: React.ReactNode;
@@ -11,6 +15,14 @@ interface ContactCard {
 }
 
 export default function Contact() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const headerRef = useRef<HTMLDivElement>(null);
+  const titleRef = useRef<HTMLHeadingElement>(null);
+  const leftContentRef = useRef<HTMLDivElement>(null);
+  const rightContentRef = useRef<HTMLDivElement>(null);
+  const contactCardsRef = useRef<HTMLDivElement[]>([]);
+  const decorativeLineRef = useRef<HTMLDivElement>(null);
+
   const contactCards: ContactCard[] = [
     {
       icon: <FaEnvelope />,
@@ -35,49 +47,166 @@ export default function Contact() {
     }
   ];
 
-  const cardVariants: Variants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: (i: number) => ({
-      opacity: 1,
-      y: 0,
-      transition: {
-        delay: 0.2 + i * 0.15,
-        duration: 0.5,
-        ease: "easeOut"
+  useLayoutEffect(() => {
+    const ctx = gsap.context(() => {
+      // Header animation
+      gsap.fromTo(
+        titleRef.current,
+        { opacity: 0, y: 30 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.6,
+          ease: "power2.out",
+          force3D: true,
+          overwrite: "auto",
+          clearProps: "all",
+          scrollTrigger: {
+            trigger: headerRef.current,
+            start: "top 90%",
+            toggleActions: "play none none none",
+            once: true,
+            anticipatePin: 1,
+          },
+        }
+      );
+
+      // Left content animation
+      gsap.fromTo(
+        leftContentRef.current,
+        { opacity: 0, x: -50 },
+        {
+          opacity: 1,
+          x: 0,
+          duration: 0.6,
+          ease: "power2.out",
+          force3D: true,
+          overwrite: "auto",
+          clearProps: "all",
+          scrollTrigger: {
+            trigger: leftContentRef.current,
+            start: "top 90%",
+            toggleActions: "play none none none",
+            once: true,
+            anticipatePin: 1,
+          },
+        }
+      );
+
+      // Right content animation
+      gsap.fromTo(
+        rightContentRef.current,
+        { opacity: 0, x: 50 },
+        {
+          opacity: 1,
+          x: 0,
+          duration: 0.6,
+          delay: 0.2,
+          ease: "power2.out",
+          force3D: true,
+          overwrite: "auto",
+          clearProps: "all",
+          scrollTrigger: {
+            trigger: rightContentRef.current,
+            start: "top 90%",
+            toggleActions: "play none none none",
+            once: true,
+            anticipatePin: 1,
+          },
+        }
+      );
+
+      // Contact cards stagger animation - using native GSAP stagger
+      const validCards = contactCardsRef.current.filter(Boolean);
+      if (validCards.length > 0) {
+        gsap.fromTo(
+          validCards,
+          { opacity: 0, y: 30 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.5,
+            stagger: 0.15,
+            delay: 0.2,
+            ease: "power2.out",
+            force3D: true,
+            overwrite: "auto",
+            clearProps: "all",
+            scrollTrigger: {
+              trigger: rightContentRef.current,
+              start: "top 90%",
+              toggleActions: "play none none none",
+              once: true,
+              anticipatePin: 1,
+            },
+          }
+        );
       }
-    })
-  };
+
+      // Decorative line animation
+      gsap.fromTo(
+        decorativeLineRef.current,
+        { scaleY: 0 },
+        {
+          scaleY: 1,
+          duration: 0.8,
+          delay: 0.5,
+          ease: "power2.out",
+          force3D: true,
+          overwrite: "auto",
+          clearProps: "all",
+          scrollTrigger: {
+            trigger: rightContentRef.current,
+            start: "top 90%",
+            toggleActions: "play none none none",
+            once: true,
+            anticipatePin: 1,
+          },
+        }
+      );
+
+    }, sectionRef);
+
+    return () => {
+      ScrollTrigger.getAll().forEach(t => t.kill());
+      ctx.revert();
+    };
+  }, []);
 
   return (
-    <section id="contact" className="py-[12rem] bg-[#0a0a0a] relative overflow-hidden">
+    <section
+      ref={sectionRef}
+      id="contact"
+      className="py-48 bg-[#0a0a0a] relative overflow-hidden"
+      style={{
+        transform: "translateZ(0)",
+        backfaceVisibility: "hidden",
+      }}
+    >
       {/* Background Decorative Elements */}
       <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-crimson/5 rounded-full blur-[150px]" />
       <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-crimson/5 rounded-full blur-[120px]" />
 
       <div className="container mx-auto px-6 lg:px-12 relative z-10">
         {/* Section Header */}
-        <div className="text-center mb-20">
-          <motion.h2
-            className="section-title text-white motion-gpu"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
+        <div ref={headerRef} className="text-center mb-20">
+          <h2
+            ref={titleRef}
+            className="section-title text-white"
+            style={{ opacity: 0, transform: "translateY(30px)" }}
           >
             Cont<span>a</span>ct
-          </motion.h2>
+          </h2>
         </div>
 
         {/* Main Content - Two Column Layout */}
         <div className="flex flex-col lg:flex-row gap-16 lg:gap-20 max-w-6xl mx-auto items-center">
 
           {/* LEFT SIDE - Bold CTA */}
-          <motion.div
-            className="w-full lg:w-1/2 motion-gpu"
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
+          <div
+            ref={leftContentRef}
+            className="w-full lg:w-1/2"
+            style={{ opacity: 0, transform: "translateX(-50px)" }}
           >
             <div className="lg:pr-8">
               <h3 className="text-[3rem] sm:text-[4rem] lg:text-[4.5rem] font-bold text-white leading-[1.1] mb-6">
@@ -127,21 +256,20 @@ export default function Contact() {
                 href="https://calendar.app.google/i5TALc1oJahNDeRw8"
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label="Book an appointment with Kim Kroll"
                 className="group inline-flex items-center gap-4 px-8 py-4 text-[1.6rem] font-medium uppercase tracking-[0.2rem] text-white bg-crimson rounded-lg overflow-hidden transition-all duration-300 hover:bg-crimson/90 hover:gap-6"
               >
                 <FaCalendarAlt className="text-[1.8rem]" />
                 <span>Book Appointment</span>
               </a>
             </div>
-          </motion.div>
+          </div>
 
           {/* RIGHT SIDE - Staggered Contact Cards */}
-          <motion.div
-            className="w-full lg:w-1/2 motion-gpu"
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
+          <div
+            ref={rightContentRef}
+            className="w-full lg:w-1/2"
+            style={{ opacity: 0, transform: "translateX(50px)" }}
           >
             <div className="space-y-5">
               {contactCards.map((card, i) => {
@@ -163,22 +291,23 @@ export default function Contact() {
                   </>
                 );
 
-                const cardClassName = `group flex items-center gap-6 p-6 rounded-2xl border border-gray-800 bg-linear-to-br from-gray-900/50 to-gray-800/30 backdrop-blur-sm transition-all duration-300 ${
-                  card.clickable ? 'hover:border-crimson/50 hover:bg-gray-800/50 cursor-pointer' : ''
+                const cardClassName = `group flex items-center gap-6 p-6 rounded-2xl border border-gray-800 bg-gray-900/80 transition-all duration-300 ${
+                  card.clickable ? 'hover:border-crimson/50 hover:bg-gray-800/70 cursor-pointer' : ''
                 }`;
 
                 return (
-                  <motion.div
+                  <div
                     key={card.label}
-                    custom={i}
-                    variants={cardVariants}
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true }}
-                    className={`motion-gpu ${i % 2 === 1 ? 'lg:ml-[30px]' : ''}`}
+                    ref={(el) => { if (el) contactCardsRef.current[i] = el; }}
+                    className={i % 2 === 1 ? 'lg:ml-[30px]' : ''}
+                    style={{
+                      opacity: 0,
+                      transform: "translateY(30px) translateZ(0)",
+                      backfaceVisibility: "hidden",
+                    }}
                   >
                     {card.clickable && card.href ? (
-                      <a href={card.href} className={cardClassName}>
+                      <a href={card.href} className={cardClassName} aria-label={`Contact via ${card.label}`}>
                         {cardContent}
                       </a>
                     ) : (
@@ -186,20 +315,18 @@ export default function Contact() {
                         {cardContent}
                       </div>
                     )}
-                  </motion.div>
+                  </div>
                 );
               })}
             </div>
 
             {/* Decorative Line */}
-            <motion.div
-              className="hidden lg:block absolute right-0 top-1/2 -translate-y-1/2 w-[1px] h-[200px] bg-linear-to-b from-transparent via-crimson/30 to-transparent motion-gpu"
-              initial={{ scaleY: 0 }}
-              whileInView={{ scaleY: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
+            <div
+              ref={decorativeLineRef}
+              className="hidden lg:block absolute right-0 top-1/2 -translate-y-1/2 w-px h-[200px] bg-linear-to-b from-transparent via-crimson/30 to-transparent"
+              style={{ transform: "translateY(-50%) scaleY(0)", transformOrigin: "center" }}
             />
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>

@@ -1,11 +1,19 @@
 "use client";
-import { useState, useEffect } from 'react';
-import { motion, AnimatePresence, Variants } from 'framer-motion';
+import { useState, useEffect, useRef, useCallback } from 'react';
+import { motion } from 'framer-motion';
+import { gsap } from 'gsap';
 import Image from 'next/image';
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+
+  const menuOverlayRef = useRef<HTMLDivElement>(null);
+  const menuNavRef = useRef<HTMLElement>(null);
+  const menuItemsRef = useRef<HTMLDivElement[]>([]);
+  const logoRef = useRef<HTMLDivElement>(null);
+  const bottomDecoRef = useRef<HTMLDivElement>(null);
+  const timelineRef = useRef<gsap.core.Timeline | null>(null);
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50);
@@ -13,10 +21,96 @@ const Header = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Lock body scroll when mobile menu is open
   useEffect(() => {
     document.body.style.overflow = isOpen ? 'hidden' : '';
     return () => { document.body.style.overflow = ''; };
+  }, [isOpen]);
+
+  const setMenuItemRef = useCallback((el: HTMLDivElement | null, index: number) => {
+    if (el) menuItemsRef.current[index] = el;
+  }, []);
+
+  useEffect(() => {
+    const overlay = menuOverlayRef.current;
+    const nav = menuNavRef.current;
+    const items = menuItemsRef.current;
+    const logo = logoRef.current;
+    const bottomDeco = bottomDecoRef.current;
+
+    if (!overlay || !nav || items.length === 0) return;
+
+    if (timelineRef.current) {
+      timelineRef.current.kill();
+    }
+
+    const tl = gsap.timeline({ paused: true });
+    timelineRef.current = tl;
+
+    gsap.set(overlay, { 
+      visibility: "hidden", 
+      opacity: 0,
+    });
+    gsap.set(items, { 
+      opacity: 0, 
+      y: 80,
+    });
+    gsap.set(logo, { 
+      opacity: 0, 
+      scale: 0.9,
+    });
+    gsap.set(bottomDeco, { 
+      opacity: 0, 
+      y: 10,
+    });
+
+    tl.to(overlay, {
+      visibility: "visible",
+      opacity: 1,
+      duration: 0.3,
+      ease: "power2.inOut",
+      force3D: true,
+    })
+    .to(items, {
+      opacity: 1,
+      y: 0,
+      duration: 0.4,
+      stagger: 0.06,
+      ease: "power2.out",
+      force3D: true,
+    }, "-=0.1")
+    .to(logo, {
+      opacity: 1,
+      scale: 1,
+      duration: 0.4,
+      ease: "power2.out",
+      force3D: true,
+    }, "-=0.2")
+    .to(bottomDeco, {
+      opacity: 1,
+      y: 0,
+      duration: 0.3,
+      ease: "power2.out",
+      force3D: true,
+    }, "-=0.2");
+
+    return () => {
+      tl.kill();
+    };
+  }, []);
+
+  useEffect(() => {
+    const tl = timelineRef.current;
+    if (!tl) return;
+
+    if (isOpen) {
+      tl.timeScale(1).play();
+    } else {
+      tl.timeScale(2.5).reverse().eventCallback("onReverseComplete", () => {
+        if (menuOverlayRef.current) {
+          gsap.set(menuOverlayRef.current, { visibility: "hidden" });
+        }
+      });
+    }
   }, [isOpen]);
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
@@ -24,7 +118,7 @@ const Header = () => {
     setIsOpen(false);
     setTimeout(() => {
       document.getElementById(targetId)?.scrollIntoView({ behavior: 'smooth' });
-    }, 100);
+    }, 400);
   };
 
   const navItems = [
@@ -35,45 +129,10 @@ const Header = () => {
     { label: 'Contact', id: 'contact', ariaLabel: 'Contact Kim Kroll for development projects' },
   ];
 
-  // Full-screen menu animation variants
-  const overlayVariants: Variants = {
-    closed: {
-      opacity: 0,
-      transition: { duration: 0.4, ease: "easeInOut" }
-    },
-    open: {
-      opacity: 1,
-      transition: { duration: 0.4, ease: "easeInOut" }
-    }
-  };
-
-  const menuContainerVariants: Variants = {
-    closed: {},
-    open: {
-      transition: {
-        staggerChildren: 0.08,
-        delayChildren: 0.2
-      }
-    }
-  };
-
-  const menuItemVariants: Variants = {
-    closed: {
-      opacity: 0,
-      y: 80,
-      transition: { duration: 0.3, ease: "easeInOut" }
-    },
-    open: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.5, ease: "easeOut" }
-    }
-  };
-
   return (
     <>
       <motion.header
-        className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 motion-gpu ${
+        className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
           isScrolled
             ? 'bg-[#0a0a0a]/95 backdrop-blur-xl shadow-2xl shadow-black/30'
             : 'bg-transparent'
@@ -95,7 +154,6 @@ const Header = () => {
                 <span className="font-bold">Smiley</span>
                 <span className="font-light">Solutions</span>
               </span>
-              {/* Crimson underline - expands from 0% to 100% on hover */}
               <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-crimson transition-all duration-500 ease-out group-hover:w-full" />
             </a>
 
@@ -125,7 +183,7 @@ const Header = () => {
               <div className="relative w-[28px] h-[14px]">
                 {/* Top line */}
                 <motion.span
-                  className="absolute left-0 w-full h-[2px] bg-white rounded-full origin-center motion-gpu"
+                  className="absolute left-0 w-full h-[2px] bg-white rounded-full origin-center"
                   initial={false}
                   animate={{
                     top: isOpen ? '50%' : '0%',
@@ -136,7 +194,7 @@ const Header = () => {
                 />
                 {/* Bottom line */}
                 <motion.span
-                  className="absolute left-0 w-full h-[2px] bg-white rounded-full origin-center motion-gpu"
+                  className="absolute left-0 w-full h-[2px] bg-white rounded-full origin-center"
                   initial={false}
                   animate={{
                     bottom: isOpen ? '50%' : '0%',
@@ -152,100 +210,82 @@ const Header = () => {
         </div>
       </motion.header>
 
-      {/* Full-Screen Mobile Menu Overlay */}
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            className="fixed inset-0 z-40 lg:hidden motion-gpu"
-            variants={overlayVariants}
-            initial="closed"
-            animate="open"
-            exit="closed"
-          >
-            {/* Dark translucent background with heavy blur */}
-            <div className="absolute inset-0 bg-[#050505]/98 backdrop-blur-2xl" />
+      {/* Full-Screen Mobile Menu Overlay - GSAP Animated */}
+      <div
+        ref={menuOverlayRef}
+        className="fixed inset-0 z-40 lg:hidden"
+        style={{ visibility: "hidden", opacity: 0 }}
+      >
+        {/* Dark translucent background with heavy blur */}
+        <div className="absolute inset-0 bg-[#050505]/98 backdrop-blur-2xl" />
 
-            {/* Menu Content */}
-            <motion.nav
-              className="relative h-full flex flex-col items-center justify-center motion-gpu"
-              variants={menuContainerVariants}
-              initial="closed"
-              animate="open"
-              exit="closed"
+        {/* Menu Content */}
+        <nav
+          ref={menuNavRef}
+          className="relative h-full flex flex-col items-center justify-center"
+        >
+          {navItems.map((item, index) => (
+            <div
+              key={item.label}
+              ref={(el) => setMenuItemRef(el, index)}
+              className="relative group"
+              style={{ opacity: 0, transform: "translateY(80px)" }}
             >
-              {navItems.map((item, index) => (
-                <motion.div
-                  key={item.label}
-                  className="relative group motion-gpu"
-                  variants={menuItemVariants}
-                >
-                  {/* Ghost Background Number - subtle watermark */}
-                  <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-[15rem] sm:text-[20rem] font-extralight text-white/[0.02] leading-none select-none pointer-events-none transition-all duration-500 group-hover:text-crimson/[0.06]">
-                    {String(index + 1).padStart(2, '0')}
-                  </span>
+              {/* Ghost Background Number */}
+              <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-[15rem] sm:text-[20rem] font-extralight text-white/[0.02] leading-none select-none pointer-events-none transition-all duration-500 group-hover:text-crimson/[0.06]">
+                {String(index + 1).padStart(2, '0')}
+              </span>
 
-                  {/* Main Navigation Link - original clean typography */}
-                  <a
-                    href={`#${item.id}`}
-                    onClick={(e) => handleNavClick(e, item.id)}
-                    aria-label={item.ariaLabel}
-                    className="relative z-10 block py-4 sm:py-6 text-[4rem] sm:text-[5rem] md:text-[6rem] font-extralight uppercase tracking-[0.5rem] text-white/80 hover:text-white transition-all duration-300"
-                  >
-                    <span className="relative">
-                      {item.label}
-                      <span className="absolute -bottom-2 left-0 w-0 h-[2px] bg-crimson transition-all duration-500 ease-out group-hover:w-full" />
-                    </span>
-                  </a>
-                </motion.div>
-              ))}
-
-              {/* Logo Icon - Centered with spacious margin */}
-              <motion.div
-                className="mt-26 motion-gpu"
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.8, transition: { duration: 0.3, ease: "easeIn" } }}
-                transition={{ delay: 0.5, duration: 0.5, ease: "easeOut" }}
+              {/* Main Navigation Link */}
+              <a
+                href={`#${item.id}`}
+                onClick={(e) => handleNavClick(e, item.id)}
+                aria-label={item.ariaLabel}
+                className="relative z-10 block py-4 sm:py-6 text-[4rem] sm:text-[5rem] md:text-[6rem] font-extralight uppercase tracking-[0.5rem] text-white/80 hover:text-white transition-all duration-300"
               >
-                <motion.div
-                  className="motion-gpu"
-                  animate={{ scale: [1, 1.05, 1] }}
-                  transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-                >
-                  <Image
-                    src="/favicon/apple-touch-icon.png"
-                    alt="SmileySolutions Logo"
-                    width={64}
-                    height={64}
-                    className="drop-shadow-[0_0_15px_rgba(220,20,60,0.4)]"
-                  />
-                </motion.div>
-              </motion.div>
+                <span className="relative">
+                  {item.label}
+                  <span className="absolute -bottom-2 left-0 w-0 h-[2px] bg-crimson transition-all duration-500 ease-out group-hover:w-full" />
+                </span>
+              </a>
+            </div>
+          ))}
 
-              {/* Bottom decorative element */}
-              <motion.div
-                className="absolute bottom-10 left-1/2 -translate-x-1/2 motion-gpu"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: 20, transition: { duration: 0.3, ease: "easeIn" } }}
-                transition={{ delay: 0.6, duration: 0.5, ease: "easeOut" }}
-              >
-                <div className="flex items-center gap-4">
-                  <span className="w-12 h-[1px] bg-crimson/50" />
-                  <span className="text-[1.2rem] uppercase tracking-[0.3rem] text-gray-500">Menu</span>
-                  <span className="w-12 h-[1px] bg-crimson/50" />
-                </div>
-              </motion.div>
+          {/* Logo Icon - centered below nav items */}
+          <div
+            ref={logoRef}
+            className="mt-16"
+            style={{ opacity: 0, transform: "scale(0.9)" }}
+          >
+            <div className="animate-pulse-slow">
+              <Image
+                src="/favicon/apple-touch-icon.png"
+                alt="SmileySolutions Logo"
+                width={64}
+                height={64}
+                className="drop-shadow-[0_0_15px_rgba(220,20,60,0.4)]"
+              />
+            </div>
+          </div>
 
-              {/* Corner accents */}
-              <div className="absolute top-8 left-8 w-16 h-16 border-l-2 border-t-2 border-crimson/20" />
-              <div className="absolute top-8 right-8 w-16 h-16 border-r-2 border-t-2 border-crimson/20" />
-              <div className="absolute bottom-8 left-8 w-16 h-16 border-l-2 border-b-2 border-crimson/20" />
-              <div className="absolute bottom-8 right-8 w-16 h-16 border-r-2 border-b-2 border-crimson/20" />
-            </motion.nav>
-          </motion.div>
-        )}
-      </AnimatePresence>
+          {/* MENU label - absolute bottom, centered horizontally */}
+          <div
+            ref={bottomDecoRef}
+            className="absolute bottom-10 left-0 right-0 flex items-center justify-center gap-4"
+            style={{ opacity: 0, transform: "translateY(10px)" }}
+          >
+            <span className="w-12 h-px bg-crimson/50" />
+            <span className="text-[1.2rem] uppercase tracking-[0.3rem] text-gray-500">Menu</span>
+            <span className="w-12 h-px bg-crimson/50" />
+          </div>
+
+          {/* Corner accents */}
+          <div className="absolute top-8 left-8 w-16 h-16 border-l-2 border-t-2 border-crimson/20" />
+          <div className="absolute top-8 right-8 w-16 h-16 border-r-2 border-t-2 border-crimson/20" />
+          <div className="absolute bottom-8 left-8 w-16 h-16 border-l-2 border-b-2 border-crimson/20" />
+          <div className="absolute bottom-8 right-8 w-16 h-16 border-r-2 border-b-2 border-crimson/20" />
+        </nav>
+      </div>
     </>
   );
 };

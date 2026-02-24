@@ -21,12 +21,14 @@ html {
 body {
   font-family: var(--font-montserrat), 'Montserrat', sans-serif;
   overflow-x: hidden;
+  overflow-y: auto;
   margin: 0;
   background-color: #0a0a0a;
   color: white;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-tap-highlight-color: transparent;
+  -webkit-overflow-scrolling: touch;
 }
 
 /* ===== Section Title - Standardized ===== */
@@ -354,4 +356,18 @@ html.accessibility-reduce-motion [style*="opacity"] {
 
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
   background: crimson;
+}
+
+/* ===== Mobile Menu Logo Pulse Animation ===== */
+@keyframes pulse-slow {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 3s ease-in-out infinite;
 }
