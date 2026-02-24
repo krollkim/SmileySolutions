@@ -8,7 +8,7 @@ import ProgressBar from '@/components/ProgressBar';
 
 export default function Home() {
   return (
-    <main className="min-h-dvh bg-[#0a0a0a]">
+    <main className="min-h-dvh bg-[#0a0a0a] overflow-x-hidden w-full max-w-[100vw]">
       {/* Scroll Progress Bar */}
       <ProgressBar />
 
