@@ -44,27 +44,27 @@ export default function Services() {
   const cardsRef = useRef<HTMLDivElement[]>([]);
 
   useLayoutEffect(() => {
-    // 3D floating transforms for each card - unique values for independent movement
+    // 2026 Premium 3D transforms - enhanced wobble, depth, and layered overlap
     const cardTransforms = [
       {
-        // Card 1: Drifts up-left with slight clockwise rotation
-        from: { y: 35, x: 15, rotation: 2, scale: 0.96 },
-        to: { y: -35, x: -15, rotation: -2, scale: 1.04 },
+        // Card 1: Drifts up, overlaps right, clockwise wobble
+        from: { y: 45, x: 25, rotation: 4, scale: 0.93 },
+        to: { y: -45, x: -20, rotation: -4, scale: 1.05 },
       },
       {
-        // Card 2: Drifts down-right with counter-clockwise rotation
-        from: { y: -40, x: -20, rotation: -3, scale: 1.05 },
-        to: { y: 40, x: 20, rotation: 3, scale: 0.95 },
+        // Card 2: Drifts down, overlaps left, counter-clockwise wobble
+        from: { y: -50, x: -30, rotation: -5, scale: 0.92 },
+        to: { y: 50, x: 25, rotation: 5, scale: 1.06 },
       },
       {
-        // Card 3: Larger vertical drift, subtle horizontal
-        from: { y: 50, x: -10, rotation: 1.5, scale: 0.94 },
-        to: { y: -50, x: 10, rotation: -1.5, scale: 1.06 },
+        // Card 3: Large vertical drift, subtle overlap, gentle wobble
+        from: { y: 60, x: 20, rotation: 3.5, scale: 0.91 },
+        to: { y: -60, x: -15, rotation: -3.5, scale: 1.07 },
       },
       {
-        // Card 4: Opposite of card 1, different magnitude
-        from: { y: -30, x: 18, rotation: -2.5, scale: 1.03 },
-        to: { y: 30, x: -18, rotation: 2.5, scale: 0.97 },
+        // Card 4: Opposite direction, strong overlap, dramatic wobble
+        from: { y: -40, x: -25, rotation: -4.5, scale: 0.94 },
+        to: { y: 40, x: 30, rotation: 4.5, scale: 1.05 },
       },
     ];
 
@@ -121,12 +121,13 @@ export default function Services() {
         }
       );
 
-      // 3D scroll-scrub floating effect for each card
+      // 2026 Premium 3D scroll-scrub floating effect
       cardsRef.current.forEach((card, index) => {
         if (!card) return;
 
         const transform = cardTransforms[index] || cardTransforms[0];
 
+        // Main 3D floating animation
         gsap.fromTo(
           card,
           {
@@ -146,10 +147,26 @@ export default function Services() {
               trigger: sectionRef.current,
               start: "top bottom",
               end: "bottom top",
-              scrub: 2,
+              scrub: 2.5,
             },
           }
         );
+
+        // Dynamic z-index based on scale for proper layering
+        gsap.to(card, {
+          zIndex: index % 2 === 0 ? 2 : 1,
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 60%",
+            end: "bottom 40%",
+            scrub: 2.5,
+            onUpdate: (self) => {
+              const progress = self.progress;
+              const centerDistance = Math.abs(progress - 0.5);
+              card.style.zIndex = centerDistance < 0.2 ? '3' : (index % 2 === 0 ? '2' : '1');
+            },
+          },
+        });
       });
 
     }, sectionRef);
