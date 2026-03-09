@@ -3,6 +3,7 @@ import { useRef, useLayoutEffect } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaGithub, FaLinkedin, FaWhatsapp, FaCalendarAlt } from 'react-icons/fa';
+import { useTranslations, useLocale } from 'next-intl';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -15,6 +16,10 @@ interface ContactCard {
 }
 
 export default function Contact() {
+  const t = useTranslations('contact');
+  const locale = useLocale();
+  const isRTL = locale === 'he';
+
   const sectionRef = useRef<HTMLElement>(null);
   const headerRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
@@ -26,25 +31,25 @@ export default function Contact() {
   const contactCards: ContactCard[] = [
     {
       icon: <FaEnvelope />,
-      label: 'Email',
+      label: t('email_label'),
       value: 'krollkimdev@gmail.com',
       href: 'mailto:krollkimdev@gmail.com?subject=SmileySolutions%20Inquiry&body=Hi%20Kim!%20I%20found%20SmileySolutions%20and%20I%27m%20interested%20in%20your%20Full-Stack%20development%20services.%20Let%27s%20connect!',
-      clickable: true
+      clickable: true,
     },
     {
       icon: <FaPhone />,
-      label: 'Phone',
+      label: t('phone_label'),
       value: '+972 52-876-9566',
       href: 'tel:+972528769566',
-      clickable: true
+      clickable: true,
     },
     {
       icon: <FaMapMarkerAlt />,
-      label: 'Location',
-      value: 'Tel Aviv | Koh Phangan | Remote',
+      label: t('location_label'),
+      value: t('location_value'),
       href: undefined,
-      clickable: false
-    }
+      clickable: false,
+    },
   ];
 
   useLayoutEffect(() => {
@@ -71,10 +76,10 @@ export default function Contact() {
         }
       );
 
-      // Left content animation
+      // Left content animation — in RTL this column is on the right, so slide from opposite edge
       gsap.fromTo(
         leftContentRef.current,
-        { opacity: 0, x: -50 },
+        { opacity: 0, x: isRTL ? 50 : -50 },
         {
           opacity: 1,
           x: 0,
@@ -93,10 +98,10 @@ export default function Contact() {
         }
       );
 
-      // Right content animation
+      // Right content animation — in RTL this column is on the left, so slide from opposite edge
       gsap.fromTo(
         rightContentRef.current,
-        { opacity: 0, x: 50 },
+        { opacity: 0, x: isRTL ? -50 : 50 },
         {
           opacity: 1,
           x: 0,
@@ -171,7 +176,7 @@ export default function Contact() {
       ScrollTrigger.getAll().forEach(t => t.kill());
       ctx.revert();
     };
-  }, []);
+  }, [isRTL]);
 
   return (
     <section
@@ -195,7 +200,7 @@ export default function Contact() {
             className="section-title text-white"
             style={{ opacity: 0, transform: "translateY(30px)" }}
           >
-            Cont<span>a</span>ct
+            {t.rich('title', { highlight: (chunks) => <span>{chunks}</span> })}
           </h2>
         </div>
 
@@ -206,18 +211,17 @@ export default function Contact() {
           <div
             ref={leftContentRef}
             className="w-full lg:w-1/2"
-            style={{ opacity: 0, transform: "translateX(-50px)" }}
+            style={{ opacity: 0, transform: isRTL ? "translateX(50px)" : "translateX(-50px)" }}
           >
             <div className="lg:pr-8">
               <h3 className="text-[3rem] sm:text-[4rem] lg:text-[4.5rem] font-bold text-white leading-[1.1] mb-6">
-                Ready to build
+                {t('heading')}
                 <br />
-                <span className="text-crimson">something amazing?</span>
+                <span className="text-crimson">{t('heading_accent')}</span>
               </h3>
 
               <p className="text-[1.6rem] sm:text-[1.8rem] text-gray-400 mb-10 leading-relaxed max-w-[450px]">
-                I&apos;m currently available for freelance projects and full-time opportunities.
-                Let&apos;s create something extraordinary together.
+                {t('subtext')}
               </p>
 
               {/* Social Links */}
@@ -241,7 +245,7 @@ export default function Contact() {
                   <FaLinkedin />
                 </a>
                 <a
-                  href="https://wa.me/972525890252?text=Hi%20Kim!%20I%20found%20SmileySolutions%20and%20I'm%20interested%20in%20your%20Full-Stack%20development%20services.%20Let's%20connect!"
+                  href={`https://wa.me/972525890252?text=${encodeURIComponent(t('whatsapp_text'))}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="group w-14 h-14 flex items-center justify-center rounded-full border border-gray-700 text-[2rem] text-gray-400 hover:border-crimson hover:text-crimson hover:bg-crimson/10 transition-all duration-300"
@@ -256,11 +260,11 @@ export default function Contact() {
                 href="https://calendar.app.google/i5TALc1oJahNDeRw8"
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="Book an appointment with Kim Kroll"
+                aria-label={t('book_aria')}
                 className="group inline-flex items-center gap-4 px-8 py-4 text-[1.6rem] font-medium uppercase tracking-[0.2rem] text-white bg-crimson rounded-lg overflow-hidden transition-all duration-300 hover:bg-crimson/90 hover:gap-6"
               >
                 <FaCalendarAlt className="text-[1.8rem]" />
-                <span>Book Appointment</span>
+                <span>{t('book_cta')}</span>
               </a>
             </div>
           </div>
@@ -269,7 +273,7 @@ export default function Contact() {
           <div
             ref={rightContentRef}
             className="w-full lg:w-1/2"
-            style={{ opacity: 0, transform: "translateX(50px)" }}
+            style={{ opacity: 0, transform: isRTL ? "translateX(-50px)" : "translateX(50px)" }}
           >
             <div className="space-y-5">
               {contactCards.map((card, i) => {
@@ -284,7 +288,10 @@ export default function Contact() {
                       <p className="text-[1.3rem] text-gray-500 uppercase tracking-wider mb-1">
                         {card.label}
                       </p>
-                      <p className="text-[1.7rem] text-white font-medium">
+                      {/* Phone numbers (index 1) start with + and digits — all neutral
+                          Unicode characters. In RTL context they inherit the paragraph
+                          direction and can display reversed. dir="ltr" locks them LTR. */}
+                      <p className="text-[1.7rem] text-white font-medium" dir={i === 1 ? 'ltr' : undefined}>
                         {card.value}
                       </p>
                     </div>
@@ -299,7 +306,7 @@ export default function Contact() {
                   <div
                     key={card.label}
                     ref={(el) => { if (el) contactCardsRef.current[i] = el; }}
-                    className={i % 2 === 1 ? 'lg:ml-[30px]' : ''}
+                    className={i % 2 === 1 ? (isRTL ? 'lg:mr-[30px]' : 'lg:ml-[30px]') : ''}
                     style={{
                       opacity: 0,
                       transform: "translateY(30px) translateZ(0)",
@@ -307,7 +314,7 @@ export default function Contact() {
                     }}
                   >
                     {card.clickable && card.href ? (
-                      <a href={card.href} className={cardClassName} aria-label={`Contact via ${card.label}`}>
+                      <a href={card.href} className={cardClassName} aria-label={`${t('contact_via')} ${card.label}`}>
                         {cardContent}
                       </a>
                     ) : (
@@ -323,7 +330,7 @@ export default function Contact() {
             {/* Decorative Line */}
             <div
               ref={decorativeLineRef}
-              className="hidden lg:block absolute right-0 top-1/2 -translate-y-1/2 w-px h-[200px] bg-linear-to-b from-transparent via-crimson/30 to-transparent"
+              className="hidden lg:block absolute ltr:right-0 rtl:left-0 top-1/2 -translate-y-1/2 w-px h-[200px] bg-linear-to-b from-transparent via-crimson/30 to-transparent"
               style={{ transform: "translateY(-50%) scaleY(0)", transformOrigin: "center" }}
             />
           </div>

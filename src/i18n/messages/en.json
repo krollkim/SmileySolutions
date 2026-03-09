@@ -1,0 +1,84 @@
+{
+  "nav": {
+    "home": "Home",
+    "home_aria": "Home — Kim Kroll Full Stack Developer",
+    "services": "Services",
+    "services_aria": "Full Stack Development and SaaS services",
+    "projects": "Projects",
+    "projects_aria": "View Full Stack Development projects and SaaS portfolio",
+    "about": "About",
+    "about_aria": "About Kim Kroll — Remote Full Stack Developer",
+    "contact": "Contact",
+    "contact_aria": "Contact Kim Kroll for development projects",
+    "menu": "Menu"
+  },
+  "hero": {
+    "line1": "Kim Kroll",
+    "line2": "Full Stack",
+    "line3": "Developer",
+    "subtitle": "Crafting modern, production-ready web experiences",
+    "cta": "View My Work",
+    "cta_aria": "View my portfolio projects",
+    "cta_arrow": "→",
+    "scroll": "Scroll"
+  },
+  "services": {
+    "title": "Serv<highlight>i</highlight>ces",
+    "subtitle": "I build modern, scalable applications with full-stack expertise and deliver pixel-perfect designs.",
+    "fullstack_title": "Full Stack",
+    "fullstack_desc": "Building dynamic applications with React, Node.js/Express, and MongoDB for seamless full-stack solutions.",
+    "design_title": "Web Design",
+    "design_desc": "Crafting responsive, visually stunning designs using TailwindCSS, MaterialUI, Figma, and modern UI principles.",
+    "deployment_title": "Deployment",
+    "deployment_desc": "Expert deployment via Vercel and Netlify with CI/CD automation using GitHub Actions.",
+    "tech_title": "Technologies",
+    "tech_desc": "Proficient in TypeScript, Next.js, and WordPress. Experienced with ClickUp, Slack, and agile workflows."
+  },
+  "projects": {
+    "title": "Pro<highlight>j</highlight>ects",
+    "subtitle": "A selection of my recent work. Each project reflects my commitment to clean code and user-centered design.",
+    "view_live": "Live Demo",
+    "view_live_hover": "View Live",
+    "scroll": "Scroll",
+    "drag_hint": "drag",
+    "yup_desc": "Contributed to the evolution of Yup.io, a growing SaaS platform, by redesigning the core architecture to transition the site into a high-performance web application. Specialized in delivering a production-ready frontend by refactoring legacy components into a modern React and TailwindCSS framework.",
+    "yup_alt": "Yup.io SaaS platform interface designed in Figma and built with React and TailwindCSS",
+    "yup_role": "Frontend Web Developer",
+    "bullshit_desc": "Full-stack platform transforming NFC interactions into a global map. Built with Next.js 15, React 19, and MapboxGL on the frontend. Backend powered by Node/Express/TypeScript with MongoDB 6 geospatial queries.",
+    "bullshit_alt": "Full-stack geospatial web application built with Next.js, MapboxGL, and Node.js",
+    "bullshit_role": "Full Stack & DevOps",
+    "michal_desc": "Portfolio website for an artist featuring a clean, minimal design with smooth animations and responsive layouts. Built with modern web technologies to showcase artwork in an elegant gallery format.",
+    "michal_alt": "Artist portfolio website built with Next.js and TailwindCSS",
+    "michal_role": "Developer",
+    "better_desc": "Custom landing page and portfolio for Ofir, a personal coach and soulful events organizer based in Tel Aviv. Built as a fully Hebrew RTL experience for women seeking personal development coaching and community events. Features a one-page scrolling layout with sections for coaching services, workshops, photo gallery, client testimonials, and contact. Includes a custom WCAG 2.1 AA accessibility widget and Decap CMS integration — so Ofir can update her own content, images, and events independently without touching code.",
+    "better_alt": "Hebrew RTL landing page for personal coach Ofir — built with React, Vite, TailwindCSS, and Decap CMS with full WCAG 2.1 AA accessibility",
+    "better_role": "Full Stack Developer"
+  },
+  "about": {
+    "title": "Abo<highlight>u</highlight>t Me",
+    "tagline": "Digital Nomad · Remote",
+    "bio1": "I'm a Full-Stack Developer working remotely, focused on building production-ready web applications. I've worked on SaaS frontends (React/Next.js), improving UI structure, reliability, and code quality through reviews and testing. On the backend and infrastructure side, I build APIs and ship deployments with Docker and AWS.",
+    "bio2": "Currently deepening my knowledge of scalable architecture patterns to help SaaS platforms handle rapid user growth and complex data states.",
+    "download_cv": "Download CV",
+    "cv_aria": "Download Kim Kroll CV",
+    "profile_alt": "Kim Kroll - Full Stack Developer professional headshot",
+    "whatsapp_text": "Hi Kim! I found SmileySolutions and I'm interested in your Full-Stack development services. Let's connect!"
+  },
+  "contact": {
+    "title": "Cont<highlight>a</highlight>ct",
+    "heading": "Ready to build",
+    "heading_accent": "something amazing?",
+    "subtext": "I'm currently available for freelance projects and full-time opportunities. Let's create something extraordinary together.",
+    "book_cta": "Book Appointment",
+    "book_aria": "Book an appointment with Kim Kroll",
+    "email_label": "Email",
+    "phone_label": "Phone",
+    "location_label": "Location",
+    "location_value": "Tel Aviv | Koh Phangan | Remote",
+    "contact_via": "Contact via",
+    "whatsapp_text": "Hi Kim! I found SmileySolutions and I'm interested in your Full-Stack development services. Let's connect!"
+  },
+  "footer": {
+    "rights": "All rights reserved."
+  }
+}

@@ -2,11 +2,16 @@
 import { useEffect, useLayoutEffect, useRef, useMemo } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useTranslations, useLocale } from 'next-intl';
 
 gsap.registerPlugin(ScrollTrigger);
 ScrollTrigger.config({ limitCallbacks: true, ignoreMobileResize: true });
 
 export default function Hero() {
+  const t = useTranslations('hero');
+  const locale = useLocale();
+  const isRTL = locale === 'he';
+
   const sectionRef = useRef<HTMLElement>(null);
   const bgScaleRef = useRef<HTMLDivElement>(null);
   const bgImageRef = useRef<HTMLDivElement>(null);
@@ -29,11 +34,19 @@ export default function Hero() {
     }));
   }, []);
 
-  const h1Lines = [
-    { text: 'Kim Kroll', isName: true, delay: 0.5 },
-    { text: 'Full Stack', isName: false, delay: 1.1 },
-    { text: 'Developer', isName: false, delay: 1.7 }
-  ];
+  // Hebrew hero uses 2 lines; English uses 3.
+  // The GSAP animation iterates this array dynamically, so the change
+  // in length automatically adjusts timing and animated line count.
+  const h1Lines = isRTL
+    ? [
+        { text: t('line1'), isName: true,  delay: 0.5 },
+        { text: t('line2'), isName: false, delay: 1.1 },
+      ]
+    : [
+        { text: t('line1'), isName: true,  delay: 0.5 },
+        { text: t('line2'), isName: false, delay: 1.1 },
+        { text: t('line3'), isName: false, delay: 1.7 },
+      ];
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -114,9 +127,9 @@ export default function Hero() {
 
         masterTl.fromTo(
           line,
-          { clipPath: 'inset(0 100% 0 0)' },
+          { clipPath: isRTL ? 'inset(0 0 0 100%)' : 'inset(0 100% 0 0)' },
           {
-            clipPath: 'inset(0 0% 0 0)',
+            clipPath: isRTL ? 'inset(0 0 0 0%)' : 'inset(0 0% 0 0)',
             duration: 0.5,
             ease: "power2.out",
             force3D: true,
@@ -125,18 +138,33 @@ export default function Hero() {
         );
 
         if (cursor) {
-          masterTl.fromTo(
-            cursor,
-            { left: '0%' },
-            {
-              left: '100%',
-              duration: 0.5,
-              ease: "power2.out",
-              force3D: true,
-              clearProps: "all",
-            },
-            lineDelay
-          );
+          if (isRTL) {
+            masterTl.fromTo(
+              cursor,
+              { right: '0%', left: 'auto' },
+              {
+                right: '100%',
+                duration: 0.5,
+                ease: "power2.out",
+                force3D: true,
+                clearProps: "all",
+              },
+              lineDelay
+            );
+          } else {
+            masterTl.fromTo(
+              cursor,
+              { left: '0%' },
+              {
+                left: '100%',
+                duration: 0.5,
+                ease: "power2.out",
+                force3D: true,
+                clearProps: "all",
+              },
+              lineDelay
+            );
+          }
         }
       });
 
@@ -181,7 +209,7 @@ export default function Hero() {
       );
 
       gsap.to(ctaArrowRef.current, {
-        x: 5,
+        x: isRTL ? -5 : 5,
         duration: 0.75,
         ease: "sine.inOut",
         repeat: -1,
@@ -207,7 +235,7 @@ export default function Hero() {
       ScrollTrigger.getAll().forEach(t => t.kill());
       ctx.revert();
     };
-  }, []);
+  }, [isRTL]);
 
   return (
     <section
@@ -271,7 +299,7 @@ export default function Hero() {
                       line.isName ? 'text-crimson' : 'text-white'
                     }`}
                     style={{
-                      clipPath: 'inset(0 100% 0 0)',
+                      clipPath: isRTL ? 'inset(0 0 0 100%)' : 'inset(0 100% 0 0)',
                       backfaceVisibility: "hidden",
                     }}
                   >
@@ -281,7 +309,8 @@ export default function Hero() {
                     ref={(el) => { if (el) titleCursorsRef.current[index] = el; }}
                     className="absolute top-0 h-full w-[4px] bg-crimson"
                     style={{
-                      left: '0%',
+                      left: isRTL ? 'auto' : '0%',
+                      right: isRTL ? '0%' : 'auto',
                       backfaceVisibility: "hidden",
                     }}
                   />
@@ -296,7 +325,7 @@ export default function Hero() {
             className="text-[1.6rem] sm:text-[1.8rem] text-gray-400 mt-8 max-w-[500px] leading-relaxed antialiased"
             style={{ opacity: 0, transform: "translateY(20px)" }}
           >
-            Crafting modern, production-ready web experiences
+            {t('subtitle')}
           </p>
 
           {/* CTA Button */}
@@ -307,20 +336,20 @@ export default function Hero() {
           >
             <a
               href="#projects"
-              aria-label="View my portfolio projects"
+              aria-label={t('cta_aria')}
               onClick={(e) => {
                 e.preventDefault();
                 document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
               }}
               className="group relative inline-flex items-center gap-4 px-8 py-4 text-[1.6rem] font-medium uppercase tracking-[0.3rem] text-white border-2 border-crimson overflow-hidden transition-colors duration-500 hover:text-white"
             >
-              <span className="absolute inset-0 bg-crimson transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500 ease-out" />
-              <span className="relative">View My Work</span>
+              <span className="absolute inset-0 bg-crimson transform ltr:-translate-x-full rtl:translate-x-full group-hover:translate-x-0 transition-transform duration-500 ease-out" />
+              <span className="relative">{t('cta')}</span>
               <span
                 ref={ctaArrowRef}
                 className="relative"
               >
-                →
+                {t('cta_arrow')}
               </span>
             </a>
           </div>
@@ -332,7 +361,7 @@ export default function Hero() {
           className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
           style={{ opacity: 0 }}
         >
-          <span className="text-[1.2rem] uppercase tracking-[0.3rem] text-gray-500">Scroll</span>
+          <span className="text-[1.2rem] uppercase tracking-[0.3rem] text-gray-500">{t('scroll')}</span>
           <div
             ref={scrollLineRef}
             className="w-px h-[40px] bg-linear-to-b from-crimson to-transparent"

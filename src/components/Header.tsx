@@ -3,10 +3,27 @@ import { useState, useEffect, useRef, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import { gsap } from 'gsap';
 import Image from 'next/image';
+import { useTranslations, useLocale } from 'next-intl';
+import { useRouter, usePathname } from 'next/navigation';
 
 const Header = () => {
+  const t = useTranslations('nav');
+  const locale   = useLocale();
+  const router   = useRouter();
+  const pathname = usePathname();
+
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+
+  const targetLocale = locale === 'he' ? 'en' : 'he';
+
+  const switchLocale = () => {
+    // Persist choice so the proxy uses it on future visits
+    document.cookie = `NEXT_LOCALE=${targetLocale}; path=/; max-age=31536000; SameSite=Lax`;
+    // Swap the locale segment in the current path (/he → /en or vice-versa)
+    const newPath = pathname.replace(`/${locale}`, `/${targetLocale}`) || `/${targetLocale}`;
+    router.push(newPath);
+  };
 
   const menuOverlayRef = useRef<HTMLDivElement>(null);
   const menuNavRef = useRef<HTMLElement>(null);
@@ -46,20 +63,20 @@ const Header = () => {
     const tl = gsap.timeline({ paused: true });
     timelineRef.current = tl;
 
-    gsap.set(overlay, { 
-      visibility: "hidden", 
+    gsap.set(overlay, {
+      visibility: "hidden",
       opacity: 0,
     });
-    gsap.set(items, { 
-      opacity: 0, 
+    gsap.set(items, {
+      opacity: 0,
       y: 80,
     });
-    gsap.set(logo, { 
-      opacity: 0, 
+    gsap.set(logo, {
+      opacity: 0,
       scale: 0.9,
     });
-    gsap.set(bottomDeco, { 
-      opacity: 0, 
+    gsap.set(bottomDeco, {
+      opacity: 0,
       y: 10,
     });
 
@@ -122,11 +139,11 @@ const Header = () => {
   };
 
   const navItems = [
-    { label: 'Home', id: 'hero', ariaLabel: 'Home — Kim Kroll Full Stack Developer' },
-    { label: 'Services', id: 'services', ariaLabel: 'Full Stack Development and SaaS services' },
-    { label: 'Projects', id: 'projects', ariaLabel: 'View Full Stack Development projects and SaaS portfolio' },
-    { label: 'About', id: 'about', ariaLabel: 'About Kim Kroll — Remote Full Stack Developer' },
-    { label: 'Contact', id: 'contact', ariaLabel: 'Contact Kim Kroll for development projects' },
+    { labelKey: 'home' as const, ariaKey: 'home_aria' as const, id: 'hero' },
+    { labelKey: 'services' as const, ariaKey: 'services_aria' as const, id: 'services' },
+    { labelKey: 'projects' as const, ariaKey: 'projects_aria' as const, id: 'projects' },
+    { labelKey: 'about' as const, ariaKey: 'about_aria' as const, id: 'about' },
+    { labelKey: 'contact' as const, ariaKey: 'contact_aria' as const, id: 'contact' },
   ];
 
   return (
@@ -154,24 +171,39 @@ const Header = () => {
                 <span className="font-bold">Smiley</span>
                 <span className="font-light">Solutions</span>
               </span>
-              <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-crimson transition-all duration-500 ease-out group-hover:w-full" />
+              <span className="absolute -bottom-1 left-0 rtl:left-auto rtl:right-0 w-0 h-[2px] bg-crimson transition-all duration-500 ease-out group-hover:w-full" />
             </a>
 
             {/* Desktop Navigation */}
             <nav className="hidden lg:flex items-center gap-12">
               {navItems.map((item) => (
                 <a
-                  key={item.label}
+                  key={item.id}
                   href={`#${item.id}`}
                   onClick={(e) => handleNavClick(e, item.id)}
-                  aria-label={item.ariaLabel}
+                  aria-label={t(item.ariaKey)}
                   className="group relative text-[1.4rem] font-medium uppercase tracking-[0.25rem] text-gray-400 hover:text-white transition-colors duration-300"
                 >
-                  {item.label}
-                  <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-crimson transition-all duration-300 ease-out group-hover:w-full" />
+                  {t(item.labelKey)}
+                  <span className="absolute -bottom-1 left-0 rtl:left-auto rtl:right-0 w-0 h-[1px] bg-crimson transition-all duration-300 ease-out group-hover:w-full" />
                 </a>
               ))}
             </nav>
+
+            {/* Language switcher — desktop */}
+            <button
+              onClick={switchLocale}
+              aria-label={`Switch to ${targetLocale === 'en' ? 'English' : 'Hebrew'}`}
+              className="hidden lg:flex items-center gap-[6px] text-[1.3rem] font-medium uppercase tracking-[0.2rem] select-none"
+            >
+              <span className={locale === 'en' ? 'text-white' : 'text-gray-500 hover:text-gray-300 transition-colors duration-200'}>
+                EN
+              </span>
+              <span className="text-gray-700">/</span>
+              <span className={locale === 'he' ? 'text-white' : 'text-gray-500 hover:text-gray-300 transition-colors duration-200'}>
+                HE
+              </span>
+            </button>
 
             {/* Hamburger Icon - Two lines transforming to X */}
             <button
@@ -226,7 +258,7 @@ const Header = () => {
         >
           {navItems.map((item, index) => (
             <div
-              key={item.label}
+              key={item.id}
               ref={(el) => setMenuItemRef(el, index)}
               className="relative group"
               style={{ opacity: 0, transform: "translateY(80px)" }}
@@ -240,12 +272,12 @@ const Header = () => {
               <a
                 href={`#${item.id}`}
                 onClick={(e) => handleNavClick(e, item.id)}
-                aria-label={item.ariaLabel}
+                aria-label={t(item.ariaKey)}
                 className="relative z-10 block py-4 sm:py-6 text-[4rem] sm:text-[5rem] md:text-[6rem] font-extralight uppercase tracking-[0.5rem] text-white/80 hover:text-white transition-all duration-300"
               >
                 <span className="relative">
-                  {item.label}
-                  <span className="absolute -bottom-2 left-0 w-0 h-[2px] bg-crimson transition-all duration-500 ease-out group-hover:w-full" />
+                  {t(item.labelKey)}
+                  <span className="absolute -bottom-2 left-0 rtl:left-auto rtl:right-0 w-0 h-[2px] bg-crimson transition-all duration-500 ease-out group-hover:w-full" />
                 </span>
               </a>
             </div>
@@ -268,6 +300,21 @@ const Header = () => {
             </div>
           </div>
 
+          {/* Language switcher — mobile */}
+          <button
+            onClick={() => { setIsOpen(false); switchLocale(); }}
+            aria-label={`Switch to ${targetLocale === 'en' ? 'English' : 'Hebrew'}`}
+            className="mt-10 flex items-center gap-3 text-[1.8rem] font-medium uppercase tracking-[0.3rem] select-none"
+          >
+            <span className={locale === 'en' ? 'text-white' : 'text-gray-600 hover:text-gray-300 transition-colors duration-200'}>
+              EN
+            </span>
+            <span className="text-gray-700">/</span>
+            <span className={locale === 'he' ? 'text-white' : 'text-gray-600 hover:text-gray-300 transition-colors duration-200'}>
+              HE
+            </span>
+          </button>
+
           {/* MENU label - absolute bottom, centered horizontally */}
           <div
             ref={bottomDecoRef}
@@ -275,7 +322,9 @@ const Header = () => {
             style={{ opacity: 0, transform: "translateY(10px)" }}
           >
             <span className="w-12 h-px bg-crimson/50" />
-            <span className="text-[1.2rem] uppercase tracking-[0.3rem] text-gray-500">Menu</span>
+            <span className="text-[1.2rem] uppercase tracking-[0.3rem] text-gray-500">
+              {t('menu')}
+            </span>
             <span className="w-12 h-px bg-crimson/50" />
           </div>
 

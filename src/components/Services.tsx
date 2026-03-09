@@ -4,6 +4,7 @@ import { FaCode, FaPaintBrush, FaRocket, FaTools } from 'react-icons/fa';
 import { ReactNode } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useTranslations } from 'next-intl';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -13,30 +14,31 @@ interface Service {
   description: string;
 }
 
-const services: Service[] = [
-  {
-    title: "Full Stack",
-    icon: <FaCode />,
-    description: "Building dynamic applications with React, Node.js/Express, and MongoDB for seamless full-stack solutions."
-  },
-  {
-    title: "Web Design",
-    icon: <FaPaintBrush />,
-    description: "Crafting responsive, visually stunning designs using TailwindCSS, MaterialUI, Figma, and modern UI principles."
-  },
-  {
-    title: "Deployment",
-    icon: <FaRocket />,
-    description: "Expert deployment via Vercel and Netlify with CI/CD automation using GitHub Actions."
-  },
-  {
-    title: "Technologies",
-    icon: <FaTools />,
-    description: "Proficient in TypeScript, Next.js, and WordPress. Experienced with ClickUp, Slack, and agile workflows."
-  }
-];
-
 export default function Services() {
+  const t = useTranslations('services');
+
+  const services: Service[] = [
+    {
+      title: t('fullstack_title'),
+      icon: <FaCode />,
+      description: t('fullstack_desc'),
+    },
+    {
+      title: t('design_title'),
+      icon: <FaPaintBrush />,
+      description: t('design_desc'),
+    },
+    {
+      title: t('deployment_title'),
+      icon: <FaRocket />,
+      description: t('deployment_desc'),
+    },
+    {
+      title: t('tech_title'),
+      icon: <FaTools />,
+      description: t('tech_desc'),
+    },
+  ];
   const sectionRef = useRef<HTMLElement>(null);
   const headerRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
@@ -198,14 +200,14 @@ export default function Services() {
             className="section-title text-white antialiased inline-block"
             style={{ opacity: 0, transform: "translateY(30px)" }}
           >
-            Serv<span>i</span>ces
+            {t.rich('title', { highlight: (chunks) => <span>{chunks}</span> })}
           </h2>
           <p
             ref={subtitleRef}
             className="mt-6 text-[1.5rem] sm:text-[1.6rem] text-gray-400 max-w-2xl mx-auto leading-relaxed antialiased"
             style={{ opacity: 0, transform: "translateY(30px)" }}
           >
-            I build modern, scalable applications with full-stack expertise and deliver pixel-perfect designs.
+            {t('subtitle')}
           </p>
         </div>
 
