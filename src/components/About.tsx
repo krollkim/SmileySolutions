@@ -191,13 +191,9 @@ export default function About() {
               {t('bio2')}
             </p>
 
-            {/* Hebrew-only third paragraph — bio3 key exists only in he.json.
-                Short-circuit prevents t('bio3') from being called in English mode. */}
-            {isRTL && (
-              <p className="text-[1.4rem] sm:text-[1.5rem] text-gray-400 italic leading-relaxed mb-8">
-                {t('bio3')}
-              </p>
-            )}
+            <p className="text-[1.4rem] sm:text-[1.5rem] text-gray-400 italic leading-relaxed mb-8">
+              {t('bio3')}
+            </p>
 
             {/* Skills Tags */}
             <div className="flex flex-wrap gap-3 mb-8">

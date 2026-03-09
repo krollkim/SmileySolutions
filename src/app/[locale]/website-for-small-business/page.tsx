@@ -357,7 +357,7 @@ function EnContent({
         <p className="leading-relaxed">
           Here are a few projects that show what this looks like in practice:
         </p>
-        <div className="border-l-2 border-crimson ps-6 space-y-2">
+        <div className="border-s-2 border-crimson ps-6 space-y-2">
           <p className="text-white font-semibold">Yup.io</p>
           <p>
             A SaaS platform redesign focused on modern UX and high-performance
@@ -365,7 +365,7 @@ function EnContent({
             load times and overall user experience.
           </p>
         </div>
-        <div className="border-l-2 border-crimson ps-6 space-y-2">
+        <div className="border-s-2 border-crimson ps-6 space-y-2">
           <p className="text-white font-semibold">Better Together</p>
           <p>
             A full Hebrew RTL experience for a personal coach in Tel Aviv -
@@ -373,7 +373,7 @@ function EnContent({
             own content without touching code.
           </p>
         </div>
-        <div className="border-l-2 border-crimson ps-6 space-y-2">
+        <div className="border-s-2 border-crimson ps-6 space-y-2">
           <p className="text-white font-semibold">Bullshit Map</p>
           <p>
             A full-stack interactive platform with geolocation, NFC tag
@@ -564,7 +564,7 @@ function HeContent({
       <SectionHeading>דוגמאות לפרויקטים</SectionHeading>
       <div className="space-y-6 text-[1.7rem] text-gray-300 leading-relaxed">
         <p className="leading-relaxed">הנה כמה פרויקטים שמראים איך זה נראה בפועל:</p>
-        <div className="border-r-2 border-crimson pe-6 space-y-2">
+        <div className="border-s-2 border-crimson ps-6 space-y-2">
           <p className="text-white font-semibold">Yup.io</p>
           <p>
             עיצוב מחדש של פלטפורמת SaaS עם דגש על UX מודרני וביצועים גבוהים.
@@ -572,14 +572,14 @@ function HeContent({
             טעינה וחוויית משתמש.
           </p>
         </div>
-        <div className="border-r-2 border-crimson pe-6 space-y-2">
+        <div className="border-s-2 border-crimson ps-6 space-y-2">
           <p className="text-white font-semibold">Better Together</p>
           <p>
             חוויה עברית מלאה ב-RTL עבור מאמנת אישית בתל אביב - כולל שילוב
             CMS שמאפשר לבעלת העסק לעדכן תכנים בעצמה מבלי לגעת בקוד.
           </p>
         </div>
-        <div className="border-r-2 border-crimson pe-6 space-y-2">
+        <div className="border-s-2 border-crimson ps-6 space-y-2">
           <p className="text-white font-semibold">Bullshit Map</p>
           <p>
             פלטפורמה אינטראקטיבית Full Stack עם גיאולוקיישן, תגי NFC ומפה

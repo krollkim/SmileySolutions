@@ -57,8 +57,9 @@
   "about": {
     "title": "Abo<highlight>u</highlight>t Me",
     "tagline": "Digital Nomad · Remote",
-    "bio1": "I'm a Full-Stack Developer working remotely, focused on building production-ready web applications. I've worked on SaaS frontends (React/Next.js), improving UI structure, reliability, and code quality through reviews and testing. On the backend and infrastructure side, I build APIs and ship deployments with Docker and AWS.",
-    "bio2": "Currently deepening my knowledge of scalable architecture patterns to help SaaS platforms handle rapid user growth and complex data states.",
+    "bio1": "I'm a Full-Stack Developer focused on building production-ready web applications and digital products. I work across the entire stack — from frontend development with React and Next.js, through API development and backend logic, to cloud deployments using Docker and AWS.",
+    "bio2": "I've worked on SaaS platforms, improving code structure, performance, and reliability in production environments.",
+    "bio3": "Currently I'm deepening my expertise in scalable architecture and high-performance systems, helping platforms handle growing user bases and complex data flows.",
     "download_cv": "Download CV",
     "cv_aria": "Download Kim Kroll CV",
     "profile_alt": "Kim Kroll - Full Stack Developer professional headshot",
