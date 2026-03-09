@@ -13,9 +13,9 @@
     "menu": "Menu"
   },
   "hero": {
-    "line1": "Kim Kroll",
-    "line2": "Full Stack",
-    "line3": "Developer",
+    "line1": "SmileySolutions",
+    "line2": "by Kim Kroll",
+    "line3": "Full Stack Development",
     "subtitle": "Crafting modern, production-ready web experiences",
     "cta": "View My Work",
     "cta_aria": "View my portfolio projects",
