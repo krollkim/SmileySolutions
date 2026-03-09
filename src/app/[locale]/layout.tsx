@@ -13,7 +13,7 @@ const montserrat = Montserrat({
   display: "swap",
 });
 
-const BASE_URL = "https://smileysolutions.netlify.app";
+const BASE_URL = "https://smileysolution.com";
 
 // Locale-specific metadata values — shared fields (authors, robots, icons, etc.)
 // are defined once inside generateMetadata below.
@@ -177,9 +177,9 @@ export default async function LocaleLayout({
               "@type": "Person",
               name: "Kim Kroll",
               alternateName: "SmileySolutions",
-              url: "https://smileysolutions.netlify.app",
+              url: "https://smileysolution.com",
               image:
-                "https://smileysolutions.netlify.app/images/profile_picture_portfolio.png",
+                "https://smileysolution.com/images/profile_picture_portfolio.png",
               jobTitle: "Full Stack Developer",
               description:
                 "Full-Stack Developer building production-ready SaaS applications with React, Next.js, TailwindCSS, and Node.js. Deployed and scaled with Docker and AWS.",
@@ -206,7 +206,7 @@ export default async function LocaleLayout({
             }),
           }}
         />
-        <NextIntlClientProvider messages={messages}>
+        <NextIntlClientProvider locale={locale} messages={messages}>
           {children}
         </NextIntlClientProvider>
         <AccessibilityMenu />

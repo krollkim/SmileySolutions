@@ -130,12 +130,22 @@ const Header = () => {
     }
   }, [isOpen]);
 
+  const isHomePage = pathname === `/${locale}` || pathname === `/${locale}/`;
+
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
     e.preventDefault();
     setIsOpen(false);
-    setTimeout(() => {
-      document.getElementById(targetId)?.scrollIntoView({ behavior: 'smooth' });
-    }, 400);
+
+    if (isHomePage) {
+      // Already on the homepage — smooth-scroll to the section
+      setTimeout(() => {
+        document.getElementById(targetId)?.scrollIntoView({ behavior: 'smooth' });
+      }, 400);
+    } else {
+      // On an inner page — navigate to the homepage with the anchor
+      const dest = targetId === 'hero' ? `/${locale}` : `/${locale}#${targetId}`;
+      router.push(dest);
+    }
   };
 
   const navItems = [
@@ -163,7 +173,7 @@ const Header = () => {
 
             {/* Logo - SmileySolutions */}
             <a
-              href="#hero"
+              href={`/${locale}`}
               onClick={(e) => handleNavClick(e, 'hero')}
               className="group relative z-50"
             >
@@ -179,7 +189,7 @@ const Header = () => {
               {navItems.map((item) => (
                 <a
                   key={item.id}
-                  href={`#${item.id}`}
+                  href={item.id === 'hero' ? `/${locale}` : `/${locale}#${item.id}`}
                   onClick={(e) => handleNavClick(e, item.id)}
                   aria-label={t(item.ariaKey)}
                   className="group relative text-[1.4rem] font-medium uppercase tracking-[0.25rem] text-gray-400 hover:text-white transition-colors duration-300"
@@ -270,7 +280,7 @@ const Header = () => {
 
               {/* Main Navigation Link */}
               <a
-                href={`#${item.id}`}
+                href={item.id === 'hero' ? `/${locale}` : `/${locale}#${item.id}`}
                 onClick={(e) => handleNavClick(e, item.id)}
                 aria-label={t(item.ariaKey)}
                 className="relative z-10 block py-4 sm:py-6 text-[4rem] sm:text-[5rem] md:text-[6rem] font-extralight uppercase tracking-[0.5rem] text-white/80 hover:text-white transition-all duration-300"

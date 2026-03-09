@@ -48,9 +48,9 @@ export function proxy(request: NextRequest) {
     locale => pathname === `/${locale}` || pathname.startsWith(`/${locale}/`)
   );
   if (activeLocale) {
-    const response = NextResponse.next();
-    response.headers.set('x-next-intl-locale', activeLocale);
-    return response;
+    const requestHeaders = new Headers(request.headers);
+    requestHeaders.set('x-next-intl-locale', activeLocale);
+    return NextResponse.next({ request: { headers: requestHeaders } });
   }
 
   // Detect locale and redirect to the locale-prefixed equivalent

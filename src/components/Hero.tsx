@@ -34,19 +34,12 @@ export default function Hero() {
     }));
   }, []);
 
-  // Hebrew hero uses 2 lines; English uses 3.
-  // The GSAP animation iterates this array dynamically, so the change
-  // in length automatically adjusts timing and animated line count.
-  const h1Lines = isRTL
-    ? [
-        { text: t('line1'), isName: true,  delay: 0.5 },
-        { text: t('line2'), isName: false, delay: 1.1 },
-      ]
-    : [
-        { text: t('line1'), isName: true,  delay: 0.5 },
-        { text: t('line2'), isName: false, delay: 1.1 },
-        { text: t('line3'), isName: false, delay: 1.7 },
-      ];
+  // Both locales use 3 lines: brand name (crimson), tagline, service descriptor.
+  const h1Lines = [
+    { text: t('line1'), isName: true,  delay: 0.5 },
+    { text: t('line2'), isName: false, delay: 1.1 },
+    { text: t('line3'), isName: false, delay: 1.7 },
+  ];
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
