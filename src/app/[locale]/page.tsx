@@ -4,9 +4,9 @@ import Services from "@/components/Services";
 import Projects from "@/components/Projects";
 import About from "@/components/About";
 import Contact from "@/components/Contact";
+import Footer from "@/components/Footer";
 import ProgressBar from "@/components/ProgressBar";
 import { type Locale } from "@/i18n/config";
-import { getTranslations } from "next-intl/server";
 
 export default async function Home({
   params,
@@ -14,7 +14,6 @@ export default async function Home({
   params: Promise<{ locale: Locale }>;
 }) {
   await params;
-  const tFooter = await getTranslations("footer");
 
   return (
     <main className="min-h-dvh bg-[#0a0a0a] overflow-x-hidden w-full max-w-[100vw]">
@@ -32,14 +31,7 @@ export default async function Home({
       <Contact />
 
       {/* Footer */}
-      <footer className="py-8 bg-[#050505] text-center border-t border-gray-900">
-        <div className="container mx-auto px-6">
-          <p className="text-[1.3rem] text-gray-500">
-            © {new Date().getFullYear()}{" "}
-            <span className="text-white">Kim Kroll</span>. {tFooter("rights")}
-          </p>
-        </div>
-      </footer>
+      <Footer />
     </main>
   );
 }

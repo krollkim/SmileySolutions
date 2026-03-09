@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 import FAQAccordion from '@/components/FAQAccordion';
 import { locales } from '@/i18n/config';
 
@@ -156,15 +157,7 @@ export default async function SmallBusinessPage({
           <EnContent locale={locale} faq={faqEn} />
         )}
       </main>
-      <footer className="py-8 bg-[#050505] text-center border-t border-gray-900">
-        <div className="container mx-auto px-6">
-          <p className="text-[1.3rem] text-gray-500">
-            © {new Date().getFullYear()}{' '}
-            <span className="text-white">Kim Kroll</span>.{' '}
-            {isHe ? 'כל הזכויות שמורות.' : 'All rights reserved.'}
-          </p>
-        </div>
-      </footer>
+      <Footer />
     </>
   );
 }
