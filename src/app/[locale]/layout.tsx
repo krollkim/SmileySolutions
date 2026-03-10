@@ -21,7 +21,7 @@ const localeMeta = {
   en: {
     title: "SmileySolutions | Kim Kroll | Full Stack Developer",
     description:
-      "Full-Stack Developer building production-ready SaaS applications with React, Next.js, TailwindCSS, and Node.js. Deployed and scaled with Docker and AWS for high-performance web experiences.",
+      "Full-Stack Developer building production-ready SaaS platforms and web applications with React, Next.js, TypeScript, and Node.js. Deployed and scaled with Docker and AWS.",
     keywords: [
       "Full Stack Developer",
       "SmileySolutions",
@@ -203,6 +203,25 @@ export default async function LocaleLayout({
                 "@type": "Organization",
                 name: "SmileySolutions",
               },
+            }),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "ProfessionalService",
+              name: "SmileySolutions",
+              url: "https://smileysolution.com",
+              founder: { "@type": "Person", name: "Kim Kroll" },
+              description:
+                "Full-Stack development studio specializing in SaaS platforms and web application development with React, Next.js, and Node.js.",
+              areaServed: "Worldwide",
+              sameAs: [
+                "https://github.com/krollkim",
+                "https://www.linkedin.com/in/krollkimdev/",
+              ],
             }),
           }}
         />

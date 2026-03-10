@@ -174,10 +174,10 @@ export default function About() {
             style={{ opacity: 0, transform: isRTL ? "translateX(-50px)" : "translateX(50px)" }}
           >
             <h3 className="text-[1.8rem] sm:text-[2.2rem] font-bold text-white mb-2 whitespace-nowrap">
-              {isRTL ? 'SmileySolutions | קים קרול' : 'SMILEYSOLUTIONS | KIM KROLL'}
+              {isRTL ? 'קים קרול | SmileySolutions' : 'SMILEYSOLUTIONS | KIM KROLL'}
             </h3>
 
-            <p className="text-[1.4rem] text-crimson uppercase tracking-[0.5rem] mb-6">
+            <p className="text-[1.4rem] text-crimson uppercase tracking-[0.3rem] mb-6">
               {t('tagline')}
             </p>
 
@@ -187,11 +187,11 @@ export default function About() {
               {t('bio1')}
             </p>
 
-            <p className="text-[1.4rem] sm:text-[1.5rem] text-gray-400 italic leading-relaxed mb-4">
+            <p className="text-[1.4rem] sm:text-[1.5rem] text-gray-400 leading-relaxed mb-4">
               {t('bio2')}
             </p>
 
-            <p className="text-[1.4rem] sm:text-[1.5rem] text-gray-400 italic leading-relaxed mb-8">
+            <p className="text-[1.4rem] sm:text-[1.5rem] text-gray-400 leading-relaxed mb-8">
               {t('bio3')}
             </p>
 
