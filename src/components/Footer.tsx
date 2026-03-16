@@ -59,7 +59,7 @@ export default function Footer() {
         <div className="border-t border-gray-900 pt-8 text-center">
           <p className="text-[1.3rem] text-gray-500">
             © {new Date().getFullYear()}{' '}
-            <span className="text-white">Kim Kroll</span>.{' '}
+            <span className="text-white">Smiley Solution</span>.{' '}
             {tFooter('rights')}
           </p>
         </div>

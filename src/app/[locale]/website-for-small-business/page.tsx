@@ -64,7 +64,7 @@ export async function generateMetadata({
       title: t.title,
       description: t.description,
       url: `${BASE_URL}/${locale}/${PAGE_PATH}`,
-      siteName: 'SmileySolutions',
+      siteName: 'Smiley Solution',
       locale: t.ogLocale,
       type: 'article',
     },
@@ -213,7 +213,7 @@ function EnContent({
       {/* Hero heading */}
       <header className="mb-20">
         <p className="text-crimson text-[1.3rem] uppercase tracking-[0.3rem] font-medium mb-4">
-          SmileySolutions · Kim Kroll
+          Smiley Solution | Tech Studio
         </p>
         <h1 className="text-[4rem] sm:text-[5rem] lg:text-[6rem] font-bold leading-[1.1] tracking-tight text-white mb-6">
           Building a Website<br />
@@ -430,7 +430,7 @@ function HeContent({
       {/* Hero heading */}
       <header className="mb-20">
         <p className="text-crimson text-[1.3rem] uppercase tracking-[0.3rem] font-medium mb-4">
-          SmileySolutions · קים קרול
+          Smiley Solution | סטודיו לטכנולוגיה
         </p>
         <h1 className="text-[4rem] sm:text-[5rem] lg:text-[6rem] font-bold leading-[1.1] tracking-tight text-white mb-6">
           בניית אתר<br />

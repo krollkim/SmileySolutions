@@ -179,7 +179,7 @@ const Header = () => {
             >
               <span className="text-[2.2rem] lg:text-[2.6rem] tracking-[0.1rem] text-white">
                 <span className="font-bold">Smiley</span>
-                <span className="font-light">Solutions</span>
+                <span className="font-light"> Solution</span>
               </span>
               <span className="absolute -bottom-1 left-0 rtl:left-auto rtl:right-0 w-0 h-[2px] bg-crimson transition-all duration-500 ease-out group-hover:w-full" />
             </a>
@@ -302,7 +302,7 @@ const Header = () => {
             <div className="animate-pulse-slow">
               <Image
                 src="/favicon/apple-touch-icon.png"
-                alt="SmileySolutions Logo"
+                alt="Smiley Solution Logo"
                 width={64}
                 height={64}
                 className="drop-shadow-[0_0_15px_rgba(220,20,60,0.4)]"

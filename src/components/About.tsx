@@ -174,7 +174,7 @@ export default function About() {
             style={{ opacity: 0, transform: isRTL ? "translateX(-50px)" : "translateX(50px)" }}
           >
             <h3 className="text-[1.8rem] sm:text-[2.2rem] font-bold text-white mb-2 whitespace-nowrap">
-              {isRTL ? 'קים קרול | SmileySolutions' : 'SMILEYSOLUTIONS | KIM KROLL'}
+              {isRTL ? 'קים קרול | Smiley Solution' : 'SMILEY SOLUTION | KIM KROLL'}
             </h3>
 
             <p className="text-[1.4rem] text-crimson uppercase tracking-[0.3rem] mb-6">
