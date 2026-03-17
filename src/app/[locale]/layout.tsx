@@ -19,13 +19,16 @@ const BASE_URL = "https://smileysolution.com";
 // are defined once inside generateMetadata below.
 const localeMeta = {
   en: {
-    title: "SmileySolutions | Kim Kroll | Full Stack Developer",
+    title: "Smiley Solution | Tech Studio",
     description:
-      "Full-Stack Developer building production-ready SaaS platforms and web applications with React, Next.js, TypeScript, and Node.js. Deployed and scaled with Docker and AWS.",
+      "Smiley Solution | Tech Studio specializing in Digital Product Development. Expert Frontend, Backend, and SaaS solutions using React, Next.js, and Node.js.",
     keywords: [
-      "Full Stack Developer",
-      "SmileySolutions",
-      "Kim Kroll",
+      "Tech Studio",
+      "Smiley Solution",
+      "Digital Product Development",
+      "SaaS Development",
+      "Frontend Development",
+      "Backend Development",
       "React Developer",
       "Next.js Developer",
       "TypeScript",
@@ -34,24 +37,23 @@ const localeMeta = {
       "MongoDB",
       "Docker",
       "AWS",
-      "Remote Developer",
-      "Digital Nomad",
       "Web Development",
-      "SaaS Development",
-      "Frontend Developer",
-      "Backend Developer",
+      "Full Stack Development",
     ],
     ogLocale: "en_US",
-    ogImageAlt: "Kim Kroll - SmileySolutions Full Stack Developer",
+    ogImageAlt: "Smiley Solution — Tech Studio",
   },
   he: {
-    title: "SmileySolutions | קים קרול | מפתח Full Stack",
+    title: "Smiley Solution | סטודיו לטכנולוגיה",
     description:
-      "מפתח Full Stack המתמחה בבניית אפליקציות SaaS מוכנות לייצור עם React, Next.js, TailwindCSS ו-Node.js. פריסה וניהול בענן עם Docker ו-AWS.",
+      "Smiley Solution - סטודיו לטכנולוגיה המתמחה בפיתוח מוצרים דיגיטליים ויישומי SaaS. פיתוח Full Stack מתקדם הכולל ארכיטקטורת Frontend ב-React/Next.js וניהול Backend ב-Node.js.",
     keywords: [
-      "מפתח Full Stack",
-      "SmileySolutions",
-      "קים קרול",
+      "סטודיו לטכנולוגיה",
+      "Smiley Solution",
+      "פיתוח מוצרים דיגיטליים",
+      "פיתוח SaaS",
+      "פיתוח Frontend",
+      "פיתוח Backend",
       "מפתח React",
       "מפתח Next.js",
       "TypeScript",
@@ -60,15 +62,11 @@ const localeMeta = {
       "MongoDB",
       "Docker",
       "AWS",
-      "מפתח מרחוק",
       "בניית אתרים",
       "פיתוח אתרים",
-      "פיתוח SaaS",
-      "מפתח Frontend",
-      "מפתח Backend",
     ],
     ogLocale: "he_IL",
-    ogImageAlt: "קים קרול - SmileySolutions מפתח Full Stack",
+    ogImageAlt: "Smiley Solution — סטודיו לטכנולוגיה",
   },
 };
 
@@ -85,8 +83,8 @@ export async function generateMetadata({
     description: t.description,
     keywords: t.keywords,
     authors: [{ name: "Kim Kroll", url: "https://github.com/krollkim" }],
-    creator: "Kim Kroll",
-    publisher: "SmileySolutions",
+    creator: "Smiley Solution",
+    publisher: "Smiley Solution",
     robots: {
       index: true,
       follow: true,
@@ -102,7 +100,7 @@ export async function generateMetadata({
       title: t.title,
       description: t.description,
       url: `${BASE_URL}/${locale}`,
-      siteName: "SmileySolutions",
+      siteName: "Smiley Solution",
       images: [
         {
           url: "/images/profile_picture_portfolio.png",
@@ -176,13 +174,13 @@ export default async function LocaleLayout({
               "@context": "https://schema.org",
               "@type": "Person",
               name: "Kim Kroll",
-              alternateName: "SmileySolutions",
+              alternateName: "Smiley Solution",
               url: "https://smileysolution.com",
               image:
                 "https://smileysolution.com/images/profile_picture_portfolio.png",
-              jobTitle: "Full Stack Developer",
+              jobTitle: "Founder & Tech Lead",
               description:
-                "Full-Stack Developer building production-ready SaaS applications with React, Next.js, TailwindCSS, and Node.js. Deployed and scaled with Docker and AWS.",
+                "Founder & Tech Lead at Smiley Solution, specializing in full-cycle digital product development including React/Next.js frontend architecture, Node.js backend systems, and AWS cloud deployment with Docker orchestration.",
               knowsAbout: [
                 "React",
                 "Next.js",
@@ -201,7 +199,7 @@ export default async function LocaleLayout({
               ],
               worksFor: {
                 "@type": "Organization",
-                name: "SmileySolutions",
+                name: "Smiley Solution",
               },
             }),
           }}
@@ -212,11 +210,11 @@ export default async function LocaleLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "ProfessionalService",
-              name: "SmileySolutions",
+              name: "Smiley Solution",
               url: "https://smileysolution.com",
               founder: { "@type": "Person", name: "Kim Kroll" },
               description:
-                "Full-Stack development studio specializing in SaaS platforms and web application development with React, Next.js, and Node.js.",
+                "Tech Studio specializing in digital product development and scalable SaaS applications — built with React, Next.js, and Node.js, deployed on AWS with Docker and CI/CD automation.",
               areaServed: "Worldwide",
               sameAs: [
                 "https://github.com/krollkim",
