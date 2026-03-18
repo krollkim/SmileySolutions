@@ -56,12 +56,26 @@ export default function Footer() {
         </div>
 
         {/* Divider */}
-        <div className="border-t border-gray-900 pt-8 text-center">
+        <div className="border-t border-gray-900 pt-8 flex flex-wrap items-center justify-between gap-4">
           <p className="text-[1.3rem] text-gray-500">
             © {new Date().getFullYear()}{' '}
             <span className="text-white">Smiley Solution</span>.{' '}
             {tFooter('rights')}
           </p>
+          <div className="flex gap-6">
+            <Link
+              href={`/${locale}/privacy`}
+              className="text-[1.2rem] text-gray-600 hover:text-gray-400 transition-colors duration-200"
+            >
+              {isHe ? 'מדיניות פרטיות' : 'Privacy Policy'}
+            </Link>
+            <Link
+              href={`/${locale}/terms`}
+              className="text-[1.2rem] text-gray-600 hover:text-gray-400 transition-colors duration-200"
+            >
+              {isHe ? 'תנאי שירות' : 'Terms of Service'}
+            </Link>
+          </div>
         </div>
 
       </div>

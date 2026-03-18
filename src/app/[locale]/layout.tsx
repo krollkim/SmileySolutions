@@ -225,8 +225,8 @@ export default async function LocaleLayout({
         />
         <NextIntlClientProvider locale={locale} messages={messages}>
           {children}
+          <AccessibilityMenu />
         </NextIntlClientProvider>
-        <AccessibilityMenu />
       </body>
     </html>
   );
