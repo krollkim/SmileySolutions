@@ -5,6 +5,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
+import { useLocale } from "next-intl";
 import { IoAccessibility } from "react-icons/io5";
 import { IoMdClose } from "react-icons/io";
 import {
@@ -13,6 +14,67 @@ import {
   HiOutlinePauseCircle,
   HiOutlineDocumentText,
 } from "react-icons/hi2";
+
+const i18n = {
+  en: {
+    ariaLabel: "Accessibility options",
+    closeLabel: "Close accessibility menu",
+    heading: "Accessibility",
+    dialogLabel: "Accessibility settings",
+    toggleItems: [
+      { label: "Increase Text Size", description: "Enlarge text for better readability" },
+      { label: "High Contrast", description: "Enhanced color contrast" },
+      { label: "Reduce Motion", description: "Disable animations" },
+    ],
+    statementLabel: "Accessibility Statement",
+    statementSub: "View our commitment",
+    back: "Back",
+    statementHeading: "Accessibility Statement",
+    statementBody: [
+      "We are committed to ensuring digital accessibility for people with disabilities. We continually improve the user experience for everyone and apply the relevant accessibility standards.",
+      "Conformance Status: We strive to conform to WCAG 2.1 Level AA guidelines.",
+      "Accessibility Features:",
+    ],
+    statementList: [
+      "Semantic HTML structure",
+      "Keyboard navigation support",
+      "Text size adjustment options",
+      "High contrast mode",
+      "Reduced motion options",
+      "ARIA labels and landmarks",
+    ],
+    feedback: "Feedback: We welcome your feedback on the accessibility of this site. Please contact us if you encounter any barriers.",
+  },
+  he: {
+    ariaLabel: "אפשרויות נגישות",
+    closeLabel: "סגירת תפריט נגישות",
+    heading: "נגישות",
+    dialogLabel: "הגדרות נגישות",
+    toggleItems: [
+      { label: "הגדלת טקסט", description: "הגדל את הטקסט לקריאה נוחה יותר" },
+      { label: "ניגודיות גבוהה", description: "ניגודיות צבעים משופרת" },
+      { label: "הפחתת תנועה", description: "השבתת אנימציות" },
+    ],
+    statementLabel: "הצהרת נגישות",
+    statementSub: "לצפייה במחויבות שלנו",
+    back: "חזרה",
+    statementHeading: "הצהרת נגישות",
+    statementBody: [
+      "אנו מחויבים להבטחת נגישות דיגיטלית לאנשים עם מוגבלויות. אנו משפרים ברציפות את חוויית המשתמש עבור כולם ומיישמים את תקני הנגישות הרלוונטיים.",
+      "סטטוס תאימות: אנו שואפים לעמוד בהנחיות WCAG 2.1 רמה AA.",
+      "תכונות נגישות:",
+    ],
+    statementList: [
+      "מבנה HTML סמנטי",
+      "תמיכה בניווט מקלדת",
+      "אפשרויות התאמת גודל טקסט",
+      "מצב ניגודיות גבוהה",
+      "אפשרויות הפחתת תנועה",
+      "תוויות ונקודות עיגון ARIA",
+    ],
+    feedback: "משוב: אנו מברכים על כל משוב בנוגע לנגישות האתר. אנא צרו קשר אם נתקלתם במכשולים.",
+  },
+};
 
 interface AccessibilitySettings {
   largeText: boolean;
@@ -67,6 +129,8 @@ function getInitialSettings(): AccessibilitySettings {
 }
 
 export default function AccessibilityMenu() {
+  const locale = useLocale();
+  const t = i18n[locale as keyof typeof i18n] ?? i18n.en;
   const [isOpen, setIsOpen] = useState(false);
   const [showStatement, setShowStatement] = useState(false);
   const [settings, setSettings] = useState<AccessibilitySettings>(getInitialSettings);
@@ -234,7 +298,7 @@ export default function AccessibilityMenu() {
 
   // Statement panel animation
   const showStatementPanel = () => {
-    if (!statementRef.current || !menuContentRef.current) return;
+    if (!menuContentRef.current) return;
 
     gsap.to(menuContentRef.current, {
       opacity: 0,
@@ -278,6 +342,14 @@ export default function AccessibilityMenu() {
         { opacity: 0, x: -20 },
         { opacity: 1, x: 0, duration: 0.2, ease: "power2.out", force3D: true }
       );
+      const validItems = menuItemsRef.current.filter(Boolean);
+      if (validItems.length > 0) {
+        gsap.fromTo(
+          validItems,
+          { opacity: 0, x: -10 },
+          { opacity: 1, x: 0, duration: 0.2, stagger: 0.05, ease: "power2.out", force3D: true }
+        );
+      }
     }
   }, [showStatement, mounted, isOpen]);
 
@@ -287,20 +359,17 @@ export default function AccessibilityMenu() {
     {
       key: "largeText" as keyof AccessibilitySettings,
       icon: HiOutlineAdjustmentsHorizontal,
-      label: "Increase Text Size",
-      description: "Enlarge text for better readability",
+      ...t.toggleItems[0],
     },
     {
       key: "highContrast" as keyof AccessibilitySettings,
       icon: HiOutlineEye,
-      label: "High Contrast",
-      description: "Enhanced color contrast",
+      ...t.toggleItems[1],
     },
     {
       key: "reduceMotion" as keyof AccessibilitySettings,
       icon: HiOutlinePauseCircle,
-      label: "Reduce Motion",
-      description: "Disable animations",
+      ...t.toggleItems[2],
     },
   ];
 
@@ -317,7 +386,7 @@ export default function AccessibilityMenu() {
           focus:outline-none focus:ring-2 focus:ring-white/50
           transition-colors duration-300 shadow-lg shadow-crimson/30"
         style={{ transform: "translateZ(0)", backfaceVisibility: "hidden" }}
-        aria-label="Accessibility options"
+        aria-label={t.ariaLabel}
         aria-expanded={isOpen}
       >
         <IoAccessibility className="text-[2.4rem] text-white" />
@@ -345,14 +414,14 @@ export default function AccessibilityMenu() {
           backfaceVisibility: "hidden",
         }}
         role="dialog"
-        aria-label="Accessibility settings"
+        aria-label={t.dialogLabel}
       >
         {/* Header */}
         <div className="flex items-center justify-between px-6 py-5 border-b border-gray-800/50">
           <div className="flex items-center gap-3">
             <IoAccessibility className="text-[2rem] text-crimson" />
             <h2 className="text-[1.6rem] font-semibold text-white tracking-wide">
-              Accessibility
+              {t.heading}
             </h2>
           </div>
           <button
@@ -360,7 +429,7 @@ export default function AccessibilityMenu() {
             className="w-[3.2rem] h-[3.2rem] rounded-full flex items-center justify-center
               text-gray-400 hover:text-white hover:bg-gray-800/50
               transition-colors cursor-pointer"
-            aria-label="Close accessibility menu"
+            aria-label={t.closeLabel}
           >
             <IoMdClose className="text-[2rem]" />
           </button>
@@ -437,9 +506,9 @@ export default function AccessibilityMenu() {
                 </div>
                 <div className="flex-1 text-left">
                   <p className="text-[1.4rem] font-medium text-gray-300">
-                    Accessibility Statement
+                    {t.statementLabel}
                   </p>
-                  <p className="text-[1.2rem] text-gray-500">View our commitment</p>
+                  <p className="text-[1.2rem] text-gray-500">{t.statementSub}</p>
                 </div>
                 <span className="text-gray-500 text-[1.8rem]">&rarr;</span>
               </button>
@@ -452,37 +521,26 @@ export default function AccessibilityMenu() {
                 className="flex items-center gap-2 text-[1.3rem] text-gray-400 hover:text-crimson
                   transition-colors mb-4 cursor-pointer"
               >
-                <span>&larr;</span> Back
+                <span>&larr;</span> {t.back}
               </button>
               <h3 className="text-[1.6rem] font-semibold text-white mb-4">
-                Accessibility Statement
+                {t.statementHeading}
               </h3>
               <div className="space-y-3 text-[1.3rem] text-gray-400 leading-relaxed max-h-96 overflow-y-auto pr-2 custom-scrollbar">
+                <p>{t.statementBody[0]}</p>
                 <p>
-                  We are committed to ensuring digital accessibility for people with
-                  disabilities. We continually improve the user experience for everyone and
-                  apply the relevant accessibility standards.
+                  <strong className="text-gray-300">{t.statementBody[1].split(':')[0]}:</strong>{' '}
+                  {t.statementBody[1].split(':').slice(1).join(':').trim()}
                 </p>
                 <p>
-                  <strong className="text-gray-300">Conformance Status:</strong> We strive to
-                  conform to WCAG 2.1 Level AA guidelines.
-                </p>
-                <p>
-                  <strong className="text-gray-300">Accessibility Features:</strong>
+                  <strong className="text-gray-300">{t.statementBody[2]}</strong>
                 </p>
                 <ul className="list-disc list-inside space-y-1 pl-2">
-                  <li>Semantic HTML structure</li>
-                  <li>Keyboard navigation support</li>
-                  <li>Text size adjustment options</li>
-                  <li>High contrast mode</li>
-                  <li>Reduced motion options</li>
-                  <li>ARIA labels and landmarks</li>
+                  {t.statementList.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
                 </ul>
-                <p>
-                  <strong className="text-gray-300">Feedback:</strong> We welcome your
-                  feedback on the accessibility of this site. Please contact us if you
-                  encounter any barriers.
-                </p>
+                <p>{t.feedback}</p>
               </div>
             </div>
           )}
