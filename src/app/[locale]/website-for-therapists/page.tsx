@@ -10,7 +10,7 @@ const PAGE_PATH = 'website-for-therapists';
 
 const pageMeta = {
   en: {
-    title: 'Building a Website for Therapists | Kim Kroll',
+    title: 'Building a Website for Therapists | Smiley Solution',
     description:
       'Professional websites for therapists, psychologists and couples therapists that build trust and attract new patients. Clean, fast, and SEO-ready.',
     keywords: [
@@ -25,7 +25,7 @@ const pageMeta = {
     ogLocale: 'en_US',
   },
   he: {
-    title: 'בניית אתר למטפלים | קים קרול',
+    title: 'בניית אתר למטפלים | Smiley Solution',
     description:
       'אתרים מקצועיים למטפלים, פסיכולוגים ומטפלים זוגיים שבונים אמון ומביאים מטופלים חדשים. מהיר, מותאם לנייד ומדורג בגוגל.',
     keywords: [
@@ -73,7 +73,7 @@ export async function generateMetadata({
       card: 'summary_large_image',
       title: t.title,
       description: t.description,
-      creator: '@krollkim',
+      creator: '@smileysolution',
     },
   };
 }
@@ -87,7 +87,7 @@ export function generateStaticParams() {
 const faqEn = [
   {
     q: 'How much does a website for a therapist cost?',
-    a: "Projects typically range from $800 to $2,500 depending on the number of pages, features, and whether you need CMS integration so you can update content yourself. I'll provide a clear quote after a short discovery call.",
+    a: "Projects typically range from $800 to $2,500 depending on the number of pages, features, and whether you need CMS integration so you can update content yourself. We'll provide a clear quote after a short discovery call.",
   },
   {
     q: 'How long does it take to build a therapist website?',
@@ -99,14 +99,14 @@ const faqEn = [
   },
   {
     q: 'Will my website be mobile-friendly and accessible?',
-    a: "Every site I build is designed mobile-first, tested across devices, and built to WCAG accessibility standards. Most therapy clients search on their phones - this is non-negotiable.",
+    a: "Every site we build is designed mobile-first, tested across devices, and built to WCAG accessibility standards. Most therapy clients search on their phones - this is non-negotiable.",
   },
 ];
 
 const faqHe = [
   {
     q: 'כמה עולה אתר למטפל?',
-    a: "פרויקטים נעים בדרך כלל בין ₪3,000 ל-₪9,000, בהתאם למספר העמודים, הפיצ'רים ולצורך ב-CMS לעדכוני תוכן עצמאיים. לאחר שיחת היכרות קצרה אציע הצעת מחיר מדויקת.",
+    a: "פרויקטים נעים בדרך כלל בין ₪3,000 ל-₪9,000, בהתאם למספר העמודים, הפיצ'רים ולצורך ב-CMS לעדכוני תוכן עצמאיים. לאחר שיחת היכרות קצרה נציע הצעת מחיר מדויקת.",
   },
   {
     q: 'כמה זמן לוקח לבנות אתר למטפל?',
@@ -118,7 +118,7 @@ const faqHe = [
   },
   {
     q: 'האם האתר יהיה מותאם לנייד ונגיש?',
-    a: 'כל אתר שאני בונה מעוצב ב-Mobile First, נבדק על מגוון מכשירים ועומד בתקני נגישות WCAG. רוב האנשים שמחפשים מטפל עושים זאת מהטלפון - זה לא אופציונלי.',
+    a: 'כל אתר שאנו בונים מעוצב ב-Mobile First, נבדק על מגוון מכשירים ועומד בתקני נגישות WCAG. רוב האנשים שמחפשים מטפל עושים זאת מהטלפון - זה לא אופציונלי.',
   },
 ];
 
@@ -349,13 +349,13 @@ function EnContent({
       <SectionHeading>Example Project - Better Together</SectionHeading>
       <div className="space-y-4 text-[1.7rem] text-gray-300 leading-relaxed">
         <p className="leading-relaxed">
-          One of the projects I am proudest of is a website built for Ofir, a
+          One of our most meaningful projects is a site built for Ofir, a
           personal coach for women based in Tel Aviv who runs emotional healing
           workshops and movement events.
         </p>
         <p className="leading-relaxed">
           The project required a fully Hebrew, RTL-first experience with a
-          strong visual identity matching her warm, personal brand. I built the
+          strong visual identity matching her warm, personal brand. We built the
           site using React, Vite, TailwindCSS, and Framer Motion, with a custom
           WCAG 2.1 AA accessibility widget and a Decap CMS integration - meaning
           Ofir can update her own content, photos, and event listings without
@@ -369,11 +369,11 @@ function EnContent({
           href={`/${locale}#projects`}
           className="inline-block mt-2 text-crimson hover:underline text-[1.6rem] font-medium"
         >
-          View the project in my portfolio →
+          View this project →
         </Link>
       </div>
 
-      {/* Section 5 — FAQ */}
+      {/* Section 5 - FAQ */}
       <SectionHeading>Frequently Asked Questions</SectionHeading>
       <FAQAccordion items={faq} />
 
@@ -385,14 +385,14 @@ function EnContent({
           that actually reflects the quality of your work - let&rsquo;s talk.
         </p>
         <p>
-          I build websites that look professional, load fast, rank well on
+          We build websites that look professional, load fast, rank well on
           Google, and most importantly, feel right to the people who matter
           most: your clients.
         </p>
       </div>
       <CtaBlock
         locale={locale}
-        primaryLabel="Browse My Projects →"
+        primaryLabel="Browse Our Work →"
         secondaryLabel="Get in Touch"
       />
     </article>
@@ -536,12 +536,12 @@ function HeContent({
       <SectionHeading>דוגמה לפרויקט - Better Together</SectionHeading>
       <div className="space-y-4 text-[1.7rem] text-gray-300 leading-relaxed">
         <p className="leading-relaxed">
-          אחד הפרויקטים שאני הכי גאה בהם הוא אתר שבניתי עבור אופיר - מנחת
+          אחד הפרויקטים המשמעותיים ביותר שלנו הוא אתר שבנינו עבור אופיר - מנחת
           תהליכים לנשים מתל אביב, שמקיימת סדנאות ריפוי רגשי ואירועי תנועה.
         </p>
         <p className="leading-relaxed">
           הפרויקט דרש חוויה עברית מלאה ב-RTL, עם זהות ויזואלית חזקה שמתאימה
-          למותג האישי החמים שלה. בניתי את האתר עם React, Vite, TailwindCSS
+          למותג האישי החמים שלה. בנינו את האתר עם React, Vite, TailwindCSS
           ו-Framer Motion, כולל ווידג&apos;ט נגישות מותאם WCAG 2.1 AA ושילוב
           Decap CMS - כך שאופיר יכולה לעדכן תכנים, תמונות ואירועים בעצמה מבלי
           לגעת בקוד.
@@ -553,11 +553,11 @@ function HeContent({
           href={`/${locale}#projects`}
           className="inline-block mt-2 text-crimson hover:underline text-[1.6rem] font-medium"
         >
-          לצפייה בפרויקט בתיק העבודות ←
+          לצפייה בפרויקט ←
         </Link>
       </div>
 
-      {/* Section 5 — FAQ */}
+      {/* Section 5 - FAQ */}
       <SectionHeading>שאלות נפוצות</SectionHeading>
       <FAQAccordion items={faq} />
 
@@ -569,13 +569,13 @@ function HeContent({
           העבודה שלך - בואו נדבר.
         </p>
         <p>
-          אני בונה אתרים שנראים מקצועיים, נטענים מהר, מדורגים טוב בגוגל,
+          אנו בונים אתרים שנראים מקצועיים, נטענים מהר, מדורגים טוב בגוגל,
           ובעיקר - מרגישים נכון לאנשים שחשובים: המטופלים שלך.
         </p>
       </div>
       <CtaBlock
         locale={locale}
-        primaryLabel="לצפייה בפרויקטים ←"
+        primaryLabel="לצפייה בעבודות שלנו ←"
         secondaryLabel="ליצירת קשר"
       />
     </article>

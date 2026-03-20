@@ -3,7 +3,7 @@ import { useRef, useLayoutEffect } from 'react';
 import Image from 'next/image';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { FaGithub, FaLinkedin, FaWhatsapp, FaDownload } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaWhatsapp } from 'react-icons/fa';
 import { useTranslations, useLocale } from 'next-intl';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -83,7 +83,7 @@ export default function About() {
         }
       );
 
-      // Text content animation — slides from the edge where text originates
+      // Text content animation - slides from the edge where text originates
       gsap.fromTo(
         textContentRef.current,
         { opacity: 0, x: isRTL ? -50 : 50 },
@@ -141,7 +141,7 @@ export default function About() {
           {/* Profile Image with Crimson Offset Border */}
           <div
             ref={imageContainerRef}
-            className="w-full lg:w-2/5 flex justify-center"
+            className="w-full lg:w-[30%] flex justify-center"
             style={{ opacity: 0, transform: "scale(0.9)" }}
           >
             <div className="relative">
@@ -154,7 +154,7 @@ export default function About() {
               {/* Image container */}
               <div className="relative z-10 w-[260px] sm:w-[300px] h-[320px] sm:h-[380px] rounded-2xl overflow-hidden shadow-2xl shadow-black/50">
                 <Image
-                  src="/images/profile_picture_portfolio.png"
+                  src="/images/profile_picture.png"
                   alt={t('profile_alt')}
                   fill
                   className="object-cover"
@@ -170,12 +170,15 @@ export default function About() {
           {/* Text Content */}
           <div
             ref={textContentRef}
-            className="w-full lg:w-3/5"
+            className="w-full lg:w-[70%]"
             style={{ opacity: 0, transform: isRTL ? "translateX(-50px)" : "translateX(50px)" }}
           >
-            <h3 className="text-[1.8rem] sm:text-[2.2rem] font-bold text-white mb-2 whitespace-nowrap">
-              {isRTL ? 'קים קרול | Smiley Solution' : 'SMILEY SOLUTION | KIM KROLL'}
+            <h3 className="text-[1.8rem] sm:text-[2.2rem] font-bold text-white mb-1">
+              SMILEY SOLUTION
             </h3>
+            <p className="text-[1.4rem] text-gray-400 font-medium mb-3">
+              {t('founder_name')}
+            </p>
 
             <p className="text-[1.4rem] text-crimson uppercase tracking-[0.3rem] mb-6">
               {t('tagline')}
@@ -214,7 +217,7 @@ export default function About() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-12 h-12 flex items-center justify-center rounded-full border border-gray-700 text-[1.8rem] text-gray-400 hover:border-crimson hover:text-crimson hover:bg-crimson/10 transition-all duration-300"
-                aria-label="GitHub Profile"
+                aria-label="Smiley Solution on GitHub"
               >
                 <FaGithub />
               </a>
@@ -223,7 +226,7 @@ export default function About() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-12 h-12 flex items-center justify-center rounded-full border border-gray-700 text-[1.8rem] text-gray-400 hover:border-crimson hover:text-crimson hover:bg-crimson/10 transition-all duration-300"
-                aria-label="LinkedIn Profile"
+                aria-label="Smiley Solution on LinkedIn"
               >
                 <FaLinkedin />
               </a>
@@ -238,16 +241,6 @@ export default function About() {
               </a>
             </div>
 
-            {/* Download CV Button */}
-            <a
-              href="/CV-KIM-KROLL-2025.pdf"
-              download
-              aria-label={t('cv_aria')}
-              className="inline-flex items-center gap-3 px-6 py-3 text-[1.4rem] font-medium uppercase tracking-[0.2rem] text-white border-2 border-crimson rounded-lg hover:bg-crimson transition-all duration-300"
-            >
-              <FaDownload />
-              {t('download_cv')}
-            </a>
           </div>
         </div>
       </div>

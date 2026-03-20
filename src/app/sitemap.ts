@@ -1,4 +1,5 @@
 import type { MetadataRoute } from 'next';
+import { PILLAR_SLUGS } from '@/data/pillars';
 
 const BASE_URL = 'https://smileysolution.com';
 
@@ -40,5 +41,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly',
       priority: 0.8,
     },
+    // Studio pillar pages
+    ...PILLAR_SLUGS.flatMap((slug) => [
+      {
+        url: `${BASE_URL}/en/studio/${slug}`,
+        lastModified: new Date(),
+        changeFrequency: 'monthly' as const,
+        priority: 0.9,
+      },
+      {
+        url: `${BASE_URL}/he/studio/${slug}`,
+        lastModified: new Date(),
+        changeFrequency: 'monthly' as const,
+        priority: 0.9,
+      },
+    ]),
   ];
 }

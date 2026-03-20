@@ -15,7 +15,7 @@ const montserrat = Montserrat({
 
 const BASE_URL = "https://smileysolution.com";
 
-// Locale-specific metadata values — shared fields (authors, robots, icons, etc.)
+// Locale-specific metadata values - shared fields (authors, robots, icons, etc.)
 // are defined once inside generateMetadata below.
 const localeMeta = {
   en: {
@@ -41,7 +41,7 @@ const localeMeta = {
       "Full Stack Development",
     ],
     ogLocale: "en_US",
-    ogImageAlt: "Smiley Solution — Tech Studio",
+    ogImageAlt: "Smiley Solution - Tech Studio",
   },
   he: {
     title: "Smiley Solution | סטודיו לטכנולוגיה",
@@ -66,7 +66,7 @@ const localeMeta = {
       "פיתוח אתרים",
     ],
     ogLocale: "he_IL",
-    ogImageAlt: "Smiley Solution — סטודיו לטכנולוגיה",
+    ogImageAlt: "Smiley Solution - סטודיו לטכנולוגיה",
   },
 };
 
@@ -82,7 +82,7 @@ export async function generateMetadata({
     title: t.title,
     description: t.description,
     keywords: t.keywords,
-    authors: [{ name: "Kim Kroll", url: "https://github.com/krollkim" }],
+    authors: [{ name: "Smiley Solution", url: "https://smileysolution.com" }],
     creator: "Smiley Solution",
     publisher: "Smiley Solution",
     robots: {
@@ -103,7 +103,7 @@ export async function generateMetadata({
       siteName: "Smiley Solution",
       images: [
         {
-          url: "/images/profile_picture_portfolio.png",
+          url: "/images/profile_picture.png",
           width: 1200,
           height: 630,
           alt: t.ogImageAlt,
@@ -116,8 +116,8 @@ export async function generateMetadata({
       card: "summary_large_image",
       title: t.title,
       description: t.description,
-      images: ["/images/profile_picture_portfolio.png"],
-      creator: "@krollkim",
+      images: ["/images/profile_picture.png"],
+      creator: "@smileysolution",
     },
     metadataBase: new URL(BASE_URL),
     icons: {
@@ -172,15 +172,14 @@ export default async function LocaleLayout({
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
-              "@type": "Person",
-              name: "Kim Kroll",
-              alternateName: "Smiley Solution",
+              "@type": "Organization",
+              name: "Smiley Solution",
+              alternateName: "Smiley Solution Tech Studio",
               url: "https://smileysolution.com",
-              image:
-                "https://smileysolution.com/images/profile_picture_portfolio.png",
-              jobTitle: "Founder & Tech Lead",
+              logo: "https://smileysolution.com/images/profile_picture.png",
               description:
-                "Founder & Tech Lead at Smiley Solution, specializing in full-cycle digital product development including React/Next.js frontend architecture, Node.js backend systems, and AWS cloud deployment with Docker orchestration.",
+                "Tech Studio specializing in digital product development and scalable SaaS applications - built with React, Next.js, and Node.js, deployed on AWS with Docker and CI/CD automation.",
+              areaServed: "Worldwide",
               knowsAbout: [
                 "React",
                 "Next.js",
@@ -191,35 +190,22 @@ export default async function LocaleLayout({
                 "Docker",
                 "AWS",
                 "SaaS Development",
-                "Figma",
               ],
               sameAs: [
                 "https://github.com/krollkim",
                 "https://www.linkedin.com/in/krollkimdev/",
               ],
-              worksFor: {
-                "@type": "Organization",
-                name: "Smiley Solution",
+              founder: {
+                "@type": "Person",
+                name: "Kim Kroll",
+                jobTitle: "Founder & Tech Lead",
+                url: "https://smileysolution.com",
+                image: "https://smileysolution.com/images/profile_picture.png",
+                sameAs: [
+                  "https://github.com/krollkim",
+                  "https://www.linkedin.com/in/krollkimdev/",
+                ],
               },
-            }),
-          }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "ProfessionalService",
-              name: "Smiley Solution",
-              url: "https://smileysolution.com",
-              founder: { "@type": "Person", name: "Kim Kroll" },
-              description:
-                "Tech Studio specializing in digital product development and scalable SaaS applications — built with React, Next.js, and Node.js, deployed on AWS with Docker and CI/CD automation.",
-              areaServed: "Worldwide",
-              sameAs: [
-                "https://github.com/krollkim",
-                "https://www.linkedin.com/in/krollkimdev/",
-              ],
             }),
           }}
         />
