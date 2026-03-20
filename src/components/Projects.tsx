@@ -8,9 +8,9 @@ import { useTranslations } from 'next-intl';
 
 gsap.registerPlugin(ScrollTrigger);
 
-// Auto-scroll speed: 0.3 px per frame ≈ 18 px/s at 60 fps — deliberately subtle
+// Auto-scroll speed: 0.3 px per frame ≈ 18 px/s at 60 fps - deliberately subtle
 const SPEED = 0.3;
-// Number of unique projects — kept at module level so useLayoutEffect deps stay stable
+// Number of unique projects - kept at module level so useLayoutEffect deps stay stable
 const PROJECT_COUNT = 4;
 
 export default function Projects() {
@@ -66,7 +66,7 @@ export default function Projects() {
   const subtitleRef = useRef<HTMLParagraphElement>(null);
   const trackRef   = useRef<HTMLDivElement>(null);
 
-  // Carousel state — refs so updates never trigger re-renders
+  // Carousel state - refs so updates never trigger re-renders
   const offsetRef          = useRef(0);     // current translation in px
   const singleSetWidthRef  = useRef(0);     // width of one duplicated set
   const isHoveredRef       = useRef(false);
@@ -86,7 +86,7 @@ export default function Projects() {
     const track    = trackRef.current;
     if (!section || !header || !title || !subtitle || !track) return;
 
-    // Header fade-in — scoped ScrollTrigger (no pin, no scrub)
+    // Header fade-in - scoped ScrollTrigger (no pin, no scrub)
     const ctx = gsap.context(() => {
       gsap.fromTo(
         [title, subtitle],
@@ -166,19 +166,19 @@ export default function Projects() {
       const deltaX = e.clientX - dragStartXRef.current;
       const deltaY = e.clientY - dragStartYRef.current;
 
-      // Gesture intent detection — wait for ≥8 px of movement
+      // Gesture intent detection - wait for ≥8 px of movement
       if (!isDraggingRef.current && !hasCapturedRef.current) {
         if (Math.abs(deltaX) < 8 && Math.abs(deltaY) < 8) return;
 
         if (Math.abs(deltaX) >= Math.abs(deltaY)) {
-          // Horizontal intent — claim the pointer for carousel drag
+          // Horizontal intent - claim the pointer for carousel drag
           isDraggingRef.current  = true;
           hasCapturedRef.current = true;
           wasDraggingRef.current = true; // flag so the click handler can cancel it
           track.setPointerCapture(e.pointerId);
           track.style.cursor = 'grabbing';
         } else {
-          // Vertical intent — let the browser handle page scroll
+          // Vertical intent - let the browser handle page scroll
           hasCapturedRef.current = true;
           return;
         }
@@ -206,7 +206,7 @@ export default function Projects() {
       hasCapturedRef.current = false;
       // Explicitly reset hover state: mouseleave is suppressed during pointer
       // capture, so isHoveredRef can remain true after a drag ends if the cursor
-      // stays inside the container — this would prevent auto-scroll from resuming.
+      // stays inside the container - this would prevent auto-scroll from resuming.
       isHoveredRef.current = false;
     };
 
@@ -270,7 +270,7 @@ export default function Projects() {
         onMouseEnter={() => { isHoveredRef.current = true;  }}
         onMouseLeave={() => { isHoveredRef.current = false; }}
       >
-        {/* Edge fades — visual cue that more content exists beyond the frame */}
+        {/* Edge fades - visual cue that more content exists beyond the frame */}
         <div
           aria-hidden="true"
           className="pointer-events-none absolute inset-y-0 left-0 w-16 sm:w-24
@@ -282,7 +282,7 @@ export default function Projects() {
                      bg-linear-to-l from-[#0f0f0f] to-transparent z-10"
         />
 
-        {/* Track — direction forced to LTR so card order is always intentional,
+        {/* Track - direction forced to LTR so card order is always intentional,
             independent of the page locale (he/en). The card content itself
             inherits the page dir for text rendering. */}
         <div
@@ -297,7 +297,7 @@ export default function Projects() {
             touchAction:  'pan-y',   // vertical scroll stays native on touch
           }}
         >
-          {/* Duplicate the array once — the invisible seam creates the loop */}
+          {/* Duplicate the array once - the invisible seam creates the loop */}
           {[...PROJECTS, ...PROJECTS].map((project, index) => (
             <div
               key={`${project.title}-${index}`}
@@ -370,8 +370,8 @@ export default function Projects() {
                   {project.tags.slice(0, 4).map((tag) => (
                     <span
                       key={tag}
-                      className="px-2.5 py-1 text-[0.95rem] sm:text-[1rem] text-gray-300
-                                 rounded-full border border-gray-700 bg-gray-800/50"
+                      className="px-2.5 py-1 text-[0.95rem] sm:text-[1rem] text-crimson/80
+                                 rounded-full border border-crimson/20 bg-crimson/5 tracking-wide"
                     >
                       {tag}
                     </span>
@@ -399,7 +399,7 @@ export default function Projects() {
         </div>
       </div>
 
-      {/* ── Drag affordance — minimal, clean ────────────────────────────────── */}
+      {/* ── Drag affordance - minimal, clean ────────────────────────────────── */}
       <div
         aria-hidden="true"
         className="mt-8 flex items-center justify-center gap-3

@@ -1,6 +1,6 @@
 "use client";
 import { useRef, useLayoutEffect } from 'react';
-import { FaCode, FaPaintBrush, FaRocket, FaTools } from 'react-icons/fa';
+import { FaSitemap, FaCode, FaMagic } from 'react-icons/fa';
 import { ReactNode } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -12,6 +12,7 @@ interface Service {
   title: string;
   icon: ReactNode;
   description: string;
+  tags: string[];
 }
 
 export default function Services() {
@@ -19,24 +20,22 @@ export default function Services() {
 
   const services: Service[] = [
     {
-      title: t('fullstack_title'),
+      title: t('strategy_title'),
+      icon: <FaSitemap />,
+      description: t('strategy_desc'),
+      tags: ['Discovery', 'Roadmap', 'System Design', 'Consulting'],
+    },
+    {
+      title: t('engineering_title'),
       icon: <FaCode />,
-      description: t('fullstack_desc'),
+      description: t('engineering_desc'),
+      tags: ['React/Next.js', 'Node.js', 'MongoDB', 'AWS', 'Docker'],
     },
     {
-      title: t('design_title'),
-      icon: <FaPaintBrush />,
-      description: t('design_desc'),
-    },
-    {
-      title: t('deployment_title'),
-      icon: <FaRocket />,
-      description: t('deployment_desc'),
-    },
-    {
-      title: t('tech_title'),
-      icon: <FaTools />,
-      description: t('tech_desc'),
+      title: t('performance_title'),
+      icon: <FaMagic />,
+      description: t('performance_desc'),
+      tags: ['GSAP', 'Lenis', 'TailwindCSS', 'Motion Design'],
     },
   ];
   const sectionRef = useRef<HTMLElement>(null);
@@ -50,23 +49,18 @@ export default function Services() {
     const cardTransforms = [
       {
         // Card 1: Drifts up, overlaps right, clockwise wobble
-        from: { y: 45, x: 25, rotation: 4, scale: 0.93 },
-        to: { y: -45, x: -20, rotation: -4, scale: 1.05 },
+        from: { y: 50, x: 30, rotation: 4.5, scale: 0.92 },
+        to: { y: -50, x: -25, rotation: -4.5, scale: 1.06 },
       },
       {
         // Card 2: Drifts down, overlaps left, counter-clockwise wobble
-        from: { y: -50, x: -30, rotation: -5, scale: 0.92 },
-        to: { y: 50, x: 25, rotation: 5, scale: 1.06 },
+        from: { y: -55, x: -35, rotation: -5.5, scale: 0.91 },
+        to: { y: 55, x: 30, rotation: 5.5, scale: 1.07 },
       },
       {
         // Card 3: Large vertical drift, subtle overlap, gentle wobble
-        from: { y: 60, x: 20, rotation: 3.5, scale: 0.91 },
-        to: { y: -60, x: -15, rotation: -3.5, scale: 1.07 },
-      },
-      {
-        // Card 4: Opposite direction, strong overlap, dramatic wobble
-        from: { y: -40, x: -25, rotation: -4.5, scale: 0.94 },
-        to: { y: 40, x: 30, rotation: 4.5, scale: 1.05 },
+        from: { y: 45, x: 25, rotation: 4, scale: 0.93 },
+        to: { y: -45, x: -20, rotation: -4, scale: 1.05 },
       },
     ];
 
@@ -211,16 +205,16 @@ export default function Services() {
           </p>
         </div>
 
-        {/* Services Grid */}
+        {/* Services Grid - 3 columns on desktop */}
         <div
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10"
           style={{ perspective: "1000px" }}
         >
           {services.map((service, index) => (
             <div
               key={index}
               ref={(el) => { if (el) cardsRef.current[index] = el; }}
-              className="service-card p-8 rounded-2xl text-center flex flex-col items-center"
+              className="service-card p-8 rounded-2xl flex flex-col items-start"
               style={{
                 opacity: 0,
                 transform: "translateZ(0)",
@@ -230,20 +224,57 @@ export default function Services() {
               }}
             >
               {/* Icon */}
-              <div className="mb-6 w-20 h-20 flex items-center justify-center rounded-2xl bg-crimson/10 text-[3rem] text-crimson">
+              <div className="mb-6 w-16 h-16 flex items-center justify-center rounded-xl bg-crimson/10 text-[2.4rem] text-crimson">
                 {service.icon}
               </div>
 
-              <h3 className="text-[2rem] font-semibold mb-4 text-white">
+              <h3 className="text-[2rem] font-semibold mb-3 text-white">
                 {service.title}
               </h3>
 
-              <p className="text-[1.4rem] text-gray-400 leading-relaxed">
+              <p className="text-[1.4rem] text-gray-400 leading-relaxed mb-6 flex-1">
                 {service.description}
               </p>
+
+              {/* Tech tags */}
+              <div className="flex flex-wrap gap-2">
+                {service.tags.map((tag) => (
+                  <span
+                    key={tag}
+                    className="px-3 py-1 text-[1.1rem] text-crimson/80 rounded-full border border-crimson/20 bg-crimson/5 tracking-wide"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
             </div>
           ))}
         </div>
+
+        {/* Sprint-based delivery process */}
+        <div className="mt-20 pt-12 border-t border-white/5">
+          <p className="text-[1.2rem] text-gray-500 uppercase tracking-[0.25rem] mb-8 text-center">
+            {t('process_label')}
+          </p>
+          <div className="flex flex-wrap justify-center items-center gap-0">
+            {(['process_1', 'process_2', 'process_3', 'process_4'] as const).map((key, index) => (
+              <div key={key} className="flex items-center">
+                <div className="flex flex-col items-center px-6 py-2">
+                  <span className="text-[1rem] text-crimson font-mono mb-1">
+                    0{index + 1}
+                  </span>
+                  <span className="text-[1.5rem] font-medium text-white">
+                    {t(key)}
+                  </span>
+                </div>
+                {index < 3 && (
+                  <span className="text-crimson/30 text-[1.6rem] mx-1 select-none">→</span>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+
       </div>
     </section>
   );

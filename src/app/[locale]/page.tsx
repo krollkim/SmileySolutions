@@ -1,7 +1,7 @@
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import Services from "@/components/Services";
-import Projects from "@/components/Projects";
+import PillarGrid from "@/components/PillarGrid";
 import About from "@/components/About";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
@@ -26,7 +26,7 @@ export default async function Home({
       {/* Sections */}
       <Hero />
       <Services />
-      <Projects />
+      <PillarGrid />
       <About />
       <Contact />
 

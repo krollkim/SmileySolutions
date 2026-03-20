@@ -14,6 +14,8 @@ const Header = () => {
 
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isHidden, setIsHidden] = useState(false);
+  const lastScrollY = useRef(0);
 
   const targetLocale = locale === 'he' ? 'en' : 'he';
 
@@ -33,8 +35,17 @@ const Header = () => {
   const timelineRef = useRef<gsap.core.Timeline | null>(null);
 
   useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 50);
-    window.addEventListener('scroll', handleScroll);
+    const handleScroll = () => {
+      const current = window.scrollY;
+      setIsScrolled(current > 50);
+      if (current > 150) {
+        setIsHidden(current > lastScrollY.current);
+      } else {
+        setIsHidden(false);
+      }
+      lastScrollY.current = current;
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -159,14 +170,14 @@ const Header = () => {
   return (
     <>
       <motion.header
-        className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
+        className={`fixed top-0 left-0 w-full z-50 transition-colors duration-500 ${
           isScrolled
             ? 'bg-[#0a0a0a]/95 backdrop-blur-xl shadow-2xl shadow-black/30'
             : 'bg-transparent'
         }`}
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
+        initial={{ y: '-100%' }}
+        animate={{ y: isHidden ? '-100%' : '0%' }}
+        transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
       >
         <div className="container mx-auto px-6 lg:px-12">
           <div className="flex justify-between items-center h-[70px] lg:h-[90px]">

@@ -10,7 +10,7 @@ const PAGE_PATH = 'website-for-small-business';
 
 const pageMeta = {
   en: {
-    title: 'Building a Website for Small Businesses | Kim Kroll',
+    title: 'Building a Website for Small Businesses | Smiley Solution',
     description:
       'Professional websites for small businesses that build credibility, rank on Google, and turn visitors into leads. Fast, mobile-first, and built to convert.',
     keywords: [
@@ -24,7 +24,7 @@ const pageMeta = {
     ogLocale: 'en_US',
   },
   he: {
-    title: 'בניית אתר לעסקים קטנים | קים קרול',
+    title: 'בניית אתר לעסקים קטנים | Smiley Solution',
     description:
       'אתרים מקצועיים לעסקים קטנים שבונים אמינות, מדורגים בגוגל והופכים גולשים ללידים. מהיר, מותאם לנייד ובנוי להמרה.',
     keywords: [
@@ -72,7 +72,7 @@ export async function generateMetadata({
       card: 'summary_large_image',
       title: t.title,
       description: t.description,
-      creator: '@krollkim',
+      creator: '@smileysolution',
     },
   };
 }
@@ -86,7 +86,7 @@ export function generateStaticParams() {
 const faqEn = [
   {
     q: 'How much does a website for a small business cost?',
-    a: "A clean, professional multi-page site typically ranges from $1,000 to $4,000. E-commerce or booking-integrated projects start higher. I'll give you a clear, fixed quote after a short discovery call - no surprises.",
+    a: "A clean, professional multi-page site typically ranges from $1,000 to $4,000. E-commerce or booking-integrated projects start higher. We'll give you a clear, fixed quote after a short discovery call - no surprises.",
   },
   {
     q: 'Do I need a website if I already have Instagram?',
@@ -98,14 +98,14 @@ const faqEn = [
   },
   {
     q: 'Can I update the site myself after it is done?',
-    a: 'Depending on the project scope, yes. I can integrate a CMS (content management system) so you can update text, images, blog posts, and products independently - without touching any code.',
+    a: 'Depending on the project scope, yes. We can integrate a CMS (content management system) so you can update text, images, blog posts, and products independently - without touching any code.',
   },
 ];
 
 const faqHe = [
   {
     q: 'כמה עולה אתר לעסק קטן?',
-    a: "אתר רב-עמודי נקי ומקצועי עולה בדרך כלל בין ₪3,500 ל-₪14,000. פרויקטים עם מסחר אלקטרוני או מערכת תורים מתחילים גבוה יותר. לאחר שיחת היכרות קצרה אציע הצעת מחיר קבועה וברורה - בלי הפתעות.",
+    a: "אתר רב-עמודי נקי ומקצועי עולה בדרך כלל בין ₪3,500 ל-₪14,000. פרויקטים עם מסחר אלקטרוני או מערכת תורים מתחילים גבוה יותר. לאחר שיחת היכרות קצרה נציע הצעת מחיר קבועה וברורה - בלי הפתעות.",
   },
   {
     q: 'האם אני צריך אתר אם יש לי כבר אינסטגרם?',
@@ -117,7 +117,7 @@ const faqHe = [
   },
   {
     q: 'האם אוכל לעדכן את האתר בעצמי לאחר ההשקה?',
-    a: 'בהתאם לסקופ הפרויקט, כן. אני יכול לשלב CMS שיאפשר לך לעדכן טקסטים, תמונות, פוסטים ומוצרים באופן עצמאי - מבלי לגעת בקוד.',
+    a: 'בהתאם לסקופ הפרויקט, כן. אנו יכולים לשלב CMS שיאפשר לך לעדכן טקסטים, תמונות, פוסטים ומוצרים באופן עצמאי - מבלי לגעת בקוד.',
   },
 ];
 
@@ -361,7 +361,7 @@ function EnContent({
           <p className="text-white font-semibold">Yup.io</p>
           <p>
             A SaaS platform redesign focused on modern UX and high-performance
-            UI. I rebuilt the frontend with React and TailwindCSS, improving
+            UI. We rebuilt the frontend with React and TailwindCSS, improving
             load times and overall user experience.
           </p>
         </div>
@@ -390,26 +390,26 @@ function EnContent({
         </Link>
       </div>
 
-      {/* Section 5 — FAQ */}
+      {/* Section 5 - FAQ */}
       <SectionHeading>Frequently Asked Questions</SectionHeading>
       <FAQAccordion items={faq} />
 
-      {/* Section 6 — CTA */}
+      {/* Section 6 - CTA */}
       <SectionHeading>{"Let's Build Your Business Website"}</SectionHeading>
       <div className="space-y-4 text-[1.7rem] text-gray-300 leading-relaxed">
         <p>
           Whether you are starting from scratch or need to rebuild a website
-          that is no longer working for you — let&rsquo;s talk.
+          that is no longer working for you - let&rsquo;s talk.
         </p>
         <p>
-          I build websites that load fast, rank on Google, and convert visitors
+          We build websites that load fast, rank on Google, and convert visitors
           into clients. Starting with a clear brief and ending with a site you
           are proud to share.
         </p>
       </div>
       <CtaBlock
         locale={locale}
-        primaryLabel="Browse My Projects →"
+        primaryLabel="Browse Our Work →"
         secondaryLabel="Get in Touch"
       />
     </article>
@@ -482,7 +482,7 @@ function HeContent({
       <SectionHeading>טעויות נפוצות באתרים של עסקים קטנים</SectionHeading>
       <div className="space-y-4 text-[1.7rem] text-gray-300 leading-relaxed">
         <p className="leading-relaxed">
-          לאחר שבניתי אתרים לעסקים בכל הגדלים, אותן דפוסים חוזרים על עצמם.
+          לאחר שבנינו אתרים לעסקים בכל הגדלים, אותן דפוסים חוזרים על עצמם.
           אלו הטעויות שהכי עולות לכם לקוחות.
         </p>
         <ul className="space-y-5">
@@ -568,7 +568,7 @@ function HeContent({
           <p className="text-white font-semibold">Yup.io</p>
           <p>
             עיצוב מחדש של פלטפורמת SaaS עם דגש על UX מודרני וביצועים גבוהים.
-            בניתי מחדש את הצד הלקוח עם React ו-TailwindCSS, ושיפרתי זמני
+            בנינו מחדש את הצד הלקוח עם React ו-TailwindCSS, ושיפרנו זמני
             טעינה וחוויית משתמש.
           </p>
         </div>
@@ -595,11 +595,11 @@ function HeContent({
         </Link>
       </div>
 
-      {/* Section 5 — FAQ */}
+      {/* Section 5 - FAQ */}
       <SectionHeading>שאלות נפוצות</SectionHeading>
       <FAQAccordion items={faq} />
 
-      {/* Section 6 — CTA */}
+      {/* Section 6 - CTA */}
       <SectionHeading>בואו נבנה את האתר העסקי שלכם</SectionHeading>
       <div className="space-y-4 text-[1.7rem] text-gray-300 leading-relaxed">
         <p>
@@ -607,13 +607,13 @@ function HeContent({
           - בואו נדבר.
         </p>
         <p>
-          אני בונה אתרים שנטענים מהר, מדורגים בגוגל, והופכים גולשים ללקוחות.
+          אנו בונים אתרים שנטענים מהר, מדורגים בגוגל, והופכים גולשים ללקוחות.
           מתחיל מבריף ברור ומסיים באתר שאתה גאה לשתף.
         </p>
       </div>
       <CtaBlock
         locale={locale}
-        primaryLabel="לצפייה בפרויקטים ←"
+        primaryLabel="לצפייה בעבודות שלנו ←"
         secondaryLabel="ליצירת קשר"
       />
     </article>
