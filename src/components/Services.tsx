@@ -238,7 +238,7 @@ export default function Services() {
                 {service.description}
               </p>
 
-              {/* Tech tags */}
+              {/* Tags */}
               <div className="flex flex-wrap gap-2">
                 {service.tags.map((tag) => (
                   <span
