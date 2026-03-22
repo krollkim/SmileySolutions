@@ -40,4 +40,12 @@ export const PROJECT_DATA: Record<string, ProjectData> = {
     tags: ['React 18', 'Vite', 'TailwindCSS', 'Decap CMS'],
     period: '2026',
   },
+  sanctuary: {
+    key: 'sanctuary',
+    title: 'The Digital Sanctuary',
+    image: '/images/thedigitalsanctuary-heroSection.png ',
+    liveLink: 'https://thedigitalsanctuary.netlify.app/',
+    tags: ['Next.js', 'TailwindCSS', 'RTL'],
+    period: '2025',
+  },
 };

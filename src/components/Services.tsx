@@ -4,7 +4,7 @@ import { FaSitemap, FaCode, FaMagic } from 'react-icons/fa';
 import { ReactNode } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -17,25 +17,27 @@ interface Service {
 
 export default function Services() {
   const t = useTranslations('services');
+  const locale = useLocale();
+  const isRTL = locale === 'he';
 
   const services: Service[] = [
     {
       title: t('strategy_title'),
       icon: <FaSitemap />,
       description: t('strategy_desc'),
-      tags: ['Discovery', 'Roadmap', 'System Design', 'Consulting'],
+      tags: ['Discovery', 'Mentorship', 'System Design', 'Strategy'],
     },
     {
       title: t('engineering_title'),
       icon: <FaCode />,
       description: t('engineering_desc'),
-      tags: ['React/Next.js', 'Node.js', 'MongoDB', 'AWS', 'Docker'],
+      tags: ['End-to-End', 'Product Build', 'Scalability', 'Security'],
     },
     {
       title: t('performance_title'),
       icon: <FaMagic />,
       description: t('performance_desc'),
-      tags: ['GSAP', 'Lenis', 'TailwindCSS', 'Motion Design'],
+      tags: ['Motion Design', 'Storytelling', 'Minimalism', 'User Experience'],
     },
   ];
   const sectionRef = useRef<HTMLElement>(null);
@@ -268,7 +270,7 @@ export default function Services() {
                   </span>
                 </div>
                 {index < 3 && (
-                  <span className="text-crimson/30 text-[1.6rem] mx-1 select-none">→</span>
+                  <span className="text-crimson/30 text-[1.6rem] mx-1 select-none">{isRTL ? '←' : '→'}</span>
                 )}
               </div>
             ))}

@@ -23,14 +23,14 @@
     "scroll": "Scroll"
   },
   "services": {
-    "title": "Serv<highlight>i</highlight>ces",
-    "subtitle": "Three disciplines. One studio. We build digital products that scale, perform, and feel exceptional.",
-    "strategy_title": "Digital Strategy & Architecture",
-    "strategy_desc": "We map your product's foundation before a line of code is written - discovery, roadmapping, tech stack selection, and system design that holds under scale.",
-    "engineering_title": "Full-Stack Engineering",
-    "engineering_desc": "Production-ready builds across the full stack - React, Next.js, Node.js, and MongoDB. From API architecture to deployment on AWS and Vercel.",
+    "title": "Our D<highlight>i</highlight>sciplines",
+    "subtitle": "Three disciplines. One studio. We guide you from vision to a living, polished product.",
+    "strategy_title": "Strategy & Architecture",
+    "strategy_desc": "We are your compass at the ideation stage. The partnership begins with crystallising your vision into a smart work plan — choosing the right tools and preventing costly mistakes at your product's foundation.",
+    "engineering_title": "Full Stack Engineering",
+    "engineering_desc": "We build with you from the ground up, down to the smallest detail. We take full technical ownership and turn a spec into a live, robust, polished system that grows with your ambitions.",
     "performance_title": "Performance & UI/UX",
-    "performance_desc": "Interfaces built to move. GSAP-powered animations, Lenis smooth scroll, and a minimalist visual language designed to stop the scroll.",
+    "performance_desc": "We create a digital experience that feels right. We translate your values into visual language and fluid motion that makes users stop, feel, and connect with your story.",
     "process_label": "How We Build",
     "process_1": "Discover",
     "process_2": "Architect",
@@ -55,7 +55,10 @@
     "michal_role": "Development Team",
     "better_desc": "Ofir needed a fully Hebrew RTL digital presence for her personal coaching and events practice - one she could manage independently without a developer. We built a WCAG 2.1 AA accessible one-page site with Decap CMS integration, giving Ofir full control over content, images, and events without touching a line of code.",
     "better_alt": "Hebrew RTL landing page for personal coach Ofir - built with React, Vite, TailwindCSS, and Decap CMS with full WCAG 2.1 AA accessibility",
-    "better_role": "Full Stack"
+    "better_role": "Full Stack",
+    "sanctuary_desc": "Therapists needed a digital presence that spoke their language — calm, trustworthy, and human. We built a site that explains the value of a digital presence in the therapeutic world's own terms, pairing Next.js performance with Decap CMS so clients can manage their content independently.",
+    "sanctuary_alt": "The Digital Sanctuary — therapist-focused website built with Next.js, Decap CMS, and RTL support",
+    "sanctuary_role": "Full Stack"
   },
   "about": {
     "title": "The Stud<highlight>i</highlight>o",
@@ -99,7 +102,9 @@
     "michal_challenge": "An artist needed a digital presence that put the work front and centre. Existing templates imposed structure that competed with the art instead of framing it.",
     "michal_result": "We built a minimal gallery site with smooth scroll animations, fully responsive layouts, and a clean visual language that gets out of the way and lets the art speak.",
     "better_challenge": "The goal was to eliminate technical friction. Ofir needed a digital presence that reflected her professional precision while granting her total independence to manage content and events without relying on a developer.",
-    "better_result": "We engineered a seamless balance between high-end UI and a custom-fitted CMS. The result is a fully accessible (WCAG 2.1 AA) platform that empowers her to lead her practice with confidence, supported by invisible yet robust technology."
+    "better_result": "We engineered a seamless balance between high-end UI and a custom-fitted CMS. The result is a fully accessible (WCAG 2.1 AA) platform that empowers her to lead her practice with confidence, supported by invisible yet robust technology.",
+    "sanctuary_challenge": "The goal was to speak the therapists' language. Therapists needed to understand why a digital presence matters — but existing solutions felt cold and technical, far removed from the calm and trust at the heart of therapeutic work.",
+    "sanctuary_result": "We created a space that explains the necessity of a digital presence while maintaining the calm and trust essential to the therapeutic world. Clean design and quiet technology support the therapeutic relationship and turn digital exposure into a simple, respectful process."
   },
   "footer": {
     "rights": "All rights reserved."
