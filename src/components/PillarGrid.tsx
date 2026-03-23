@@ -197,37 +197,31 @@ export default function PillarGrid() {
               />
 
               {/* Content layer */}
-              <div className="relative z-10 h-full flex flex-col p-8 lg:p-10">
+              <div className="relative z-10 h-full flex flex-col p-6 lg:p-10">
 
-                {/* Pillar number - always visible */}
-                <span className="block text-[1.1rem] text-crimson font-mono tracking-[0.3rem] shrink-0">
+                {/* Pillar number – top-right on mobile, normal flow on desktop */}
+                <span className="absolute top-4 right-5 lg:static text-[0.95rem] lg:text-[1.1rem] text-crimson font-mono tracking-[0.3rem] shrink-0">
                   {pillar.number}
                 </span>
 
-                {/* Title - rotates to vertical when compressed (desktop only) */}
-                <div className="flex-1 flex items-end lg:items-center overflow-hidden">
+                {/* Title – centered on mobile, vertically centred in flex-1 on desktop */}
+                <div className="flex-1 flex items-center justify-center lg:justify-start overflow-hidden">
                   <h3
-                    className="text-[2.6rem] lg:text-[3rem] xl:text-[3.4rem] font-bold text-white
-                               leading-tight uppercase tracking-wider"
+                    className="text-[1.7rem] sm:text-[2rem] lg:text-[3rem] xl:text-[3.4rem] font-bold text-white
+                               leading-tight uppercase tracking-wider text-center lg:text-left lg:whitespace-nowrap"
                     style={{
-                      // Desktop: rotate to vertical when a sibling is hovered
                       transform:       isCompressed ? 'rotate(-90deg)' : 'rotate(0deg)',
                       transition:      'transform 0.55s cubic-bezier(0.4, 0, 0.2, 1)',
-                      whiteSpace:      'nowrap',
                       transformOrigin: 'center center',
-                      // On mobile: never rotate
-                      ...(typeof window !== 'undefined' && window.innerWidth < 1024
-                        ? { transform: 'none' }
-                        : {}),
                     }}
                   >
                     {t(pillar.titleKey)}
                   </h3>
                 </div>
 
-                {/* Expanded content - fades in on hover */}
+                {/* Expanded content – hidden on mobile (no hover state), desktop-only */}
                 <div
-                  className="shrink-0 mt-4 lg:mt-6"
+                  className="hidden lg:block shrink-0 mt-6"
                   style={{
                     opacity:         isHovered ? 1 : 0,
                     transform:       isHovered ? 'translateY(0)' : 'translateY(14px)',

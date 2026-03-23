@@ -56,8 +56,8 @@ export default function Footer() {
         </div>
 
         {/* Divider */}
-        <div className="border-t border-gray-900 pt-8 flex flex-wrap items-center justify-between gap-4">
-          <p className="text-[1.3rem] text-gray-500">
+        <div className="border-t border-gray-900 pt-8 flex flex-col items-center gap-4 sm:flex-row sm:items-center sm:justify-between">
+          <p className="text-[1.3rem] text-gray-500 text-center sm:text-start">
             © {new Date().getFullYear()}{' '}
             <span className="text-white">Smiley Solution</span>.{' '}
             {tFooter('rights')}
