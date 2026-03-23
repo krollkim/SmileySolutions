@@ -26,7 +26,7 @@
     "title": "How We Bu<highlight>i</highlight>ld",
     "subtitle": "Three disciplines. One studio. We guide you from vision to a living, polished product.",
     "strategy_title": "Strategy & Architecture",
-    "strategy_desc": "We are your compass at the ideation stage. The partnership begins with crystallising your vision into a smart work plan — choosing the right tools and preventing costly mistakes at your product's foundation.",
+    "strategy_desc": "We are your compass at the ideation stage. The partnership begins with crystallising your vision into a smart work plan - choosing the right tools and preventing costly mistakes at your product's foundation.",
     "engineering_title": "Full Stack Engineering",
     "engineering_desc": "We build with you from the ground up, down to the smallest detail. We take full technical ownership and turn a spec into a live, robust, polished system that grows with your ambitions.",
     "performance_title": "Performance & UI/UX",
@@ -56,9 +56,12 @@
     "better_desc": "Ofir needed a fully Hebrew RTL digital presence for her personal coaching and events practice - one she could manage independently without a developer. We built a WCAG 2.1 AA accessible one-page site with Decap CMS integration, giving Ofir full control over content, images, and events without touching a line of code.",
     "better_alt": "Hebrew RTL landing page for personal coach Ofir - built with React, Vite, TailwindCSS, and Decap CMS with full WCAG 2.1 AA accessibility",
     "better_role": "Full Stack",
-    "sanctuary_desc": "Therapists needed a digital presence that spoke their language — calm, trustworthy, and human. We built a site that explains the value of a digital presence in the therapeutic world's own terms, pairing Next.js performance with Decap CMS so clients can manage their content independently.",
-    "sanctuary_alt": "The Digital Sanctuary — therapist-focused website built with Next.js, Decap CMS, and RTL support",
-    "sanctuary_role": "Full Stack"
+    "sanctuary_desc": "Therapists needed a digital presence that spoke their language - calm, trustworthy, and human. We built a site that explains the value of a digital presence in the therapeutic world's own terms, pairing Next.js performance with Decap CMS so clients can manage their content independently.",
+    "sanctuary_alt": "The Digital Sanctuary - therapist-focused website built with Next.js, Decap CMS, and RTL support",
+    "sanctuary_role": "Full Stack",
+    "pic_desc": "The event production industry was fragmented - producers ran shows from WhatsApp, vendors lived by word of mouth, and party-goers were always a step behind. PIC needed a landing page that could speak to three distinct audiences at once without losing clarity or conversion power.",
+    "pic_alt": "PIC Events - lead generation landing page for an event production platform connecting producers, vendors, and party-goers",
+    "pic_role": "Landing Page"
   },
   "about": {
     "title": "The Stud<highlight>i</highlight>o",
@@ -103,8 +106,10 @@
     "michal_result": "We built a minimal gallery site with smooth scroll animations, fully responsive layouts, and a clean visual language that gets out of the way and lets the art speak.",
     "better_challenge": "The goal was to eliminate technical friction. Ofir needed a digital presence that reflected her professional precision while granting her total independence to manage content and events without relying on a developer.",
     "better_result": "We engineered a seamless balance between high-end UI and a custom-fitted CMS. The result is a fully accessible (WCAG 2.1 AA) platform that empowers her to lead her practice with confidence, supported by invisible yet robust technology.",
-    "sanctuary_challenge": "The goal was to speak the therapists' language. Therapists needed to understand why a digital presence matters — but existing solutions felt cold and technical, far removed from the calm and trust at the heart of therapeutic work.",
-    "sanctuary_result": "We created a space that explains the necessity of a digital presence while maintaining the calm and trust essential to the therapeutic world. Clean design and quiet technology support the therapeutic relationship and turn digital exposure into a simple, respectful process."
+    "sanctuary_challenge": "The goal was to speak the therapists' language. Therapists needed to understand why a digital presence matters - but existing solutions felt cold and technical, far removed from the calm and trust at the heart of therapeutic work.",
+    "sanctuary_result": "We created a space that explains the necessity of a digital presence while maintaining the calm and trust essential to the therapeutic world. Clean design and quiet technology support the therapeutic relationship and turn digital exposure into a simple, respectful process.",
+    "pic_challenge": "The event production industry had no shared infrastructure - producers coordinated through WhatsApp, vendors relied purely on word of mouth, and party-goers always heard about the best events after the fact. PIC is a first-of-its-kind platform serving three distinct audiences at once. The challenge was building a landing page that could make an ambitious, complex product feel instantly clear and compelling to each of them.",
+    "pic_result": "We built a high-conversion lead generation landing page that walks producers, vendors, and party-goers through a single, seamless narrative - surfacing PIC's unique differentiators (smart matching algorithm, digital ticket album, tiered pricing) without overwhelming the visitor. The structure, copy hierarchy, and CTA architecture were engineered to turn a three-sided marketplace pitch into a focused, persuasive experience that drives signups."
   },
   "footer": {
     "rights": "All rights reserved."

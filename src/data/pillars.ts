@@ -35,8 +35,8 @@ export const PILLARS: Pillar[] = [
     number: '01',
     titleKey: 'web_title',
     taglineKey: 'web_tagline',
-    // Michal B gallery + Better Together coaching site + The Digital Sanctuary
-    projectKeys: ['michal', 'better', 'sanctuary'],
+    // The Digital Sanctuary + Better Together coaching site + PIC Events + Michal B gallery
+    projectKeys: ['sanctuary', 'better', 'pic', 'michal'],
   },
   {
     slug: 'tech-engines',

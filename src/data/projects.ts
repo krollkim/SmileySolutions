@@ -22,7 +22,7 @@ export const PROJECT_DATA: Record<string, ProjectData> = {
     image: '/images/Bullshit-project.png',
     liveLink: 'https://globaloriginalart.com/',
     tags: ['Next.js 15', 'MapboxGL', 'Node.js', 'AWS'],
-    period: '',
+    period: '2025',
   },
   michal: {
     key: 'michal',
@@ -30,14 +30,14 @@ export const PROJECT_DATA: Record<string, ProjectData> = {
     image: '/images/michalB-project.png',
     liveLink: 'https://michalberco.netlify.app/',
     tags: ['Next.js', 'TailwindCSS'],
-    period: '',
+    period: '2025',
   },
   better: {
     key: 'better',
     title: 'Better Together',
     image: "/images/Ofir's-Landing-Page-IMG.png",
     liveLink: 'https://betterhertogether.netlify.app/',
-    tags: ['React 18', 'Vite', 'TailwindCSS', 'Decap CMS'],
+    tags: ['React 18', 'typescript', 'Vite', 'TailwindCSS', 'Decap CMS'],
     period: '2026',
   },
   sanctuary: {
@@ -45,7 +45,15 @@ export const PROJECT_DATA: Record<string, ProjectData> = {
     title: 'The Digital Sanctuary',
     image: '/images/thedigitalsanctuary-heroSection.png ',
     liveLink: 'https://thedigitalsanctuary.netlify.app/',
-    tags: ['Next.js', 'TailwindCSS', 'RTL'],
-    period: '2025',
+    tags: ['Next.js', 'React', 'typescript', 'TailwindCSS', 'RTL'],
+    period: '2026',
+  },
+  pic: {
+    key: 'pic',
+    title: 'PIC Events',
+    image: '/images/PIC-LandingPage.png',
+    liveLink: 'https://pic-events.netlify.app/',
+    tags: ['Next.js', 'React', 'typescript', 'TailwindCSS', 'Landing Page', 'Netlify'],
+    period: '2026',
   },
 };
