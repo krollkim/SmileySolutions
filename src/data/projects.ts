@@ -9,7 +9,7 @@ export interface ProjectData {
 
 export const PROJECT_DATA: Record<string, ProjectData> = {
   yup: {
-    key: 'yup',
+    key: 'Yup-io',
     title: 'Yup.io',
     image: '/images/YupIO-project.png',
     liveLink: 'https://yup.io/',
@@ -17,7 +17,7 @@ export const PROJECT_DATA: Record<string, ProjectData> = {
     period: '2023–2024',
   },
   bullshit: {
-    key: 'bullshit',
+    key: 'Bullshit-Map',
     title: 'Bullshit Map',
     image: '/images/Bullshit-project.png',
     liveLink: 'https://globaloriginalart.com/',
@@ -25,7 +25,7 @@ export const PROJECT_DATA: Record<string, ProjectData> = {
     period: '2025',
   },
   michal: {
-    key: 'michal',
+    key: 'Michal-B',
     title: 'Michal B',
     image: '/images/michalB-project.png',
     liveLink: 'https://michalberco.netlify.app/',
@@ -33,7 +33,7 @@ export const PROJECT_DATA: Record<string, ProjectData> = {
     period: '2025',
   },
   better: {
-    key: 'better',
+    key: 'Better-Together',
     title: 'Better Together',
     image: "/images/Ofir's-Landing-Page-IMG.png",
     liveLink: 'https://betterhertogether.netlify.app/',
@@ -41,7 +41,7 @@ export const PROJECT_DATA: Record<string, ProjectData> = {
     period: '2026',
   },
   sanctuary: {
-    key: 'sanctuary',
+    key: 'The-Digital-Sanctuary',
     title: 'The Digital Sanctuary',
     image: '/images/thedigitalsanctuary-heroSection.png ',
     liveLink: 'https://thedigitalsanctuary.netlify.app/',
@@ -49,7 +49,7 @@ export const PROJECT_DATA: Record<string, ProjectData> = {
     period: '2026',
   },
   pic: {
-    key: 'pic',
+    key: 'PIC-Events',
     title: 'PIC Events',
     image: '/images/PIC-LandingPage.png',
     liveLink: 'https://pic-events.netlify.app/',

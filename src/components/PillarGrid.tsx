@@ -15,6 +15,8 @@ const PROJECT_LABELS: Record<string, string> = {
   bullshit: 'Bullshit Map',
   michal: 'Michal B',
   better: 'Better Together',
+  sanctuary: 'The Digital Sanctuary',
+  pic: 'PIC Events',
 };
 
 // ─── Main Component ────────────────────────────────────────────────────────────
