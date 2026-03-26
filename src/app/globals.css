@@ -5,6 +5,17 @@
   --color-crimson: crimson;
 }
 
+/* ── Marquee keyframes — center-anchored, 25% drift ── */
+@keyframes marquee-left {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-25%); }
+}
+
+@keyframes marquee-right {
+  from { transform: translateX(0); }
+  to   { transform: translateX(25%); }
+}
+
 /* ===== Base Styles ===== */
 :root {
   font-size: 10px; /* 1rem = 10px */

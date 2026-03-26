@@ -202,7 +202,10 @@ export default function PillarGrid() {
               <div className="relative z-10 h-full flex flex-col p-6 lg:p-10">
 
                 {/* Pillar number – top-right on mobile, normal flow on desktop */}
-                <span className="absolute top-4 right-5 lg:static text-[0.95rem] lg:text-[1.1rem] text-crimson font-mono tracking-[0.3rem] shrink-0">
+                <span
+                  className="absolute top-4 right-5 lg:static text-[0.95rem] lg:text-[1.1rem] text-crimson font-bold font-mono tracking-[0.3rem] shrink-0"
+                  style={{ filter: 'drop-shadow(0 0 4px rgba(220,20,60,0.55))' }}
+                >
                   {pillar.number}
                 </span>
 
@@ -243,7 +246,7 @@ export default function PillarGrid() {
                         key={key}
                         className="flex items-center gap-3 text-[1.2rem] text-gray-600"
                       >
-                        <span className="w-5 h-px bg-crimson/35 shrink-0" aria-hidden="true" />
+                        <span className="w-5 h-[1.5px] bg-crimson/60 shrink-0" aria-hidden="true" />
                         {PROJECT_LABELS[key] ?? key}
                       </li>
                     ))}

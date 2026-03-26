@@ -4,7 +4,7 @@ A high-end, modern website for **Kim Kroll** - Full Stack Developer working remo
 
 ## Live Demo
 
-🌐 [smileysolutions](https://smileysolutions.netlify.app/)
+🌐 [smileysolution](https://smileysolution.com/)
 
 ## About
 

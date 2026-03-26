@@ -22,9 +22,13 @@
     "cta_arrow": "→",
     "scroll": "Scroll"
   },
+  "hook": {
+    "statement": "We don't start with requirements. We start with <accent>understanding.</accent>",
+    "label": "Work"
+  },
   "services": {
     "title": "How We Bu<highlight>i</highlight>ld",
-    "subtitle": "Three disciplines. One studio. We guide you from vision to a living, polished product.",
+    "subtitle": "Four phases. One philosophy. We guide you from vision to an extraordinary digital presence.",
     "strategy_title": "Strategy & Architecture",
     "strategy_desc": "We are your compass at the ideation stage. The partnership begins with crystallising your vision into a smart work plan - choosing the right tools and preventing costly mistakes at your product's foundation.",
     "engineering_title": "Full Stack Engineering",
@@ -35,7 +39,24 @@
     "process_1": "Discover",
     "process_2": "Architect",
     "process_3": "Engineer",
-    "process_4": "Ship"
+    "process_4": "Ship",
+    "path_eyebrow": "The Path",
+    "step_1_phase": "Deep Discovery",
+    "step_1_virtue": "Vision",
+    "step_1_headline": "Understanding the why.",
+    "step_1_desc": "Before anything is built, we immerse ourselves in your world - asking the right questions, mapping your landscape, and turning ambition into a clear strategic direction.",
+    "step_2_phase": "Architectural Design",
+    "step_2_virtue": "Empathy",
+    "step_2_headline": "Designing for humans first.",
+    "step_2_desc": "Every flow, every interaction, every screen is built around your users. We translate strategy into experience - intuitive, refined, and unmistakably yours.",
+    "step_3_phase": "Precision Engineering",
+    "step_3_virtue": "Craft",
+    "step_3_headline": "Built to the highest standard.",
+    "step_3_desc": "Where design meets code. We engineer with the care of a master craftsman - pixel-perfect, performant, and built to hold under real-world pressure.",
+    "step_4_phase": "Strategic Launch",
+    "step_4_virtue": "Growth",
+    "step_4_headline": "We launch with you, not for you.",
+    "step_4_desc": "Going live is the beginning, not the end. We stand alongside you through launch, growth, and every iteration that follows."
   },
   "projects": {
     "title": "Case Stud<highlight>i</highlight>es",

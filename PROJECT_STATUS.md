@@ -9,7 +9,7 @@
 **What the site is:**
 A single-page portfolio and business landing site for Kim Kroll (SmileySolutions), a Full Stack Developer available for freelance and full-time remote work. The site targets both Israeli (Hebrew) and international (English) audiences.
 
-**Live URL:** https://smileysolutions.netlify.app  
+**Live URL:** https://smileysolution.com/  
 **Repository:** C:/Users/kimkr/Desktop/kim-kroll-landing-page/smileysolutions
 
 **Core technologies:**

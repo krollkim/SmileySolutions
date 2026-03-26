@@ -1,11 +1,11 @@
 {
-  "name": "smileysolutions",
+  "name": "smileysolution",
   "version": "1.0.0",
   "description": "SmileySolutions - Professional portfolio website for Kim Kroll, Full Stack Developer. Built with Next.js 15, React 19, TailwindCSS v4, and Framer Motion.",
   "author": {
     "name": "Kim Kroll",
     "email": "krollkimdev@gmail.com",
-    "url": "https://smileysolutions.netlify.app"
+    "url": "https://smileysolution.com"
   },
   "license": "MIT",
   "private": true,

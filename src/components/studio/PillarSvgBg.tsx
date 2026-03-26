@@ -16,8 +16,8 @@ export function CurveSVG({ setRef, className }: SvgBgProps) {
     >
       <path
         d="M 40 580 C 360 440, 30 320, 370 160 S 60 60, 380 20"
-        stroke="rgba(220,38,38,0.18)"
-        strokeWidth="1.5"
+        stroke="rgba(220,38,38,0.38)"
+        strokeWidth="2"
         strokeLinecap="round"
         fill="none"
       />
@@ -54,8 +54,8 @@ export function NodesSVG({ setRef, className }: SvgBgProps) {
           key={`e${i}`}
           x1={nodes[a].cx} y1={nodes[a].cy}
           x2={nodes[b].cx} y2={nodes[b].cy}
-          stroke="rgba(220,38,38,0.15)"
-          strokeWidth="1"
+          stroke="rgba(220,38,38,0.32)"
+          strokeWidth="1.5"
         />
       ))}
       {nodes.map((n, i) => (
@@ -64,7 +64,7 @@ export function NodesSVG({ setRef, className }: SvgBgProps) {
           cx={n.cx}
           cy={n.cy}
           r="4"
-          fill="rgba(220,38,38,0.28)"
+          fill="rgba(220,38,38,0.55)"
         />
       ))}
     </svg>
@@ -97,11 +97,11 @@ export function VanishingSVG({ setRef, className }: SvgBgProps) {
           key={`v${i}`}
           x1={o.x} y1={o.y}
           x2={VP.x} y2={VP.y}
-          stroke="rgba(220,38,38,0.15)"
-          strokeWidth="1"
+          stroke="rgba(220,38,38,0.32)"
+          strokeWidth="1.5"
         />
       ))}
-      <circle cx={VP.x} cy={VP.y} r="3.5" fill="rgba(220,38,38,0.45)" />
+      <circle cx={VP.x} cy={VP.y} r="3.5" fill="rgba(220,38,38,0.7)" />
     </svg>
   );
 }
