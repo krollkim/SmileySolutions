@@ -1,7 +1,9 @@
 {
   "permissions": {
     "allow": [
-      "Bash(npx tsc:*)"
+      "Bash(npx tsc:*)",
+      "Bash(grep -r \"fetch\\\\|POST\\\\|api\\\\|form\\\\|submit\" /c/Users/kimkr/Desktop/kim-kroll-landing-page/smileysolutions/src --include=*.tsx --include=*.ts -l)",
+      "Bash(grep -r \"form\\\\|Form\\\\|submit\\\\|Submit\" /c/Users/kimkr/Desktop/kim-kroll-landing-page/smileysolutions/src/components --include=*.tsx --include=*.ts -A 3)"
     ]
   }
 }
