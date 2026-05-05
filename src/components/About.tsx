@@ -173,10 +173,7 @@ export default function About() {
             className="w-full lg:w-[70%]"
             style={{ opacity: 0, transform: isRTL ? "translateX(-50px)" : "translateX(50px)" }}
           >
-            <h3 className="text-[1.8rem] sm:text-[2.2rem] font-bold text-white mb-1">
-              SMILEY SOLUTION
-            </h3>
-            <p className="text-[1.4rem] text-gray-400 font-medium mb-3">
+            <p className="text-[1.8rem] sm:text-[2.2rem] font-bold text-white mb-1">
               {t('founder_name')}
             </p>
 
