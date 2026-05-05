@@ -10,6 +10,10 @@
     "about_aria": "How Smiley Solution Works - Tech Studio",
     "contact": "Contact",
     "contact_aria": "Contact Smiley Solution for digital product development",
+    "faq": "FAQ",
+    "faq_aria": "Frequently asked questions",
+    "book_cta": "Book a Call",
+    "book_aria": "Book a free consultation with Smiley Solution",
     "menu": "Menu"
   },
   "hero": {
@@ -149,6 +153,23 @@
     "sanctuary_result": "We created a space that explains the necessity of a digital presence while maintaining the calm and trust essential to the therapeutic world. Clean design and quiet technology support the therapeutic relationship and turn digital exposure into a simple, respectful process.",
     "pic_challenge": "The event production industry had no shared infrastructure - producers coordinated through WhatsApp, vendors relied purely on word of mouth, and party-goers always heard about the best events after the fact. PIC is a first-of-its-kind platform serving three distinct audiences at once. The challenge was building a landing page that could make an ambitious, complex product feel instantly clear and compelling to each of them.",
     "pic_result": "We built a high-conversion lead generation landing page that walks producers, vendors, and party-goers through a single, seamless narrative - surfacing PIC's unique differentiators (smart matching algorithm, digital ticket album, tiered pricing) without overwhelming the visitor. The structure, copy hierarchy, and CTA architecture were engineered to turn a three-sided marketplace pitch into a focused, persuasive experience that drives signups."
+  },
+  "faq": {
+    "title": "Freq<highlight>u</highlight>ently Asked",
+    "q1": "What types of projects do you work on?",
+    "a1": "We specialize in SaaS platforms, web applications, and digital products that need to scale. From product architecture to cloud deployment, we handle the full stack.",
+    "q2": "How long does a typical project take?",
+    "a2": "Most projects run 4–12 weeks depending on scope. We'll give you a clear timeline during our initial consultation.",
+    "q3": "Do you work with startups or established companies?",
+    "a3": "Both. We've built MVPs for early-stage startups and scaled production systems for growing companies. What matters is the ambition behind the project.",
+    "q4": "What does your process look like?",
+    "a4": "We follow four phases: Discover, Architect, Engineer, and Ship. You're involved at every step — no black boxes, no surprises.",
+    "q5": "How much does a project cost?",
+    "a5": "Every project is scoped individually based on complexity and timeline. Book a consultation and we'll provide a detailed proposal.",
+    "cta_label": "Still have questions?",
+    "cta": "Book a Consultation",
+    "cta_arrow": "→",
+    "cta_aria": "Book a free consultation with Smiley Solution"
   },
   "footer": {
     "rights": "All rights reserved."
