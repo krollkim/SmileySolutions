@@ -14,8 +14,6 @@ const Header = () => {
 
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isHidden, setIsHidden] = useState(false);
-  const lastScrollY = useRef(0);
 
   const targetLocale = locale === 'he' ? 'en' : 'he';
 
@@ -36,14 +34,7 @@ const Header = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      const current = window.scrollY;
-      setIsScrolled(current > 50);
-      if (current > 150) {
-        setIsHidden(current > lastScrollY.current);
-      } else {
-        setIsHidden(false);
-      }
-      lastScrollY.current = current;
+      setIsScrolled(window.scrollY > 50);
     };
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
@@ -176,7 +167,7 @@ const Header = () => {
             : 'bg-transparent'
         }`}
         initial={{ y: '-100%' }}
-        animate={{ y: isHidden ? '-100%' : '0%' }}
+        animate={{ y: '0%' }}
         transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
       >
         <div className="container mx-auto px-6 lg:px-12">
