@@ -261,7 +261,7 @@ export default function Contact() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={t('book_aria')}
-                className="group inline-flex items-center gap-4 px-8 py-4 text-[1.6rem] font-medium uppercase tracking-[0.2rem] text-white bg-crimson rounded-lg overflow-hidden transition-all duration-300 hover:bg-crimson/90 hover:gap-6"
+                className="inline-flex items-center gap-4 px-8 py-4 text-[1.6rem] font-medium uppercase tracking-[0.2rem] text-white bg-crimson rounded-lg hover:bg-crimson/85 hover:scale-[1.03] active:scale-[0.98] transition-all duration-200"
               >
                 <FaCalendarAlt className="text-[1.8rem]" />
                 <span>{t('book_cta')}</span>

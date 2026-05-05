@@ -173,13 +173,15 @@ export default function About() {
             className="w-full lg:w-[70%]"
             style={{ opacity: 0, transform: isRTL ? "translateX(-50px)" : "translateX(50px)" }}
           >
-            <p className="text-[1.8rem] sm:text-[2.2rem] font-bold text-white mb-1">
-              {t('founder_name')}
-            </p>
-
-            <p className="text-[1.4rem] text-crimson uppercase tracking-[0.3rem] mb-6">
-              {t('tagline')}
-            </p>
+            <div className="flex items-baseline gap-3 mb-6 flex-wrap">
+              <p className="text-[1.8rem] sm:text-[2.2rem] font-bold text-white">
+                {t('founder_name')}
+              </p>
+              <span className="text-gray-600 font-light text-[1.6rem]">·</span>
+              <p className="text-[1.4rem] text-crimson uppercase tracking-[0.3rem]">
+                {t('tagline')}
+              </p>
+            </div>
 
             <div className="w-16 h-[3px] bg-crimson mb-6 rounded-full" />
 
@@ -207,8 +209,8 @@ export default function About() {
               ))}
             </div>
 
-            {/* Social Links */}
-            <div className="flex items-center gap-5 mb-8">
+            {/* Social Links + CTA — one unified "reach me" row */}
+            <div className="flex flex-wrap items-center gap-4">
               <a
                 href="https://github.com/krollkim"
                 target="_blank"
@@ -235,6 +237,19 @@ export default function About() {
                 aria-label="WhatsApp"
               >
                 <FaWhatsapp />
+              </a>
+
+              <span className="w-px h-8 bg-gray-700 mx-2" aria-hidden="true" />
+
+              <a
+                href="https://calendar.app.google/i5TALc1oJahNDeRw8"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={t('cta_aria')}
+                className="inline-flex items-center gap-3 px-6 py-3 text-[1.4rem] font-medium uppercase tracking-[0.15rem] text-white bg-crimson border-2 border-crimson rounded-md hover:bg-crimson/85 hover:scale-[1.03] active:scale-[0.98] transition-all duration-200"
+              >
+                <span>{t('cta')}</span>
+                <span>{t('cta_arrow')}</span>
               </a>
             </div>
 

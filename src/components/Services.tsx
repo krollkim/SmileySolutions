@@ -181,6 +181,32 @@ export default function Services() {
           </p>
         </div>
 
+        {/* ── Process strip — overview first, sets context for the cards ──── */}
+        <div className="mb-16 lg:mb-20">
+          <div className="flex flex-wrap justify-center items-center gap-0">
+            {(['process_1', 'process_2', 'process_3', 'process_4'] as const).map((key, index) => (
+              <div key={key} className="flex items-center">
+                <div className="flex flex-col items-center px-6 py-2">
+                  <span
+                    className="text-[1rem] font-bold font-mono text-crimson mb-1"
+                    style={{ filter: 'drop-shadow(0 0 3px rgba(220,20,60,0.5))' }}
+                  >
+                    0{index + 1}
+                  </span>
+                  <span className="text-[1.5rem] font-medium text-white">
+                    {t(key)}
+                  </span>
+                </div>
+                {index < 3 && (
+                  <span className="text-crimson/70 text-[1.6rem] mx-1 select-none">
+                    {isRTL ? '←' : '→'}
+                  </span>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+
         {/* ── 4-Phase Cards — 2×2 grid ─────────────────────────────────────── */}
         <div
           className="grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-20 max-w-5xl mx-auto"
@@ -237,33 +263,19 @@ export default function Services() {
           ))}
         </div>
 
-        {/* ── Process strip ────────────────────────────────────────────────── */}
-        <div className="mt-20 pt-12 border-t border-white/5">
-          <p className="text-[1.2rem] text-gray-500 uppercase tracking-[0.25rem] mb-8 text-center">
-            {t('process_label')}
-          </p>
-          <div className="flex flex-wrap justify-center items-center gap-0">
-            {(['process_1', 'process_2', 'process_3', 'process_4'] as const).map((key, index) => (
-              <div key={key} className="flex items-center">
-                <div className="flex flex-col items-center px-6 py-2">
-                  <span
-                    className="text-[1rem] font-bold font-mono text-crimson mb-1"
-                    style={{ filter: 'drop-shadow(0 0 3px rgba(220,20,60,0.5))' }}
-                  >
-                    0{index + 1}
-                  </span>
-                  <span className="text-[1.5rem] font-medium text-white">
-                    {t(key)}
-                  </span>
-                </div>
-                {index < 3 && (
-                  <span className="text-crimson/70 text-[1.6rem] mx-1 select-none">
-                    {isRTL ? '←' : '→'}
-                  </span>
-                )}
-              </div>
-            ))}
-          </div>
+        {/* ── Section CTA ──────────────────────────────────────────────────── */}
+        <div className="mt-16 flex flex-col items-center gap-4">
+          <p className="text-[1.4rem] text-gray-500">{t('cta_label')}</p>
+          <a
+            href="https://calendar.app.google/i5TALc1oJahNDeRw8"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={t('cta_aria')}
+            className="inline-flex items-center gap-3 px-6 py-3 text-[1.4rem] font-medium uppercase tracking-[0.15rem] text-white bg-crimson border-2 border-crimson rounded-md hover:bg-crimson/85 hover:scale-[1.03] active:scale-[0.98] transition-all duration-200"
+          >
+            <span>{t('cta')}</span>
+            <span>{t('cta_arrow')}</span>
+          </a>
         </div>
 
       </div>

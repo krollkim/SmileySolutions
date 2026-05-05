@@ -36,7 +36,7 @@ export default function Hero() {
     { text: t('line1'), isName: true },
     { text: t('line2'), isName: false },
     { text: t('line3'), isName: false },
-  ];
+  ].filter(line => line.text);
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
