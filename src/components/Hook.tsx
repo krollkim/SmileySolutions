@@ -93,7 +93,7 @@ export default function Hook() {
           </div>
         </div>
 
-        {/* Row 2 — drifts right */}
+        {/* Row 2 — drifts right
         <div className="relative flex w-full justify-center">
           <div
             style={{
@@ -129,7 +129,7 @@ export default function Hook() {
               </span>
             ))}
           </div>
-        </div>
+        </div> */}
 
       </div>
     </section>
