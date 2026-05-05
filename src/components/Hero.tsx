@@ -17,11 +17,9 @@ export default function Hero() {
   const bgImageRef = useRef<HTMLDivElement>(null);
   const particlesRef = useRef<HTMLDivElement[]>([]);
   const titleLinesRef = useRef<HTMLSpanElement[]>([]);
-  const titleCursorsRef = useRef<HTMLSpanElement[]>([]);
   const subtitleRef = useRef<HTMLParagraphElement>(null);
   const ctaRef = useRef<HTMLDivElement>(null);
   const ctaArrowRef = useRef<HTMLSpanElement>(null);
-  const scrollIndicatorRef = useRef<HTMLDivElement>(null);
   const scrollLineRef = useRef<HTMLDivElement>(null);
 
   const particles = useMemo(() => {
@@ -30,15 +28,14 @@ export default function Hero() {
       left: `${(i * 17 + 5) % 100}%`,
       top: `${(i * 23 + 10) % 100}%`,
       duration: 5 + (i % 5),
-      delay: i * 0.5
+      delay: i * 0.5,
     }));
   }, []);
 
-  // Both locales use 3 lines: brand name (crimson), tagline, service descriptor.
   const h1Lines = [
-    { text: t('line1'), isName: true,  delay: 0.5 },
-    { text: t('line2'), isName: false, delay: 1.1 },
-    { text: t('line3'), isName: false, delay: 1.7 },
+    { text: t('line1'), isName: true },
+    { text: t('line2'), isName: false },
+    { text: t('line3'), isName: false },
   ];
 
   useEffect(() => {
@@ -50,7 +47,7 @@ export default function Hero() {
         x,
         y,
         duration: 0.8,
-        ease: "power2.out",
+        ease: 'power2.out',
         force3D: true,
       });
     };
@@ -60,11 +57,11 @@ export default function Hero() {
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
-      // Breathing animation - pauses when Hero is out of view
+      // Background breathing — pauses when Hero is out of view
       const breathingTween = gsap.to(bgScaleRef.current, {
         scale: 1.15,
         duration: 4,
-        ease: "sine.inOut",
+        ease: 'sine.inOut',
         repeat: -1,
         yoyo: true,
         force3D: true,
@@ -73,8 +70,8 @@ export default function Hero() {
 
       ScrollTrigger.create({
         trigger: sectionRef.current,
-        start: "top bottom",
-        end: "bottom top",
+        start: 'top bottom',
+        end: 'bottom top',
         anticipatePin: 1,
         onEnter: () => breathingTween.play(),
         onLeave: () => breathingTween.pause(),
@@ -82,7 +79,7 @@ export default function Hero() {
         onLeaveBack: () => breathingTween.pause(),
       });
 
-      // Particles - pause when Hero is out of view
+      // Particles — paused when Hero is out of view
       const particleTweens: gsap.core.Tween[] = [];
       particlesRef.current.forEach((particle, i) => {
         if (!particle) return;
@@ -90,7 +87,7 @@ export default function Hero() {
           y: -100,
           opacity: 1,
           duration: particles[i].duration / 2,
-          ease: "sine.inOut",
+          ease: 'sine.inOut',
           repeat: -1,
           yoyo: true,
           delay: particles[i].delay,
@@ -102,123 +99,63 @@ export default function Hero() {
 
       ScrollTrigger.create({
         trigger: sectionRef.current,
-        start: "top bottom",
-        end: "bottom top",
+        start: 'top bottom',
+        end: 'bottom top',
         anticipatePin: 1,
-        onEnter: () => particleTweens.forEach(t => t.play()),
-        onLeave: () => particleTweens.forEach(t => t.pause()),
-        onEnterBack: () => particleTweens.forEach(t => t.play()),
-        onLeaveBack: () => particleTweens.forEach(t => t.pause()),
+        onEnter: () => particleTweens.forEach(tw => tw.play()),
+        onLeave: () => particleTweens.forEach(tw => tw.pause()),
+        onEnterBack: () => particleTweens.forEach(tw => tw.play()),
+        onLeaveBack: () => particleTweens.forEach(tw => tw.pause()),
       });
 
-      const masterTl = gsap.timeline({ delay: 0.3 });
+      // Entrance — content is fully visible immediately; this is polish only.
+      // No opacity:0, no clipPath. Just a subtle upward slide per element.
+      const masterTl = gsap.timeline({ delay: 0.1 });
 
       titleLinesRef.current.forEach((line, i) => {
         if (!line) return;
-        const cursor = titleCursorsRef.current[i];
-        const lineDelay = h1Lines[i].delay;
-
         masterTl.fromTo(
           line,
-          { clipPath: isRTL ? 'inset(0 0 0 100%)' : 'inset(0 100% 0 0)' },
-          {
-            clipPath: isRTL ? 'inset(0 0 0 0%)' : 'inset(0 0% 0 0)',
-            duration: 0.5,
-            ease: "power2.out",
-            force3D: true,
-          },
-          lineDelay
+          { y: 16 },
+          { y: 0, duration: 0.5, ease: 'power2.out', force3D: true, clearProps: 'all' },
+          i * 0.08
         );
-
-        if (cursor) {
-          if (isRTL) {
-            masterTl.fromTo(
-              cursor,
-              { right: '0%', left: 'auto' },
-              {
-                right: '100%',
-                duration: 0.5,
-                ease: "power2.out",
-                force3D: true,
-                clearProps: "all",
-              },
-              lineDelay
-            );
-          } else {
-            masterTl.fromTo(
-              cursor,
-              { left: '0%' },
-              {
-                left: '100%',
-                duration: 0.5,
-                ease: "power2.out",
-                force3D: true,
-                clearProps: "all",
-              },
-              lineDelay
-            );
-          }
-        }
       });
 
       masterTl.fromTo(
         subtitleRef.current,
-        { opacity: 0, y: 20 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.6,
-          ease: "power3.out",
-          force3D: true,
-          clearProps: "all",
-        },
-        2.5
+        { y: 12 },
+        { y: 0, duration: 0.5, ease: 'power3.out', force3D: true, clearProps: 'all' },
+        0.28
       );
 
       masterTl.fromTo(
         ctaRef.current,
-        { opacity: 0, y: 20 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.6,
-          ease: "power3.out",
-          force3D: true,
-          clearProps: "all",
-        },
-        2.8
+        { y: 10 },
+        { y: 0, duration: 0.5, ease: 'power3.out', force3D: true, clearProps: 'all' },
+        0.36
       );
 
-      masterTl.fromTo(
-        scrollIndicatorRef.current,
-        { opacity: 0 },
-        {
-          opacity: 1,
-          duration: 0.6,
-          ease: "power2.out",
-          force3D: true,
-        },
-        3.2
-      );
-
+      // CTA arrow bounce
       gsap.to(ctaArrowRef.current, {
         x: isRTL ? -5 : 5,
         duration: 0.75,
-        ease: "sine.inOut",
+        ease: 'sine.inOut',
         repeat: -1,
         yoyo: true,
-        delay: 3.5,
+        delay: 0.8,
         force3D: true,
       });
 
+      // Scroll line pulse
       gsap.to(scrollLineRef.current, {
         scaleY: 0.5,
         duration: 0.75,
-        ease: "sine.inOut",
+        ease: 'sine.inOut',
         repeat: -1,
         yoyo: true,
-        delay: 3.5,
-        transformOrigin: "top center",
+        delay: 0.8,
+        transformOrigin: 'top center',
         force3D: true,
       });
 
@@ -242,9 +179,9 @@ export default function Hero() {
           ref={bgScaleRef}
           className="absolute inset-0"
           style={{
-            transform: "scale(1.1) translateZ(0.1px)",
-            backfaceVisibility: "hidden",
-            willChange: "transform",
+            transform: 'scale(1.1) translateZ(0.1px)',
+            backfaceVisibility: 'hidden',
+            willChange: 'transform',
           }}
         >
           <div
@@ -252,7 +189,7 @@ export default function Hero() {
             className="absolute inset-0 bg-cover bg-center"
             style={{
               backgroundImage: "url('/images/hero-background.png')",
-              backfaceVisibility: "hidden",
+              backfaceVisibility: 'hidden',
             }}
           />
         </div>
@@ -269,11 +206,7 @@ export default function Hero() {
             key={particle.id}
             ref={(el) => { if (el) particlesRef.current[i] = el; }}
             className="absolute w-1 h-1 rounded-full bg-crimson/30"
-            style={{
-              left: particle.left,
-              top: particle.top,
-              opacity: 0,
-            }}
+            style={{ left: particle.left, top: particle.top, opacity: 0 }}
           />
         ))}
       </div>
@@ -285,28 +218,14 @@ export default function Hero() {
           <h1>
             {h1Lines.map((line, index) => (
               <div key={index} className="-mb-2 sm:-mb-3">
-                <span className="relative inline-block overflow-hidden">
-                  <span
-                    ref={(el) => { if (el) titleLinesRef.current[index] = el; }}
-                    className={`inline-block text-[3.2rem] sm:text-[4rem] md:text-[5rem] lg:text-[6rem] font-bold leading-[1.1] tracking-tight antialiased ${
-                      line.isName ? 'text-crimson' : 'text-white'
-                    }`}
-                    style={{
-                      clipPath: isRTL ? 'inset(0 0 0 100%)' : 'inset(0 100% 0 0)',
-                      backfaceVisibility: "hidden",
-                    }}
-                  >
-                    {line.text}
-                  </span>
-                  <span
-                    ref={(el) => { if (el) titleCursorsRef.current[index] = el; }}
-                    className="absolute top-0 h-full w-[4px] bg-crimson"
-                    style={{
-                      left: isRTL ? 'auto' : '0%',
-                      right: isRTL ? '0%' : 'auto',
-                      backfaceVisibility: "hidden",
-                    }}
-                  />
+                <span
+                  ref={(el) => { if (el) titleLinesRef.current[index] = el; }}
+                  className={`inline-block text-[3.2rem] sm:text-[4rem] md:text-[5rem] lg:text-[6rem] font-bold leading-[1.1] tracking-tight antialiased ${
+                    line.isName ? 'text-crimson' : 'text-white'
+                  }`}
+                  style={{ backfaceVisibility: 'hidden' }}
+                >
+                  {line.text}
                 </span>
               </div>
             ))}
@@ -316,17 +235,25 @@ export default function Hero() {
           <p
             ref={subtitleRef}
             className="text-[1.6rem] sm:text-[1.8rem] text-gray-400 mt-8 max-w-[500px] leading-relaxed antialiased"
-            style={{ opacity: 0, transform: "translateY(20px)" }}
           >
             {t('subtitle')}
           </p>
 
-          {/* CTA Button */}
-          <div
-            ref={ctaRef}
-            className="mt-10"
-            style={{ opacity: 0, transform: "translateY(20px)" }}
-          >
+          {/* CTAs */}
+          <div ref={ctaRef} className="mt-10 flex flex-col sm:flex-row items-start gap-4">
+            {/* Primary — Book a Consultation */}
+            <a
+              href="https://calendar.app.google/i5TALc1oJahNDeRw8"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={t('book_aria')}
+              className="inline-flex items-center gap-3 px-6 py-3 text-[1.4rem] font-medium uppercase tracking-[0.15rem] text-white bg-crimson border-2 border-crimson rounded-md hover:bg-crimson/85 transition-colors duration-300"
+            >
+              <span>{t('book_cta')}</span>
+              <span ref={ctaArrowRef}>{t('book_arrow')}</span>
+            </a>
+
+            {/* Secondary — View Our Work */}
             <a
               href="#projects"
               aria-label={t('cta_aria')}
@@ -334,31 +261,22 @@ export default function Hero() {
                 e.preventDefault();
                 document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
               }}
-              className="group relative inline-flex items-center gap-4 px-8 py-4 text-[1.6rem] font-medium uppercase tracking-[0.3rem] text-white border-2 border-crimson overflow-hidden transition-colors duration-500 hover:text-white"
+              className="group relative inline-flex items-center gap-3 px-6 py-3 text-[1.4rem] font-medium uppercase tracking-[0.15rem] text-white border-2 border-crimson/60 rounded-md overflow-hidden hover:border-crimson transition-colors duration-500"
             >
               <span className="absolute inset-0 bg-crimson transform ltr:-translate-x-full rtl:translate-x-full group-hover:translate-x-0 transition-transform duration-500 ease-out" />
               <span className="relative">{t('cta')}</span>
-              <span
-                ref={ctaArrowRef}
-                className="relative"
-              >
-                {t('cta_arrow')}
-              </span>
+              <span className="relative">{t('cta_arrow')}</span>
             </a>
           </div>
         </div>
 
         {/* Scroll Indicator */}
-        <div
-          ref={scrollIndicatorRef}
-          className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
-          style={{ opacity: 0 }}
-        >
-          <span className="text-[1.2rem] uppercase tracking-[0.3rem] text-gray-500">{t('scroll')}</span>
+        <div className="hidden sm:flex absolute bottom-10 left-1/2 -translate-x-1/2 flex-col items-center gap-2">
+          <span className="text-[1.2rem] uppercase tracking-[0.3rem] text-gray-400">{t('scroll')}</span>
           <div
             ref={scrollLineRef}
             className="w-px h-[40px] bg-linear-to-b from-crimson to-transparent"
-            style={{ transformOrigin: "top center" }}
+            style={{ transformOrigin: 'top center' }}
           />
         </div>
       </div>
