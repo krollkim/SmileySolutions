@@ -39,7 +39,7 @@ export default function Footer() {
 
         {/* SEO landing page links */}
         <div className="mb-8 text-center">
-          <p className="text-[1.2rem] uppercase tracking-[0.25rem] text-gray-600 mb-5">
+          <p className="text-[1.2rem] uppercase tracking-[0.25rem] text-gray-400 mb-5">
             {sectionTitle}
           </p>
           <div className="flex justify-center flex-wrap gap-x-10 gap-y-3">
@@ -47,7 +47,7 @@ export default function Footer() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-[1.3rem] text-gray-500 hover:text-crimson transition-colors duration-200"
+                className="text-[1.3rem] text-gray-400 hover:text-crimson transition-colors duration-200"
               >
                 {link.label}
               </Link>
@@ -57,7 +57,7 @@ export default function Footer() {
 
         {/* Divider */}
         <div className="border-t border-gray-900 pt-8 flex flex-col items-center gap-4 sm:flex-row sm:items-center sm:justify-between">
-          <p className="text-[1.3rem] text-gray-500 text-center sm:text-start">
+          <p className="text-[1.3rem] text-gray-400 text-center sm:text-start">
             © {new Date().getFullYear()}{' '}
             <span className="text-white">Smiley Solution</span>.{' '}
             {tFooter('rights')}
@@ -65,13 +65,13 @@ export default function Footer() {
           <div className="flex gap-6">
             <Link
               href={`/${locale}/privacy`}
-              className="text-[1.2rem] text-gray-600 hover:text-gray-400 transition-colors duration-200"
+              className="text-[1.2rem] text-gray-400 hover:text-white transition-colors duration-200"
             >
               {isHe ? 'מדיניות פרטיות' : 'Privacy Policy'}
             </Link>
             <Link
               href={`/${locale}/terms`}
-              className="text-[1.2rem] text-gray-600 hover:text-gray-400 transition-colors duration-200"
+              className="text-[1.2rem] text-gray-400 hover:text-white transition-colors duration-200"
             >
               {isHe ? 'תנאי שירות' : 'Terms of Service'}
             </Link>

@@ -209,11 +209,11 @@ const Header = () => {
               aria-label={`Switch to ${targetLocale === 'en' ? 'English' : 'Hebrew'}`}
               className="hidden lg:flex items-center gap-[6px] text-[1.3rem] font-medium uppercase tracking-[0.2rem] select-none"
             >
-              <span className={locale === 'en' ? 'text-white' : 'text-gray-500 hover:text-gray-300 transition-colors duration-200'}>
+              <span className={locale === 'en' ? 'text-white' : 'text-gray-400 hover:text-white transition-colors duration-200'}>
                 EN
               </span>
               <span className="text-gray-700">/</span>
-              <span className={locale === 'he' ? 'text-white' : 'text-gray-500 hover:text-gray-300 transition-colors duration-200'}>
+              <span className={locale === 'he' ? 'text-white' : 'text-gray-400 hover:text-white transition-colors duration-200'}>
                 HE
               </span>
             </button>
@@ -335,7 +335,7 @@ const Header = () => {
             style={{ opacity: 0, transform: "translateY(10px)" }}
           >
             <span className="w-12 h-px bg-crimson/50" />
-            <span className="text-[1.2rem] uppercase tracking-[0.3rem] text-gray-500">
+            <span className="text-[1.2rem] uppercase tracking-[0.3rem] text-gray-400">
               {t('menu')}
             </span>
             <span className="w-12 h-px bg-crimson/50" />

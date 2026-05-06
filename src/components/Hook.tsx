@@ -43,7 +43,7 @@ export default function Hook() {
     >
       {/* Editorial Statement */}
       <div ref={statementRef} className="flex flex-col items-center px-6 lg:px-12 mb-32">
-        <p className="text-[2.2rem] sm:text-[2.8rem] lg:text-[3.6rem] font-extralight text-gray-500 leading-[1.3] tracking-tight max-w-3xl text-center">
+        <p className="text-[2.2rem] sm:text-[2.8rem] lg:text-[3.6rem] font-extralight text-gray-400 leading-[1.3] tracking-tight max-w-3xl text-center">
           {t.rich('statement', {
             accent: (chunks) => (
               <em className="not-italic text-white font-light">{chunks}</em>

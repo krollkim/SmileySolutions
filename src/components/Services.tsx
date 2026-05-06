@@ -265,7 +265,7 @@ export default function Services() {
 
         {/* ── Section CTA ──────────────────────────────────────────────────── */}
         <div className="mt-16 flex flex-col items-center gap-4">
-          <p className="text-[1.4rem] text-gray-500">{t('cta_label')}</p>
+          <p className="text-[1.4rem] text-gray-400">{t('cta_label')}</p>
           <a
             href="https://calendar.app.google/i5TALc1oJahNDeRw8"
             target="_blank"
