@@ -14,8 +14,6 @@ const Header = () => {
 
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isHidden, setIsHidden] = useState(false);
-  const lastScrollY = useRef(0);
 
   const targetLocale = locale === 'he' ? 'en' : 'he';
 
@@ -36,14 +34,7 @@ const Header = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      const current = window.scrollY;
-      setIsScrolled(current > 50);
-      if (current > 150) {
-        setIsHidden(current > lastScrollY.current);
-      } else {
-        setIsHidden(false);
-      }
-      lastScrollY.current = current;
+      setIsScrolled(window.scrollY > 50);
     };
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
@@ -164,6 +155,7 @@ const Header = () => {
     { labelKey: 'services' as const, ariaKey: 'services_aria' as const, id: 'services' },
     { labelKey: 'projects' as const, ariaKey: 'projects_aria' as const, id: 'projects' },
     { labelKey: 'about' as const, ariaKey: 'about_aria' as const, id: 'about' },
+    { labelKey: 'faq' as const, ariaKey: 'faq_aria' as const, id: 'faq' },
     { labelKey: 'contact' as const, ariaKey: 'contact_aria' as const, id: 'contact' },
   ];
 
@@ -176,7 +168,7 @@ const Header = () => {
             : 'bg-transparent'
         }`}
         initial={{ y: '-100%' }}
-        animate={{ y: isHidden ? '-100%' : '0%' }}
+        animate={{ y: '0%' }}
         transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
       >
         <div className="container mx-auto px-6 lg:px-12">
@@ -217,11 +209,11 @@ const Header = () => {
               aria-label={`Switch to ${targetLocale === 'en' ? 'English' : 'Hebrew'}`}
               className="hidden lg:flex items-center gap-[6px] text-[1.3rem] font-medium uppercase tracking-[0.2rem] select-none"
             >
-              <span className={locale === 'en' ? 'text-white' : 'text-gray-500 hover:text-gray-300 transition-colors duration-200'}>
+              <span className={locale === 'en' ? 'text-white' : 'text-gray-400 hover:text-white transition-colors duration-200'}>
                 EN
               </span>
               <span className="text-gray-700">/</span>
-              <span className={locale === 'he' ? 'text-white' : 'text-gray-500 hover:text-gray-300 transition-colors duration-200'}>
+              <span className={locale === 'he' ? 'text-white' : 'text-gray-400 hover:text-white transition-colors duration-200'}>
                 HE
               </span>
             </button>
@@ -310,7 +302,7 @@ const Header = () => {
             className="mt-16"
             style={{ opacity: 0, transform: "scale(0.9)" }}
           >
-            <div className="animate-pulse-slow">
+            <div>
               <Image
                 src="/favicon/apple-touch-icon.png"
                 alt="Smiley Solution Logo"
@@ -343,7 +335,7 @@ const Header = () => {
             style={{ opacity: 0, transform: "translateY(10px)" }}
           >
             <span className="w-12 h-px bg-crimson/50" />
-            <span className="text-[1.2rem] uppercase tracking-[0.3rem] text-gray-500">
+            <span className="text-[1.2rem] uppercase tracking-[0.3rem] text-gray-400">
               {t('menu')}
             </span>
             <span className="w-12 h-px bg-crimson/50" />

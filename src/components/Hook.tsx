@@ -43,13 +43,26 @@ export default function Hook() {
     >
       {/* Editorial Statement */}
       <div ref={statementRef} className="flex flex-col items-center px-6 lg:px-12 mb-32">
-        <p className="text-[2.2rem] sm:text-[2.8rem] lg:text-[3.6rem] font-extralight text-gray-500 leading-[1.3] tracking-tight max-w-3xl text-center">
+        <p className="text-[2.2rem] sm:text-[2.8rem] lg:text-[3.6rem] font-extralight text-gray-400 leading-[1.3] tracking-tight max-w-3xl text-center">
           {t.rich('statement', {
             accent: (chunks) => (
               <em className="not-italic text-white font-light">{chunks}</em>
             ),
           })}
         </p>
+      </div>
+
+      {/* Scroll nudge — subtle forward momentum */}
+      <div className="flex justify-center mb-12">
+        <a
+          href="#services"
+          onClick={(e) => { e.preventDefault(); document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' }); }}
+          aria-label={t('nudge')}
+          className="group flex flex-col items-center gap-2 text-[1.1rem] text-gray-400 hover:text-white uppercase tracking-[0.25rem] transition-colors duration-300"
+        >
+          <span>{t('nudge')}</span>
+          <span className="text-crimson group-hover:translate-y-1 transition-transform duration-300" aria-hidden="true">↓</span>
+        </a>
       </div>
 
       {/* ── Marquee rows — center-anchored ────────────────────────────────── */}
@@ -93,7 +106,7 @@ export default function Hook() {
           </div>
         </div>
 
-        {/* Row 2 — drifts right */}
+        {/* Row 2 — drifts right
         <div className="relative flex w-full justify-center">
           <div
             style={{
@@ -129,7 +142,7 @@ export default function Hook() {
               </span>
             ))}
           </div>
-        </div>
+        </div> */}
 
       </div>
     </section>

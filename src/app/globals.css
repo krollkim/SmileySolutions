@@ -118,14 +118,6 @@ main {
   }
 }
 
-/* ===== Service Card ===== */
-.service-card {
-  background: linear-gradient(135deg, rgba(41, 50, 60, 0.8) 0%, rgba(72, 85, 99, 0.6) 100%);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  overflow: hidden;
-}
 
 /* ===== GPU Acceleration for Motion Elements (Mobile Flicker Fix) ===== */
 .motion-gpu {
@@ -366,17 +358,4 @@ html.accessibility-reduce-motion [style*="opacity"] {
   background: crimson;
 }
 
-/* ===== Mobile Menu Logo Pulse Animation ===== */
-@keyframes pulse-slow {
-  0%, 100% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.05);
-  }
-}
-
-.animate-pulse-slow {
-  animation: pulse-slow 3s ease-in-out infinite;
-}
 

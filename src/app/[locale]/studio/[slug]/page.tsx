@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import ProgressBar from '@/components/ProgressBar';
 import StudioHero from '@/components/studio/StudioHero';
 import CaseStudyCard from '@/components/studio/CaseStudyCard';
 import { getPillarBySlug, getPillarStaticParams } from '@/data/pillars';
@@ -74,6 +75,7 @@ export default async function PillarPage({
 
   return (
     <>
+      <ProgressBar />
       <Header />
       <main
         className="min-h-screen bg-[#0a0a0a] text-white"
@@ -88,7 +90,7 @@ export default async function PillarPage({
         />
 
         {/* Case Studies */}
-        <div className="container mx-auto px-6 lg:px-12 py-20 lg:py-28 flex flex-col gap-16">
+        <div className="container mx-auto px-6 lg:px-12 py-20 lg:py-28 flex flex-col gap-5">
           {pillar.projectKeys.map((key, index) => {
             const project = PROJECT_DATA[key];
             if (!project) return null;

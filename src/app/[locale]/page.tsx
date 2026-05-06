@@ -4,6 +4,7 @@ import Hook from "@/components/Hook";
 import Services from "@/components/Services";
 import PillarGrid from "@/components/PillarGrid";
 import About from "@/components/About";
+import FAQ from "@/components/FAQ";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import ProgressBar from "@/components/ProgressBar";
@@ -39,7 +40,10 @@ export default async function Home({
       {/* 5. Architect — About */}
       <About />
 
-      {/* 6. Invitation — Contact */}
+      {/* 6. FAQ — Schema + objection handling */}
+      <FAQ />
+
+      {/* 7. Invitation — Contact */}
       <Contact />
 
       {/* Footer */}

@@ -4,6 +4,7 @@ import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import "../globals.css";
 import AccessibilityMenu from "@/components/AccessibilityMenu";
+import FloatingCTA from "@/components/FloatingCTA";
 import { locales } from "@/i18n/config";
 
 const montserrat = Montserrat({
@@ -212,6 +213,7 @@ export default async function LocaleLayout({
         <NextIntlClientProvider locale={locale} messages={messages}>
           {children}
           <AccessibilityMenu />
+          <FloatingCTA />
         </NextIntlClientProvider>
       </body>
     </html>

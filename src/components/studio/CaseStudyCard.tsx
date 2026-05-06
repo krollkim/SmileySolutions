@@ -35,40 +35,27 @@ export default function CaseStudyCard({
   liveDemoLabel,
   index,
 }: CaseStudyCardProps) {
-  const cardRef      = useRef<HTMLDivElement>(null);
-  const imageWrapRef = useRef<HTMLDivElement>(null);
+  const cardRef = useRef<HTMLDivElement>(null);
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
-      // Card entry
       gsap.fromTo(
         cardRef.current,
-        { opacity: 0, y: 48 },
+        { opacity: 0, y: 28 },
         {
           opacity: 1,
           y: 0,
-          duration: 0.85,
+          duration: 0.65,
           ease: 'power3.out',
-          delay: index * 0.12,
+          delay: index * 0.1,
+          clearProps: 'transform',
           scrollTrigger: {
             trigger: cardRef.current,
-            start: 'top 82%',
+            start: 'top 85%',
             once: true,
           },
         },
       );
-
-      // Parallax: image moves upward as card scrolls through viewport
-      gsap.to(imageWrapRef.current, {
-        yPercent: -10,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: cardRef.current,
-          start: 'top bottom',
-          end: 'bottom top',
-          scrub: true,
-        },
-      });
     }, cardRef);
 
     return () => ctx.revert();
@@ -77,95 +64,85 @@ export default function CaseStudyCard({
   return (
     <div
       ref={cardRef}
-      className="border border-white/[0.06] bg-white/[0.015] group"
+      className="group flex flex-col sm:flex-row border border-white/[0.06] rounded-xl overflow-hidden
+                 hover:-translate-y-1 hover:shadow-xl hover:shadow-black/50 transition-all duration-300"
+      style={{ opacity: 0 }}
     >
-      {/* Image — overflow-hidden clips the parallax travel */}
-      <div className="relative w-full aspect-[16/9] overflow-hidden border-b border-white/[0.06]">
-        <div ref={imageWrapRef} className="absolute inset-0 scale-[1.15]">
-          <Image
-            src={image}
-            alt={imageAlt}
-            fill
-            sizes="(max-width: 768px) 100vw, 50vw"
-            className="object-cover"
-          />
-        </div>
+      {/* Thumbnail — small, crops from top, masks any pixelation */}
+      <div className="relative w-full h-[180px] sm:w-[210px] sm:h-auto sm:self-stretch shrink-0 overflow-hidden bg-[#111]">
+        <Image
+          src={image}
+          alt={imageAlt}
+          fill
+          sizes="(max-width: 640px) 100vw, 210px"
+          className="object-cover object-top group-hover:scale-[1.03] transition-transform duration-500"
+          draggable={false}
+        />
+        {/* Right-edge fade on desktop blends thumbnail into content */}
+        <div className="hidden sm:block absolute inset-0 bg-gradient-to-r from-transparent to-[#0a0a0a]/70" />
       </div>
 
       {/* Content */}
-      <div className="p-8 lg:p-10">
-        {/* Header row */}
-        <div className="flex flex-wrap items-start justify-between gap-4 mb-8">
+      <div className="flex-1 p-6 lg:p-8 flex flex-col min-w-0">
+
+        {/* Title + Live Demo */}
+        <div className="flex items-start justify-between gap-4 mb-5">
           <div>
-            <h2 className="text-[2.4rem] lg:text-[2.8rem] font-bold text-white leading-tight">
+            <h2 className="text-[1.8rem] lg:text-[2rem] font-bold text-white leading-tight">
               {title}
             </h2>
             {period && (
-              <span className="text-[1.1rem] text-gray-600 font-mono tracking-[0.15rem]">
+              <span className="text-[1rem] text-gray-400 font-mono tracking-[0.1rem] mt-0.5 block">
                 {period}
               </span>
             )}
           </div>
 
-          {/* Live Demo — crimson glow on hover */}
           <a
             href={liveLink}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-5 py-2.5
-                       border border-crimson/30 text-crimson text-[1.1rem]
-                       uppercase tracking-[0.2rem] shrink-0
-                       hover:bg-crimson/10 hover:border-crimson/60
-                       hover:shadow-[0_0_22px_rgba(220,38,38,0.28)]
-                       hover:scale-[1.04]
-                       transition-all duration-300"
+            aria-label={`${liveDemoLabel} — ${title}`}
+            className="shrink-0 flex items-center gap-1.5 text-[1.1rem] text-crimson
+                       uppercase tracking-[0.15rem] hover:text-white transition-colors duration-300"
           >
-            {liveDemoLabel}
+            <span>{liveDemoLabel}</span>
             <span aria-hidden="true">↗</span>
           </a>
         </div>
 
-        {/* Problem / Solution two-column */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 mb-8">
-          {/* Challenge */}
+        {/* Challenge / Result — line-clamped to keep cards compact */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-5 flex-1">
           <div>
-            <div className="flex items-center gap-3 mb-5">
-              <span className="w-8 h-[1.5px] bg-crimson/60" aria-hidden="true" />
-              <span className="text-[1.15rem] text-crimson uppercase tracking-[0.2rem] font-semibold">
+            <div className="flex items-center gap-2 mb-2">
+              <span className="w-5 h-[1.5px] bg-crimson/60 shrink-0" aria-hidden="true" />
+              <span className="text-[1rem] text-crimson uppercase tracking-[0.15rem] font-semibold">
                 {challengeLabel}
               </span>
             </div>
-            <p className="text-[1.35rem] text-gray-400 leading-relaxed">
+            <p className="text-[1.3rem] text-gray-400 leading-relaxed line-clamp-3">
               {challenge}
             </p>
           </div>
 
-          {/* Result */}
           <div>
-            <div className="flex items-center gap-3 mb-5">
-              <span className="w-8 h-[1.5px] bg-crimson/60" aria-hidden="true" />
-              <span className="text-[1.15rem] text-crimson uppercase tracking-[0.2rem] font-semibold">
+            <div className="flex items-center gap-2 mb-2">
+              <span className="w-5 h-[1.5px] bg-crimson/60 shrink-0" aria-hidden="true" />
+              <span className="text-[1rem] text-crimson uppercase tracking-[0.15rem] font-semibold">
                 {resultLabel}
               </span>
             </div>
-            <p className="text-[1.35rem] text-gray-400 leading-relaxed">
+            <p className="text-[1.3rem] text-gray-400 leading-relaxed line-clamp-3">
               {result}
             </p>
           </div>
         </div>
 
-        {/* Tags */}
-        <ul className="flex flex-wrap gap-2" aria-label="Technologies used">
-          {tags.map((tag) => (
-            <li
-              key={tag}
-              className="px-3 py-1 text-[1rem] text-crimson/80 rounded-full
-                         border border-crimson/20 bg-crimson/5 tracking-wide"
-            >
-              {tag}
-            </li>
-          ))}
-        </ul>
+        {/* Tech stack — plain dot-separated, sits at the bottom */}
+        <p className="text-[1.1rem] text-gray-400 tracking-wide mt-auto">
+          {tags.join(' · ')}
+        </p>
+
       </div>
     </div>
   );

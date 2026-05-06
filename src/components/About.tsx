@@ -3,7 +3,7 @@ import { useRef, useLayoutEffect } from 'react';
 import Image from 'next/image';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { FaGithub, FaLinkedin, FaWhatsapp } from 'react-icons/fa';
+import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import { useTranslations, useLocale } from 'next-intl';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -137,7 +137,7 @@ export default function About() {
         </div>
 
         {/* Content Container */}
-        <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20 max-w-6xl mx-auto">
+        <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-28 max-w-6xl mx-auto">
           {/* Profile Image with Crimson Offset Border */}
           <div
             ref={imageContainerRef}
@@ -173,30 +173,52 @@ export default function About() {
             className="w-full lg:w-[70%]"
             style={{ opacity: 0, transform: isRTL ? "translateX(-50px)" : "translateX(50px)" }}
           >
-            <h3 className="text-[1.8rem] sm:text-[2.2rem] font-bold text-white mb-1">
-              SMILEY SOLUTION
-            </h3>
-            <p className="text-[1.4rem] text-gray-400 font-medium mb-3">
-              {t('founder_name')}
-            </p>
-
-            <p className="text-[1.4rem] text-crimson uppercase tracking-[0.3rem] mb-6">
-              {t('tagline')}
-            </p>
+            <div className="flex items-baseline gap-3 mb-6 flex-wrap">
+              <p className="text-[1.8rem] sm:text-[2.2rem] font-bold text-white">
+                {t('founder_name')}
+              </p>
+              <span className="text-gray-600 font-light text-[1.6rem]">·</span>
+              <p className="text-[1.4rem] text-crimson uppercase tracking-[0.3rem]">
+                {t('tagline')}
+              </p>
+            </div>
 
             <div className="w-16 h-[3px] bg-crimson mb-6 rounded-full" />
 
-            <p className="text-[1.5rem] sm:text-[1.6rem] text-gray-300 leading-relaxed mb-4">
+            <p className="text-[1.5rem] sm:text-[1.6rem] text-gray-400 leading-relaxed mb-6">
               {t('bio1')}
             </p>
 
-            <p className="text-[1.4rem] sm:text-[1.5rem] text-gray-400 leading-relaxed mb-4">
+            <p className="text-[1.4rem] sm:text-[1.5rem] text-gray-400 leading-relaxed mb-6">
               {t('bio2')}
             </p>
 
-            <p className="text-[1.4rem] sm:text-[1.5rem] text-gray-400 leading-relaxed mb-8">
+            <p className="text-[1.4rem] sm:text-[1.5rem] text-gray-400 leading-relaxed mb-0">
               {t('bio3')}
             </p>
+
+            {/* Metrics — 3 equal columns, vertical dividers, no wrapping */}
+            <div className="grid grid-cols-3 my-10 lg:my-12">
+              {[
+                { value: '6',   label: t('metric_products') },
+                { value: '3+',  label: t('metric_years') },
+                { value: '15+', label: t('metric_tech') },
+              ].map((m, i) => (
+                <div
+                  key={m.label}
+                  className={`py-5 ${
+                    i === 0
+                      ? 'ltr:pr-6 lg:ltr:pr-10 rtl:pl-6 lg:rtl:pl-10'
+                      : i === 1
+                        ? 'ltr:pl-6 rtl:pr-6 ltr:border-l rtl:border-r border-white/10'
+                        : 'ltr:pl-6 lg:ltr:pl-10 rtl:pr-6 lg:rtl:pr-10 ltr:border-l rtl:border-r border-white/10'
+                  }`}
+                >
+                  <p className="text-[2rem] sm:text-[2.4rem] font-bold text-white leading-none">{m.value}</p>
+                  <p className="text-[1rem] sm:text-[1.1rem] text-gray-400 uppercase tracking-[0.1rem] sm:tracking-[0.15rem] mt-1 leading-snug">{m.label}</p>
+                </div>
+              ))}
+            </div>
 
             {/* Skills Tags */}
             <div className="flex flex-wrap gap-3 mb-8">
@@ -210,8 +232,8 @@ export default function About() {
               ))}
             </div>
 
-            {/* Social Links */}
-            <div className="flex items-center gap-5 mb-8">
+            {/* Social Links + CTA — one unified "reach me" row */}
+            <div className="flex flex-wrap items-center gap-4">
               <a
                 href="https://github.com/krollkim"
                 target="_blank"
@@ -230,14 +252,17 @@ export default function About() {
               >
                 <FaLinkedin />
               </a>
+              <span className="w-px h-8 bg-gray-700 mx-1" aria-hidden="true" />
+
               <a
-                href={`https://wa.me/972525890252?text=${encodeURIComponent(t('whatsapp_text'))}`}
+                href="https://calendar.app.google/i5TALc1oJahNDeRw8"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-12 h-12 flex items-center justify-center rounded-full border border-gray-700 text-[1.8rem] text-gray-400 hover:border-crimson hover:text-crimson hover:bg-crimson/10 transition-all duration-300"
-                aria-label="WhatsApp"
+                aria-label={t('cta_aria')}
+                className="inline-flex items-center gap-3 px-6 py-3 text-[1.4rem] font-medium uppercase tracking-[0.15rem] text-white bg-crimson border-2 border-crimson rounded-md hover:bg-crimson/85 hover:scale-[1.03] active:scale-[0.98] transition-all duration-200"
               >
-                <FaWhatsapp />
+                <span>{t('cta')}</span>
+                <span>{t('cta_arrow')}</span>
               </a>
             </div>
 
