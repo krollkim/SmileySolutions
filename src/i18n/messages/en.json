@@ -117,13 +117,8 @@
     "heading": "Ready to build",
     "heading_accent": "something amazing?",
     "subtext": "We take on meaningful projects and build things that last. Let's create something extraordinary together.",
-    "book_cta": "Book Appointment",
-    "book_aria": "Book an appointment with Smiley Solution",
-    "email_label": "Email",
-    "phone_label": "Phone",
-    "location_label": "Location",
-    "location_value": "Tel Aviv | Koh Phangan | Remote",
-    "contact_via": "Contact via",
+    "book_cta": "Book a Consultation",
+    "book_aria": "Book a consultation with Smiley Solution",
     "whatsapp_text": "Hi Smiley Solution! I found you and I'm interested in your digital product development services. Let's connect!"
   },
   "pillars": {
