@@ -49,6 +49,7 @@ export default function Services() {
   const headerRef   = useRef<HTMLDivElement>(null);
   const titleRef    = useRef<HTMLHeadingElement>(null);
   const subtitleRef = useRef<HTMLParagraphElement>(null);
+  const gridRef     = useRef<HTMLDivElement>(null);
   const itemsRef    = useRef<HTMLDivElement[]>([]);
 
   useLayoutEffect(() => {
@@ -73,21 +74,21 @@ export default function Services() {
           '-=0.4'
         );
 
-      // Phase items — staggered fade-up, left to right, entrance only
+      // Phase items — staggered left-to-right fade-up (motion audit: "guides reading order")
       gsap.fromTo(
         itemsRef.current,
         { opacity: 0, y: 24 },
         {
           opacity: 1,
           y: 0,
-          duration: 0.6,
-          stagger: 0.1,
-          ease: 'power2.out',
+          duration: 0.8,
+          stagger: 0.12,
+          ease: 'power3.out',
           force3D: true,
           clearProps: 'all',
           scrollTrigger: {
-            trigger: itemsRef.current[0],
-            start: 'top 85%',
+            trigger: gridRef.current,
+            start: 'top 80%',
             toggleActions: 'play none none none',
             once: true,
           },
@@ -129,43 +130,27 @@ export default function Services() {
           </p>
         </div>
 
-        {/* ── Process strip — static, sets context ─────────────────────────── */}
-        <div className="mb-16 lg:mb-24">
-          <div className="flex flex-wrap justify-center items-center gap-0">
-            {(['process_1', 'process_2', 'process_3', 'process_4'] as const).map((key, index) => (
-              <div key={key} className="flex items-center">
-                <div className="flex flex-col items-center px-6 py-2">
-                  <span
-                    className="text-[1rem] font-bold font-mono text-crimson mb-1"
-                    style={{ filter: 'drop-shadow(0 0 3px rgba(220,20,60,0.5))' }}
-                  >
-                    0{index + 1}
-                  </span>
-                  <span className="text-[1.5rem] font-medium text-white">
-                    {t(key)}
-                  </span>
-                </div>
-                {index < 3 && (
-                  <span className="text-crimson/70 text-[1.6rem] mx-1 select-none">
-                    {isRTL ? '←' : '→'}
-                  </span>
-                )}
-              </div>
-            ))}
-          </div>
-        </div>
-
         {/* ── 4-phase grid — 4×1 desktop, 2×2 tablet, 1×4 mobile ──────────── */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 max-w-7xl mx-auto">
+        <div
+          ref={gridRef}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-0 max-w-7xl mx-auto"
+        >
           {phases.map((phase, index) => (
             <div
               key={phase.number}
               ref={(el) => { if (el) itemsRef.current[index] = el; }}
-              className="flex flex-col"
+              className={[
+                'flex flex-col',
+                index === 0
+                  ? 'lg:ltr:pr-10 lg:rtl:pl-10'
+                  : `lg:ltr:pl-10 lg:rtl:pr-10 lg:border-l lg:border-white/[0.06] ${
+                      isRTL ? 'lg:border-l-0 lg:border-r lg:border-white/[0.06]' : ''
+                    }`,
+              ].join(' ')}
               style={{ opacity: 0 }}
             >
-              {/* Number — large anchor */}
-              <span className="text-[3rem] font-bold font-mono text-crimson leading-none mb-6">
+              {/* Small number marker */}
+              <span className="text-sm font-mono text-crimson/60 tracking-[0.2rem] mb-4 block">
                 {phase.number}
               </span>
 
