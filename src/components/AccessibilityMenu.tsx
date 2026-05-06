@@ -379,7 +379,7 @@ export default function AccessibilityMenu() {
       <button
         ref={buttonRef}
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed bottom-8 right-8 z-90 w-20 h-20 rounded-full
+        className="fixed bottom-14 right-8 z-90 w-20 h-20 rounded-full
           bg-crimson/90 backdrop-blur-xl border border-crimson
           flex items-center justify-center cursor-pointer
           hover:bg-crimson

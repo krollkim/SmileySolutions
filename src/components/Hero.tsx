@@ -217,12 +217,14 @@ export default function Hero() {
           {/* H1 Title */}
           <h1>
             {h1Lines.map((line, index) => (
-              <div key={index} className="-mb-2 sm:-mb-3">
+              <div key={index} className={line.isName ? 'mb-3' : '-mb-3 sm:-mb-4'}>
                 <span
                   ref={(el) => { if (el) titleLinesRef.current[index] = el; }}
-                  className={`inline-block text-[3.2rem] sm:text-[4rem] md:text-[5rem] lg:text-[6rem] font-bold leading-[1.1] tracking-tight antialiased ${
-                    line.isName ? 'text-crimson' : 'text-white'
-                  }`}
+                  className={
+                    line.isName
+                      ? 'inline-block text-[1.2rem] sm:text-[1.4rem] font-bold uppercase tracking-[0.35rem] text-crimson antialiased'
+                      : 'inline-block text-[4.5rem] sm:text-[5.5rem] md:text-[6.5rem] lg:text-[7.5rem] font-bold leading-[1.0] tracking-tight text-white antialiased'
+                  }
                   style={{ backfaceVisibility: 'hidden' }}
                 >
                   {line.text}
