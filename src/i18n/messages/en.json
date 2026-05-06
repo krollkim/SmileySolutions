@@ -172,6 +172,24 @@
     "cta_aria": "Book a free consultation with Smiley Solution"
   },
   "footer": {
-    "rights": "All rights reserved."
+    "rights": "All rights reserved.",
+    "tagline": "We build digital products that last.",
+    "book_cta": "Book a Consultation",
+    "book_aria": "Book a free consultation with Smiley Solution",
+    "services_heading": "Services",
+    "link_fullstack": "Full Stack Engineering",
+    "link_saas": "SaaS Platforms",
+    "link_therapists": "Website for Therapists",
+    "link_small_biz": "For Small Businesses",
+    "work_heading": "Work",
+    "link_high_end_web": "High-End Web",
+    "link_tech_engines": "Tech Engines",
+    "link_alignment": "Strategic Alignment",
+    "company_heading": "Company",
+    "link_about": "About",
+    "link_contact": "Contact",
+    "link_faq": "FAQ",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service"
   }
 }

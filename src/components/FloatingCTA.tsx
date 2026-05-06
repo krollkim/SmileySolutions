@@ -4,20 +4,35 @@ import { useTranslations } from 'next-intl';
 
 export default function FloatingCTA() {
   const t = useTranslations('hero');
-  const [visible, setVisible] = useState(false);
+  const [scrolledPast, setScrolledPast] = useState(false);
+  const [footerVisible, setFooterVisible] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      setVisible(window.scrollY > window.innerHeight * 0.8);
+      setScrolledPast(window.scrollY > window.innerHeight * 0.8);
     };
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    const footer = document.querySelector('footer');
+    if (!footer) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => setFooterVisible(entry.isIntersecting),
+      { threshold: 0.05 }
+    );
+    observer.observe(footer);
+    return () => observer.disconnect();
+  }, []);
+
+  const showCTA = scrolledPast && !footerVisible;
+
   return (
     <div
-      className={`fixed bottom-16 rtl:right-8 ltr:left-8 z-40 transition-all duration-500 ${
-        visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none'
+      className={`fixed bottom-16 rtl:right-8 ltr:left-8 z-40 transition-all duration-300 ${
+        showCTA ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none'
       }`}
     >
       <a

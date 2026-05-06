@@ -172,6 +172,24 @@
     "cta_aria": "קביעת שיחה חינם עם Smiley Solution"
   },
   "footer": {
-    "rights": "כל הזכויות שמורות."
+    "rights": "כל הזכויות שמורות.",
+    "tagline": "אנחנו בונים מוצרים דיגיטליים שמחזיקים לאורך זמן.",
+    "book_cta": "לקביעת שיחה",
+    "book_aria": "קביעת שיחה חינם עם Smiley Solution",
+    "services_heading": "שירותים",
+    "link_fullstack": "פיתוח Full Stack",
+    "link_saas": "פלטפורמות SaaS",
+    "link_therapists": "אתרים למטפלים",
+    "link_small_biz": "לעסקים קטנים",
+    "work_heading": "עבודות",
+    "link_high_end_web": "High-End Web",
+    "link_tech_engines": "Tech Engines",
+    "link_alignment": "Strategic Alignment",
+    "company_heading": "חברה",
+    "link_about": "אודות",
+    "link_contact": "צור קשר",
+    "link_faq": "שאלות",
+    "privacy": "מדיניות פרטיות",
+    "terms": "תנאי שירות"
   }
 }
