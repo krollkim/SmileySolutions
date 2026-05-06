@@ -27,11 +27,15 @@
     "book_cta": "Book a Consultation",
     "book_aria": "Book a free consultation with Smiley Solution",
     "book_arrow": "→",
-    "scroll": "Scroll"
+    "scroll": "Scroll",
+    "stat_1": "6 Products Shipped",
+    "stat_2": "15+ Technologies",
+    "stat_3": "3+ Years Building"
   },
   "hook": {
     "statement": "We don't start with requirements. We start with <accent>understanding.</accent>",
-    "label": "Work"
+    "label": "Work",
+    "nudge": "See how we build"
   },
   "services": {
     "title": "How We Bu<highlight>i</highlight>ld",
@@ -102,6 +106,9 @@
   "about": {
     "title": "The Stud<highlight>i</highlight>o",
     "tagline": "Founder",
+    "metric_products": "Products Shipped",
+    "metric_years": "Years Building",
+    "metric_tech": "Technologies",
     "bio1": "We build digital products people love and systems that hold under pressure. We work across the full stack - from product architecture and engineering to cloud deployment - with one goal: ship something exceptional.",
     "bio2": "The studio was founded by Kim Kroll - a Full-Stack developer with a track record of leading product engineering on live SaaS platforms, delivering performance, reliability, and stability under real user load.",
     "bio3": "Our process is built on clarity, craftsmanship, and delivery. We don't just write code - we engineer products that scale with your ambition.",
@@ -109,8 +116,7 @@
     "cta_arrow": "→",
     "cta_aria": "Book a consultation with Kim Kroll",
     "founder_name": "Kim Kroll",
-    "profile_alt": "Kim Kroll - Founder, Smiley Solution",
-    "whatsapp_text": "Hi Smiley Solution! I found you and I'm interested in your digital product development services. Let's connect!"
+    "profile_alt": "Kim Kroll - Founder, Smiley Solution"
   },
   "contact": {
     "title": "Cont<highlight>a</highlight>ct",
@@ -118,8 +124,7 @@
     "heading_accent": "something amazing?",
     "subtext": "We take on meaningful projects and build things that last. Let's create something extraordinary together.",
     "book_cta": "Book a Consultation",
-    "book_aria": "Book a consultation with Smiley Solution",
-    "whatsapp_text": "Hi Smiley Solution! I found you and I'm interested in your digital product development services. Let's connect!"
+    "book_aria": "Book a consultation with Smiley Solution"
   },
   "pillars": {
     "web_title": "High-End Web",

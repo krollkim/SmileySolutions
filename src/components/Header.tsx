@@ -302,7 +302,7 @@ const Header = () => {
             className="mt-16"
             style={{ opacity: 0, transform: "scale(0.9)" }}
           >
-            <div className="animate-pulse-slow">
+            <div>
               <Image
                 src="/favicon/apple-touch-icon.png"
                 alt="Smiley Solution Logo"

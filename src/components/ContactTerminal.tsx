@@ -20,7 +20,6 @@ const SEQUENCE: Line[] = [
 ];
 
 const LINE_DELAY = 380;
-const PAUSE_AFTER = 2400;
 
 export default function ContactTerminal() {
   const [visibleCount, setVisibleCount] = useState(0);
@@ -44,12 +43,8 @@ export default function ContactTerminal() {
           setVisibleCount(count + 1);
           run(count + 1);
         }, LINE_DELAY);
-      } else {
-        timerRef.current = setTimeout(() => {
-          setVisibleCount(0);
-          run(0);
-        }, PAUSE_AFTER);
       }
+      // Sequence complete — stay on final state, cursor keeps blinking
     };
 
     timerRef.current = setTimeout(() => run(0), 600);
@@ -93,8 +88,8 @@ export default function ContactTerminal() {
           </div>
         ))}
 
-        {/* Blinking cursor — shows while sequence is running */}
-        {visibleCount > 0 && visibleCount < SEQUENCE.length && (
+        {/* Blinking cursor — shows during and after sequence */}
+        {visibleCount > 0 && (
           <span className="inline-block w-[2px] h-[1.4em] bg-crimson align-middle animate-pulse" />
         )}
       </div>

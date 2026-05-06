@@ -3,7 +3,7 @@ import { useRef, useLayoutEffect } from 'react';
 import Image from 'next/image';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { FaGithub, FaLinkedin, FaWhatsapp } from 'react-icons/fa';
+import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import { useTranslations, useLocale } from 'next-intl';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -137,7 +137,7 @@ export default function About() {
         </div>
 
         {/* Content Container */}
-        <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20 max-w-6xl mx-auto">
+        <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-28 max-w-6xl mx-auto">
           {/* Profile Image with Crimson Offset Border */}
           <div
             ref={imageContainerRef}
@@ -185,17 +185,40 @@ export default function About() {
 
             <div className="w-16 h-[3px] bg-crimson mb-6 rounded-full" />
 
-            <p className="text-[1.5rem] sm:text-[1.6rem] text-gray-300 leading-relaxed mb-4">
+            <p className="text-[1.5rem] sm:text-[1.6rem] text-gray-400 leading-relaxed mb-6">
               {t('bio1')}
             </p>
 
-            <p className="text-[1.4rem] sm:text-[1.5rem] text-gray-400 leading-relaxed mb-4">
+            <p className="text-[1.4rem] sm:text-[1.5rem] text-gray-400 leading-relaxed mb-6">
               {t('bio2')}
             </p>
 
-            <p className="text-[1.4rem] sm:text-[1.5rem] text-gray-400 leading-relaxed mb-8">
+            <p className="text-[1.4rem] sm:text-[1.5rem] text-gray-400 leading-relaxed mb-0">
               {t('bio3')}
             </p>
+
+            {/* Metrics — 3 equal columns, vertical dividers, no wrapping */}
+            <div className="grid grid-cols-3 my-10 lg:my-12">
+              {[
+                { value: '6',   label: t('metric_products') },
+                { value: '3+',  label: t('metric_years') },
+                { value: '15+', label: t('metric_tech') },
+              ].map((m, i) => (
+                <div
+                  key={m.label}
+                  className={`py-5 ${
+                    i === 0
+                      ? 'ltr:pr-6 lg:ltr:pr-10 rtl:pl-6 lg:rtl:pl-10'
+                      : i === 1
+                        ? 'ltr:pl-6 rtl:pr-6 ltr:border-l rtl:border-r border-white/10'
+                        : 'ltr:pl-6 lg:ltr:pl-10 rtl:pr-6 lg:rtl:pr-10 ltr:border-l rtl:border-r border-white/10'
+                  }`}
+                >
+                  <p className="text-[2rem] sm:text-[2.4rem] font-bold text-white leading-none">{m.value}</p>
+                  <p className="text-[1rem] sm:text-[1.1rem] text-gray-400 uppercase tracking-[0.1rem] sm:tracking-[0.15rem] mt-1 leading-snug">{m.label}</p>
+                </div>
+              ))}
+            </div>
 
             {/* Skills Tags */}
             <div className="flex flex-wrap gap-3 mb-8">
@@ -229,17 +252,7 @@ export default function About() {
               >
                 <FaLinkedin />
               </a>
-              <a
-                href={`https://wa.me/972525890252?text=${encodeURIComponent(t('whatsapp_text'))}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-12 h-12 flex items-center justify-center rounded-full border border-gray-700 text-[1.8rem] text-gray-400 hover:border-crimson hover:text-crimson hover:bg-crimson/10 transition-all duration-300"
-                aria-label="WhatsApp"
-              >
-                <FaWhatsapp />
-              </a>
-
-              <span className="w-px h-8 bg-gray-700 mx-2" aria-hidden="true" />
+              <span className="w-px h-8 bg-gray-700 mx-1" aria-hidden="true" />
 
               <a
                 href="https://calendar.app.google/i5TALc1oJahNDeRw8"

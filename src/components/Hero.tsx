@@ -23,7 +23,7 @@ export default function Hero() {
   const scrollLineRef = useRef<HTMLDivElement>(null);
 
   const particles = useMemo(() => {
-    return Array.from({ length: 20 }, (_, i) => ({
+    return Array.from({ length: 5 }, (_, i) => ({
       id: i,
       left: `${(i * 17 + 5) % 100}%`,
       top: `${(i * 23 + 10) % 100}%`,
@@ -269,6 +269,15 @@ export default function Hero() {
               <span className="relative">{t('cta')}</span>
               <span className="relative">{t('cta_arrow')}</span>
             </a>
+          </div>
+
+          {/* Trust bar */}
+          <div className="mt-8 flex flex-wrap items-center gap-x-5 gap-y-2">
+            <span className="text-[1.1rem] text-gray-400 tracking-wide">{t('stat_1')}</span>
+            <span className="text-gray-700 select-none" aria-hidden="true">·</span>
+            <span className="text-[1.1rem] text-gray-400 tracking-wide">{t('stat_2')}</span>
+            <span className="text-gray-700 select-none" aria-hidden="true">·</span>
+            <span className="text-[1.1rem] text-gray-400 tracking-wide">{t('stat_3')}</span>
           </div>
         </div>
 

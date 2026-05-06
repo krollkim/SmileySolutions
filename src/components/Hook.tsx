@@ -52,6 +52,19 @@ export default function Hook() {
         </p>
       </div>
 
+      {/* Scroll nudge — subtle forward momentum */}
+      <div className="flex justify-center mb-12">
+        <a
+          href="#services"
+          onClick={(e) => { e.preventDefault(); document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' }); }}
+          aria-label={t('nudge')}
+          className="group flex flex-col items-center gap-2 text-[1.1rem] text-gray-400 hover:text-white uppercase tracking-[0.25rem] transition-colors duration-300"
+        >
+          <span>{t('nudge')}</span>
+          <span className="text-crimson group-hover:translate-y-1 transition-transform duration-300" aria-hidden="true">↓</span>
+        </a>
+      </div>
+
       {/* ── Marquee rows — center-anchored ────────────────────────────────── */}
       <div className="w-full overflow-hidden flex flex-col items-center gap-3">
 

@@ -2,7 +2,7 @@
 import { useRef, useLayoutEffect } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { FaGithub, FaLinkedin, FaWhatsapp, FaCalendarAlt } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaCalendarAlt } from 'react-icons/fa';
 import { useTranslations, useLocale } from 'next-intl';
 import ContactTerminal from './ContactTerminal';
 
@@ -134,15 +134,6 @@ export default function Contact() {
                   aria-label="LinkedIn"
                 >
                   <FaLinkedin />
-                </a>
-                <a
-                  href={`https://wa.me/972525890252?text=${encodeURIComponent(t('whatsapp_text'))}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-14 h-14 flex items-center justify-center rounded-full border border-gray-700 text-[2rem] text-gray-400 hover:border-crimson hover:text-crimson hover:bg-crimson/10 transition-all duration-300"
-                  aria-label="WhatsApp"
-                >
-                  <FaWhatsapp />
                 </a>
               </div>
 

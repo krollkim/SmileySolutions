@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import ProgressBar from '@/components/ProgressBar';
 import StudioHero from '@/components/studio/StudioHero';
 import CaseStudyCard from '@/components/studio/CaseStudyCard';
 import { getPillarBySlug, getPillarStaticParams } from '@/data/pillars';
@@ -74,6 +75,7 @@ export default async function PillarPage({
 
   return (
     <>
+      <ProgressBar />
       <Header />
       <main
         className="min-h-screen bg-[#0a0a0a] text-white"
