@@ -1,20 +1,25 @@
 "use client";
 import { useEffect, useState } from 'react';
+import { usePathname } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 
 export default function FloatingCTA() {
   const t = useTranslations('hero');
+  const pathname = usePathname();
   const [scrolledPast, setScrolledPast] = useState(false);
   const [footerVisible, setFooterVisible] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolledPast(window.scrollY > window.innerHeight * 0.8);
+      setScrolledPast(window.scrollY > window.innerHeight);
     };
+    handleScroll(); // set correct initial state (handles pre-scrolled pages)
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Re-observe footer on every navigation — the previous footer node is removed
+  // from the DOM when the page changes, so the observer must be re-attached.
   useEffect(() => {
     const footer = document.querySelector('footer');
     if (!footer) return;
@@ -25,7 +30,7 @@ export default function FloatingCTA() {
     );
     observer.observe(footer);
     return () => observer.disconnect();
-  }, []);
+  }, [pathname]);
 
   const showCTA = scrolledPast && !footerVisible;
 

@@ -265,12 +265,8 @@ export default function Hero() {
 
             {/* Secondary — View Our Work */}
             <a
-              href="#projects"
+              href={`/${locale}/work`}
               aria-label={t('cta_aria')}
-              onClick={(e) => {
-                e.preventDefault();
-                document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
-              }}
               className="group relative inline-flex items-center gap-3 px-6 py-3 text-[1.4rem] font-medium uppercase tracking-[0.15rem] text-white border-2 border-crimson/60 rounded-md overflow-hidden hover:border-crimson transition-colors duration-500"
             >
               <span className="absolute inset-0 bg-crimson transform ltr:-translate-x-full rtl:translate-x-full group-hover:translate-x-0 transition-transform duration-500 ease-out" />

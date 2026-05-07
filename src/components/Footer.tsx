@@ -7,11 +7,12 @@ import { FaGithub, FaLinkedin } from 'react-icons/fa';
 export default function Footer() {
   const locale = useLocale();
   const t      = useTranslations('footer');
+  const tNav   = useTranslations('nav');
   const isRTL  = locale === 'he';
 
   const servicesLinks = [
-    { label: t('link_fullstack'),  href: `/${locale}#services` },
-    { label: t('link_saas'),       href: `/${locale}#services` },
+    { label: t('link_fullstack'),  href: `/${locale}/services` },
+    { label: t('link_saas'),       href: `/${locale}/services` },
     { label: t('link_therapists'), href: `/${locale}/website-for-therapists` },
     { label: t('link_small_biz'),  href: `/${locale}/website-for-small-business` },
   ];
@@ -23,9 +24,10 @@ export default function Footer() {
   ];
 
   const companyLinks = [
-    { label: t('link_about'),   href: `/${locale}#about` },
-    { label: t('link_contact'), href: `/${locale}#contact` },
-    { label: t('link_faq'),     href: `/${locale}#faq` },
+    { label: tNav('home'),      href: `/${locale}` },
+    { label: t('link_about'),   href: `/${locale}/about` },
+    { label: t('link_contact'), href: `/${locale}/contact` },
+    { label: t('link_faq'),     href: `/${locale}/faq` },
   ];
 
   const navLinkClass = 'text-[1.3rem] text-gray-400 hover:text-white transition-colors duration-200';

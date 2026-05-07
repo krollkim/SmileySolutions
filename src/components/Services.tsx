@@ -1,5 +1,6 @@
 "use client";
 import { useRef, useLayoutEffect } from 'react';
+import Link from 'next/link';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useTranslations, useLocale } from 'next-intl';
@@ -13,7 +14,11 @@ interface Phase {
   tags: string[];
 }
 
-export default function Services() {
+interface ServicesProps {
+  teaser?: boolean;
+}
+
+export default function Services({ teaser = false }: ServicesProps) {
   const t      = useTranslations('services');
   const locale = useLocale();
   const isRTL  = locale === 'he';
@@ -45,6 +50,7 @@ export default function Services() {
     },
   ];
 
+  // Refs — always declared (Rules of Hooks)
   const sectionRef  = useRef<HTMLElement>(null);
   const headerRef   = useRef<HTMLDivElement>(null);
   const titleRef    = useRef<HTMLHeadingElement>(null);
@@ -53,8 +59,9 @@ export default function Services() {
   const itemsRef    = useRef<HTMLDivElement[]>([]);
 
   useLayoutEffect(() => {
+    if (teaser) return;
+
     const ctx = gsap.context(() => {
-      // Header entrance
       const headerTl = gsap.timeline({
         scrollTrigger: {
           trigger: headerRef.current,
@@ -74,7 +81,6 @@ export default function Services() {
           '-=0.4'
         );
 
-      // Phase items — staggered left-to-right fade-up (motion audit: "guides reading order")
       gsap.fromTo(
         itemsRef.current,
         { opacity: 0, y: 24 },
@@ -100,8 +106,62 @@ export default function Services() {
       ScrollTrigger.getAll().forEach((st) => st.kill());
       ctx.revert();
     };
-  }, []);
+  }, [teaser]);
 
+  // ── Teaser mode ────────────────────────────────────────────────────────────
+  if (teaser) {
+    const processParts = [
+      { num: '01', name: t('process_1') },
+      { num: '02', name: t('process_2') },
+      { num: '03', name: t('process_3') },
+      { num: '04', name: t('process_4') },
+    ];
+
+    return (
+      <section id="services" className="py-24 lg:py-28 bg-[#0a0a0a]">
+        <div className="container mx-auto px-6 lg:px-12">
+          <div className="text-center mb-14">
+            <h2 className="section-title text-white inline-block">
+              {t.rich('title', { highlight: (chunks) => <span>{chunks}</span> })}
+            </h2>
+            <p className="mt-5 text-[1.4rem] sm:text-[1.5rem] text-gray-400 max-w-xl mx-auto leading-relaxed antialiased">
+              {t('subtitle')}
+            </p>
+          </div>
+
+          <div className="max-w-3xl mx-auto grid grid-cols-2 sm:grid-cols-4 border border-white/[0.06] rounded-lg overflow-hidden mb-14">
+            {processParts.map((step, i) => (
+              <div
+                key={step.num}
+                className={[
+                  'flex flex-col items-center py-8 px-4',
+                  i < processParts.length - 1 ? 'border-r border-white/[0.06]' : '',
+                  i >= 2 ? 'border-t sm:border-t-0 border-white/[0.06]' : '',
+                ].join(' ')}
+              >
+                <span className="text-[1rem] font-mono text-crimson/60 tracking-[0.2rem] mb-3">{step.num}</span>
+                <span className="text-[1.4rem] font-medium text-white text-center">{step.name}</span>
+              </div>
+            ))}
+          </div>
+
+          <div className="flex justify-center">
+            <Link
+              href={`/${locale}/services`}
+              className="inline-flex items-center gap-2 text-[1.4rem] font-medium text-gray-400 hover:text-white transition-colors duration-200 group"
+            >
+              <span>{t('see_how')}</span>
+              <span className="text-crimson group-hover:translate-x-1 transition-transform duration-200" aria-hidden="true">
+                {isRTL ? '←' : '→'}
+              </span>
+            </Link>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  // ── Full mode ──────────────────────────────────────────────────────────────
   return (
     <section
       ref={sectionRef}
@@ -112,7 +172,6 @@ export default function Services() {
 
       <div className="container mx-auto px-6 lg:px-12 relative z-10">
 
-        {/* ── Section Header ───────────────────────────────────────────────── */}
         <div ref={headerRef} className="text-center mb-16 lg:mb-20 isolate">
           <h2
             ref={titleRef}
@@ -130,7 +189,6 @@ export default function Services() {
           </p>
         </div>
 
-        {/* ── 4-phase grid — 4×1 desktop, 2×2 tablet, 1×4 mobile ──────────── */}
         <div
           ref={gridRef}
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-0 max-w-7xl mx-auto"
@@ -149,22 +207,15 @@ export default function Services() {
               ].join(' ')}
               style={{ opacity: 0 }}
             >
-              {/* Small number marker */}
               <span className="text-sm font-mono text-crimson/60 tracking-[0.2rem] mb-4 block">
                 {phase.number}
               </span>
-
-              {/* Title */}
               <h3 className="text-[1.8rem] font-semibold text-white mb-3 leading-snug">
                 {phase.title}
               </h3>
-
-              {/* Description */}
               <p className="text-[1.4rem] text-gray-400 leading-relaxed mb-5 flex-1">
                 {phase.description}
               </p>
-
-              {/* Tags — plain dot-separated */}
               <p className="text-[1.1rem] text-gray-400 tracking-wide">
                 {phase.tags.join(' · ')}
               </p>
@@ -172,7 +223,6 @@ export default function Services() {
           ))}
         </div>
 
-        {/* ── Section CTA ──────────────────────────────────────────────────── */}
         <div className="mt-20 flex flex-col items-center gap-4">
           <p className="text-[1.4rem] text-gray-400">{t('cta_label')}</p>
           <a
