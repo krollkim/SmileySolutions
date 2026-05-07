@@ -135,7 +135,7 @@ export async function generateMetadata({
       languages: {
         he: `${BASE_URL}/he`,
         en: `${BASE_URL}/en`,
-        "x-default": `${BASE_URL}/he`,
+        "x-default": `${BASE_URL}/en`,
       },
     },
     category: "technology",
