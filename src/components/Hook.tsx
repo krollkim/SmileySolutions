@@ -1,5 +1,5 @@
 "use client";
-import { useRef, useLayoutEffect } from 'react';
+import { useRef, useLayoutEffect, useEffect } from 'react';
 import Link from 'next/link';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -8,18 +8,17 @@ import { useTranslations, useLocale } from 'next-intl';
 gsap.registerPlugin(ScrollTrigger);
 
 const BASE_1 = ['Vision', 'Craft', 'Impact', 'Strategy', 'Clarity', 'Excellence', 'Purpose', 'Integrity'];
-const BASE_2 = ['Design', 'Empathy', 'Performance', 'Partnership', 'Innovation', 'Growth', 'Precision', 'Care'];
 
 // 4× ensures the track (~7,000px) is far wider than any viewport.
 // The track is centered in the viewport — 25% drift never reaches an edge.
 const ROW_1 = [...BASE_1, ...BASE_1, ...BASE_1, ...BASE_1];
-const ROW_2 = [...BASE_2, ...BASE_2, ...BASE_2, ...BASE_2];
 
 export default function Hook() {
   const t           = useTranslations('hook');
   const locale      = useLocale();
   const sectionRef  = useRef<HTMLElement>(null);
   const statementRef = useRef<HTMLDivElement>(null);
+  const marqueeRef  = useRef<HTMLDivElement>(null);
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
@@ -36,6 +35,35 @@ export default function Hook() {
       });
     }, sectionRef);
     return () => ctx.revert();
+  }, []);
+
+  // GSAP-based marquee animation (replaces CSS @keyframes for iOS reliability)
+  useEffect(() => {
+    const marquee = marqueeRef.current;
+    if (!marquee) return;
+
+    const singleSetWidth = marquee.scrollWidth / 4;
+
+    const tween = gsap.to(marquee, {
+      x: -singleSetWidth,
+      duration: 35,
+      ease: 'none',
+      repeat: -1,
+      force3D: true,
+    });
+
+    // Pause when out of view for performance
+    ScrollTrigger.create({
+      trigger: sectionRef.current,
+      start: 'top bottom',
+      end: 'bottom top',
+      onEnter: () => tween.play(),
+      onLeave: () => tween.pause(),
+      onEnterBack: () => tween.play(),
+      onLeaveBack: () => tween.pause(),
+    });
+
+    return () => { tween.kill(); };
   }, []);
 
   return (
@@ -66,17 +94,15 @@ export default function Hook() {
         </Link>
       </div>
 
-      {/* ── Marquee rows — center-anchored ────────────────────────────────── */}
+      {/* ── Marquee row — center-anchored ────────────────────────────────── */}
       <div className="w-full overflow-hidden flex flex-col items-center gap-3">
-
         {/* Row 1 — drifts left */}
         <div className="relative flex w-full justify-center">
           <div
+            ref={marqueeRef}
             style={{
               display: 'flex',
               width: 'max-content',
-              transform: 'translateX(0)',
-              animation: 'marquee-left 35s linear infinite',
               willChange: 'transform',
             }}
           >
