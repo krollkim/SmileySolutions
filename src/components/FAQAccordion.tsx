@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import { ChevronDown } from 'lucide-react';
 
 interface FaqItem {
   q: string;
@@ -29,13 +28,22 @@ export default function FAQAccordion({ items }: { items: FaqItem[] }) {
               <span className="text-[1.8rem] font-semibold text-white group-hover:text-crimson transition-colors duration-200 leading-snug">
                 {item.q}
               </span>
-              <ChevronDown
+              <svg
                 aria-hidden="true"
-                size={22}
+                width={22}
+                height={22}
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth={2}
+                strokeLinecap="round"
+                strokeLinejoin="round"
                 className={`text-crimson shrink-0 transition-transform duration-300 ${
                   isOpen ? 'rotate-180' : ''
                 }`}
-              />
+              >
+                <polyline points="6 9 12 15 18 9" />
+              </svg>
             </button>
 
             {/* Grid-row transition — smoother than max-height */}

@@ -1,6 +1,5 @@
 "use client";
 import { useState, useEffect, useRef, useCallback } from 'react';
-import { motion } from 'framer-motion';
 import { gsap } from 'gsap';
 import Image from 'next/image';
 import { useTranslations, useLocale } from 'next-intl';
@@ -25,6 +24,7 @@ const Header = () => {
     router.push(newPath);
   };
 
+  const headerRef = useRef<HTMLElement>(null);
   const menuOverlayRef = useRef<HTMLDivElement>(null);
   const menuNavRef = useRef<HTMLElement>(null);
   const menuItemsRef = useRef<HTMLDivElement[]>([]);
@@ -38,6 +38,10 @@ const Header = () => {
     };
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  useEffect(() => {
+    gsap.fromTo(headerRef.current, { y: '-100%' }, { y: '0%', duration: 0.4, ease: 'power2.inOut', force3D: true });
   }, []);
 
   useEffect(() => {
@@ -161,15 +165,14 @@ const Header = () => {
 
   return (
     <>
-      <motion.header
+      <header
+        ref={headerRef}
+        style={{ transform: 'translateY(-100%)' }}
         className={`fixed top-0 left-0 w-full z-50 transition-colors duration-500 ${
           isScrolled
             ? 'bg-[#0a0a0a]/95 backdrop-blur-xl shadow-2xl shadow-black/30'
             : 'bg-transparent'
         }`}
-        initial={{ y: '-100%' }}
-        animate={{ y: '0%' }}
-        transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
       >
         <div className="container mx-auto px-6 lg:px-12">
           <div className="flex justify-between items-center h-[70px] lg:h-[90px]">
@@ -227,33 +230,27 @@ const Header = () => {
             >
               <div className="relative w-[28px] h-[14px]">
                 {/* Top line */}
-                <motion.span
-                  className="absolute left-0 w-full h-[2px] bg-white rounded-full origin-center"
-                  initial={false}
-                  animate={{
+                <span
+                  className="absolute left-0 w-full h-[2px] bg-white rounded-full origin-center transition-all duration-300 ease-in-out"
+                  style={{
                     top: isOpen ? '50%' : '0%',
-                    rotate: isOpen ? 45 : 0,
-                    y: isOpen ? '-50%' : '0%'
+                    transform: isOpen ? 'translateY(-50%) rotate(45deg)' : 'none',
                   }}
-                  transition={{ duration: 0.3, ease: "easeInOut" }}
                 />
                 {/* Bottom line */}
-                <motion.span
-                  className="absolute left-0 w-full h-[2px] bg-white rounded-full origin-center"
-                  initial={false}
-                  animate={{
-                    bottom: isOpen ? '50%' : '0%',
+                <span
+                  className="absolute left-0 w-full h-[2px] bg-white rounded-full origin-center transition-all duration-300 ease-in-out"
+                  style={{
                     top: isOpen ? '50%' : 'auto',
-                    rotate: isOpen ? -45 : 0,
-                    y: isOpen ? '-50%' : '0%'
+                    bottom: isOpen ? 'auto' : '0%',
+                    transform: isOpen ? 'translateY(-50%) rotate(-45deg)' : 'none',
                   }}
-                  transition={{ duration: 0.3, ease: "easeInOut" }}
                 />
               </div>
             </button>
           </div>
         </div>
-      </motion.header>
+      </header>
 
       {/* Full-Screen Mobile Menu Overlay - GSAP Animated */}
       <div
