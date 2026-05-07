@@ -43,12 +43,15 @@ Created:
 - `src/i18n/messages/en.json` — English translation keys for all sections
 - `src/i18n/messages/he.json` — Hebrew translation keys for all sections
 
-### Step 3 — Proxy / Routing Middleware
-Created `src/proxy.ts` (Next.js 16 uses `proxy.ts` instead of `middleware.ts`):
+### Step 3 — Routing Middleware
+Created `src/middleware.ts` (standard Next.js middleware):
 - Detects preferred locale from `NEXT_LOCALE` cookie, then `Accept-Language` header, then defaults to `he`
-- Redirects root `/` to `/he` or `/en`
+- Redirects root `/` to `/he` or `/en` using **301 (permanent redirect)** for proper SEO
 - For locale-prefixed paths (`/he/...`, `/en/...`) passes through and sets `x-next-intl-locale` header so `next-intl` resolves the correct message set
-- Excludes `_next/static`, `_next/image`, `favicon.ico`, `/favicon/`, `robots.txt`, `sitemap.xml`
+- Excludes static files (via regex), `_next/static`, `_next/image`, `favicon.ico`, `/favicon/`, `robots.txt`, `sitemap.xml`
+- Matcher config ensures middleware only runs on relevant paths
+
+> **Note:** Previously used `proxy.ts` but migrated to standard `middleware.ts` for better compatibility with Netlify builds and SEO (301 vs 307 redirects).
 
 ### Step 4 — App Router Restructure
 - Deleted `src/app/layout.tsx` and `src/app/page.tsx`
