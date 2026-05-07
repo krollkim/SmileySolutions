@@ -1,8 +1,9 @@
 "use client";
 import { useRef, useLayoutEffect } from 'react';
+import Link from 'next/link';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -16,6 +17,7 @@ const ROW_2 = [...BASE_2, ...BASE_2, ...BASE_2, ...BASE_2];
 
 export default function Hook() {
   const t           = useTranslations('hook');
+  const locale      = useLocale();
   const sectionRef  = useRef<HTMLElement>(null);
   const statementRef = useRef<HTMLDivElement>(null);
 
@@ -39,10 +41,10 @@ export default function Hook() {
   return (
     <section
       ref={sectionRef}
-      className="py-20 my-32 mx-6 min-h-[60vh] flex flex-col justify-center rounded-[2rem] bg-[#111111] border border-white/[0.05] shadow-[inset_0_0_80px_rgba(0,0,0,0.3)]"
+      className="py-12 lg:py-16 my-16 lg:my-24 mx-6 flex flex-col justify-center rounded-[2rem] bg-[#111111] border border-white/[0.05] shadow-[inset_0_0_80px_rgba(0,0,0,0.3)]"
     >
       {/* Editorial Statement */}
-      <div ref={statementRef} className="flex flex-col items-center px-6 lg:px-12 mb-32">
+      <div ref={statementRef} className="flex flex-col items-center px-6 lg:px-12 mb-8 lg:mb-10">
         <p className="text-[2.2rem] sm:text-[2.8rem] lg:text-[3.6rem] font-extralight text-gray-400 leading-[1.3] tracking-tight max-w-3xl text-center">
           {t.rich('statement', {
             accent: (chunks) => (
@@ -53,16 +55,15 @@ export default function Hook() {
       </div>
 
       {/* Scroll nudge — subtle forward momentum */}
-      <div className="flex justify-center mb-12">
-        <a
-          href="#services"
-          onClick={(e) => { e.preventDefault(); document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' }); }}
+      <div className="flex justify-center mb-6">
+        <Link
+          href={`/${locale}/services`}
           aria-label={t('nudge')}
           className="group flex flex-col items-center gap-2 text-[1.1rem] text-gray-400 hover:text-white uppercase tracking-[0.25rem] transition-colors duration-300"
         >
           <span>{t('nudge')}</span>
           <span className="text-crimson group-hover:translate-y-1 transition-transform duration-300" aria-hidden="true">↓</span>
-        </a>
+        </Link>
       </div>
 
       {/* ── Marquee rows — center-anchored ────────────────────────────────── */}
@@ -105,45 +106,6 @@ export default function Hook() {
             ))}
           </div>
         </div>
-
-        {/* Row 2 — drifts right
-        <div className="relative flex w-full justify-center">
-          <div
-            style={{
-              display: 'flex',
-              width: 'max-content',
-              transform: 'translateX(0)',
-              animation: 'marquee-right 45s linear infinite',
-              willChange: 'transform',
-            }}
-          >
-            {ROW_2.map((value, i) => (
-              <span
-                key={i}
-                style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '2.4rem',
-                  padding: '0 2.4rem',
-                  fontSize: '1.1rem',
-                  color: 'rgba(255,255,255,0.4)',
-                  textTransform: 'uppercase',
-                  letterSpacing: '0.4rem',
-                  fontWeight: 300,
-                  whiteSpace: 'nowrap',
-                  userSelect: 'none',
-                }}
-              >
-                {value}
-                <span
-                  style={{ width: '3px', height: '3px', borderRadius: '50%', background: 'crimson', opacity: 0.35, display: 'inline-block', flexShrink: 0 }}
-                  aria-hidden="true"
-                />
-              </span>
-            ))}
-          </div>
-        </div> */}
-
       </div>
     </section>
   );

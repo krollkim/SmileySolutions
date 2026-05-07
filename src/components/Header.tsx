@@ -136,31 +136,20 @@ const Header = () => {
     }
   }, [isOpen]);
 
-  const isHomePage = pathname === `/${locale}` || pathname === `/${locale}/`;
-
-  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
+    const wasOpen = isOpen;
     setIsOpen(false);
-
-    if (isHomePage) {
-      // Already on the homepage — smooth-scroll to the section
-      setTimeout(() => {
-        document.getElementById(targetId)?.scrollIntoView({ behavior: 'smooth' });
-      }, 400);
-    } else {
-      // On an inner page — navigate to the homepage with the anchor
-      const dest = targetId === 'hero' ? `/${locale}` : `/${locale}#${targetId}`;
-      router.push(dest);
-    }
+    setTimeout(() => router.push(href), wasOpen ? 300 : 0);
   };
 
   const navItems = [
-    { labelKey: 'home' as const, ariaKey: 'home_aria' as const, id: 'hero' },
-    { labelKey: 'services' as const, ariaKey: 'services_aria' as const, id: 'services' },
-    { labelKey: 'projects' as const, ariaKey: 'projects_aria' as const, id: 'projects' },
-    { labelKey: 'about' as const, ariaKey: 'about_aria' as const, id: 'about' },
-    { labelKey: 'faq' as const, ariaKey: 'faq_aria' as const, id: 'faq' },
-    { labelKey: 'contact' as const, ariaKey: 'contact_aria' as const, id: 'contact' },
+    { labelKey: 'home' as const,     ariaKey: 'home_aria' as const,     href: `/${locale}` },
+    { labelKey: 'services' as const, ariaKey: 'services_aria' as const, href: `/${locale}/services` },
+    { labelKey: 'projects' as const, ariaKey: 'projects_aria' as const, href: `/${locale}/work` },
+    { labelKey: 'about' as const,    ariaKey: 'about_aria' as const,    href: `/${locale}/about` },
+    { labelKey: 'faq' as const,      ariaKey: 'faq_aria' as const,      href: `/${locale}/faq` },
+    { labelKey: 'contact' as const,  ariaKey: 'contact_aria' as const,  href: `/${locale}/contact` },
   ];
 
   return (
@@ -180,7 +169,7 @@ const Header = () => {
             {/* Logo - SmileySolutions */}
             <a
               href={`/${locale}`}
-              onClick={(e) => handleNavClick(e, 'hero')}
+              onClick={(e) => handleNavClick(e, `/${locale}`)}
               className="group relative z-50"
             >
               <span className="text-[2.2rem] lg:text-[2.6rem] tracking-[0.1rem] text-white">
@@ -194,14 +183,22 @@ const Header = () => {
             <nav className="hidden lg:flex items-center gap-12">
               {navItems.map((item) => (
                 <a
-                  key={item.id}
-                  href={item.id === 'hero' ? `/${locale}` : `/${locale}#${item.id}`}
-                  onClick={(e) => handleNavClick(e, item.id)}
+                  key={item.href}
+                  href={item.href}
+                  onClick={(e) => handleNavClick(e, item.href)}
                   aria-label={t(item.ariaKey)}
-                  className="group relative text-[1.4rem] font-medium uppercase tracking-[0.25rem] text-gray-400 hover:text-white transition-colors duration-300"
+                  className={`group relative text-[1.4rem] font-medium uppercase tracking-[0.25rem] transition-colors duration-300 ${
+                    pathname === item.href || (item.href !== `/${locale}` && pathname.startsWith(item.href))
+                      ? 'text-white'
+                      : 'text-gray-400 hover:text-white'
+                  }`}
                 >
                   {t(item.labelKey)}
-                  <span className="absolute -bottom-1 left-0 rtl:left-auto rtl:right-0 w-0 h-[1px] bg-crimson transition-all duration-300 ease-out group-hover:w-full" />
+                  <span className={`absolute -bottom-1 left-0 rtl:left-auto rtl:right-0 h-[1px] bg-crimson transition-all duration-300 ease-out ${
+                    pathname === item.href || (item.href !== `/${locale}` && pathname.startsWith(item.href))
+                      ? 'w-full'
+                      : 'w-0 group-hover:w-full'
+                  }`} />
                 </a>
               ))}
             </nav>
@@ -268,7 +265,7 @@ const Header = () => {
         >
           {navItems.map((item, index) => (
             <div
-              key={item.id}
+              key={item.href}
               ref={(el) => setMenuItemRef(el, index)}
               className="relative group"
               style={{ opacity: 0, transform: "translateY(80px)" }}
@@ -280,8 +277,8 @@ const Header = () => {
 
               {/* Main Navigation Link */}
               <a
-                href={item.id === 'hero' ? `/${locale}` : `/${locale}#${item.id}`}
-                onClick={(e) => handleNavClick(e, item.id)}
+                href={item.href}
+                onClick={(e) => handleNavClick(e, item.href)}
                 aria-label={t(item.ariaKey)}
                 className="relative z-10 block py-4 sm:py-6 text-[4rem] sm:text-[5rem] md:text-[6rem] font-extralight uppercase tracking-[0.5rem] text-white/80 hover:text-white transition-all duration-300"
               >
