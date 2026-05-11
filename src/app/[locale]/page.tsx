@@ -3,6 +3,7 @@ import Hero from "@/components/Hero";
 import Hook from "@/components/Hook";
 import Services from "@/components/Services";
 import PillarGrid from "@/components/PillarGrid";
+import FAQ from "@/components/FAQ";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import ProgressBar from "@/components/ProgressBar";
@@ -23,6 +24,7 @@ export default async function Home({
       <Hook />
       <Services teaser />
       <PillarGrid />
+      <FAQ category="home" showCTA={false} />
       <Contact />
       <Footer />
     </main>

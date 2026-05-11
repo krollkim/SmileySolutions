@@ -215,23 +215,28 @@ export default function PillarGrid() {
                     className="text-[1.7rem] sm:text-[2rem] lg:text-[3rem] xl:text-[3.4rem] font-bold text-white
                                leading-tight uppercase tracking-wider text-center lg:text-left lg:whitespace-nowrap"
                     style={{
-                      transform:       isCompressed ? 'rotate(-90deg)' : 'rotate(0deg)',
-                      transition:      'transform 0.55s cubic-bezier(0.4, 0, 0.2, 1)',
-                      transformOrigin: 'center center',
+                      transform:  isCompressed ? 'scale(0.82)' : 'scale(1)',
+                      opacity:    isCompressed ? 0.35 : 1,
+                      transition: 'transform 0.55s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.55s cubic-bezier(0.4, 0, 0.2, 1)',
                     }}
                   >
                     {t(pillar.titleKey)}
                   </h3>
                 </div>
 
-                {/* Expanded content – hidden on mobile (no hover state), desktop-only */}
+                {/* Tagline – always visible on mobile (no hover state on touch) */}
+                <p className="block lg:hidden shrink-0 mt-3 text-[1.15rem] text-gray-500 leading-snug">
+                  {t(pillar.taglineKey)}
+                </p>
+
+                {/* Expanded content – desktop hover-reveal */}
                 <div
                   className="hidden lg:block shrink-0 mt-6"
                   style={{
-                    opacity:         isHovered ? 1 : 0,
-                    transform:       isHovered ? 'translateY(0)' : 'translateY(14px)',
-                    transition:      'opacity 0.3s ease 0.18s, transform 0.35s ease 0.18s',
-                    pointerEvents:   isHovered ? 'auto' : 'none',
+                    opacity:       isHovered ? 1 : 0,
+                    transform:     isHovered ? 'translateY(0)' : 'translateY(14px)',
+                    transition:    'opacity 0.3s ease 0.18s, transform 0.35s ease 0.18s',
+                    pointerEvents: isHovered ? 'auto' : 'none',
                   }}
                 >
                   {/* Tagline */}
@@ -252,11 +257,32 @@ export default function PillarGrid() {
                     ))}
                   </ul>
 
-                  {/* CTA */}
+                  {/* Desktop hover CTA */}
                   <div className="flex items-center gap-2 text-crimson text-[1.25rem] uppercase tracking-[0.22rem]">
                     <span>Enter</span>
                     <span aria-hidden="true">{isRTL ? '←' : '→'}</span>
                   </div>
+                </div>
+
+                {/* Persistent Enter – visible at rest on both mobile and desktop.
+                    Fades out on desktop hover as the full hover-reveal CTA takes over. */}
+                <div
+                  className="shrink-0 mt-4 flex items-center gap-2 text-crimson text-[1.1rem] uppercase tracking-[0.22rem] lg:hidden"
+                  aria-hidden="true"
+                >
+                  <span>Enter</span>
+                  <span>{isRTL ? '←' : '→'}</span>
+                </div>
+                <div
+                  className="shrink-0 mt-4 hidden lg:flex items-center gap-2 text-crimson text-[1.1rem] uppercase tracking-[0.22rem]"
+                  style={{
+                    opacity:    isHovered ? 0 : 0.4,
+                    transition: 'opacity 0.25s ease',
+                  }}
+                  aria-hidden="true"
+                >
+                  <span>Enter</span>
+                  <span>{isRTL ? '←' : '→'}</span>
                 </div>
               </div>
 

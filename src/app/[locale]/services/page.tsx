@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
 import Header from '@/components/Header';
 import Services from '@/components/Services';
+import FAQ from '@/components/FAQ';
 import Footer from '@/components/Footer';
 import ProgressBar from '@/components/ProgressBar';
 
@@ -55,6 +56,7 @@ export default async function ServicesPage({
       <Header />
       <main className="min-h-dvh bg-[#0a0a0a] text-white">
         <Services />
+        <FAQ category="services" />
       </main>
       <Footer />
     </>

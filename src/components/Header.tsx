@@ -148,7 +148,6 @@ const Header = () => {
     { labelKey: 'services' as const, ariaKey: 'services_aria' as const, href: `/${locale}/services` },
     { labelKey: 'projects' as const, ariaKey: 'projects_aria' as const, href: `/${locale}/work` },
     { labelKey: 'about' as const,    ariaKey: 'about_aria' as const,    href: `/${locale}/about` },
-    { labelKey: 'faq' as const,      ariaKey: 'faq_aria' as const,      href: `/${locale}/faq` },
     { labelKey: 'contact' as const,  ariaKey: 'contact_aria' as const,  href: `/${locale}/contact` },
   ];
 

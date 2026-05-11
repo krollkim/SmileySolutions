@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
 import Header from '@/components/Header';
 import About from '@/components/About';
+import FAQ from '@/components/FAQ';
 import Footer from '@/components/Footer';
 import ProgressBar from '@/components/ProgressBar';
 
@@ -55,6 +56,7 @@ export default async function AboutPage({
       <Header />
       <main className="min-h-dvh bg-[#0a0a0a] text-white pt-[70px] lg:pt-[90px]">
         <About />
+        <FAQ category="about" />
       </main>
       <Footer />
     </>

@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
 import Header from '@/components/Header';
 import PillarGrid from '@/components/PillarGrid';
+import FAQ from '@/components/FAQ';
 import Footer from '@/components/Footer';
 import ProgressBar from '@/components/ProgressBar';
 
@@ -65,6 +66,7 @@ export default async function WorkPage({
 
         {/* Studio triptych — three expandable pillar cards with built-in CTA */}
         <PillarGrid />
+        <FAQ category="work" />
       </main>
       <Footer />
     </>
