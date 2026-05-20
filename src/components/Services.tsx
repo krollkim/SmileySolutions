@@ -173,13 +173,13 @@ export default function Services({ teaser = false }: ServicesProps) {
       <div className="container mx-auto px-6 lg:px-12 relative z-10">
 
         <div ref={headerRef} className="text-center mb-16 lg:mb-20 isolate">
-          <h2
+          <h1
             ref={titleRef}
             className="section-title text-white antialiased inline-block"
             style={{ opacity: 0, transform: 'translateY(30px)' }}
           >
             {t.rich('title', { highlight: (chunks) => <span>{chunks}</span> })}
-          </h2>
+          </h1>
           <p
             ref={subtitleRef}
             className="mt-6 text-[1.5rem] sm:text-[1.6rem] text-gray-400 max-w-2xl mx-auto leading-relaxed antialiased"

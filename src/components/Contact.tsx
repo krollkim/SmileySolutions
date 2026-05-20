@@ -8,7 +8,11 @@ import ContactTerminal from './ContactTerminal';
 
 gsap.registerPlugin(ScrollTrigger);
 
-export default function Contact() {
+interface ContactProps {
+  standalone?: boolean;
+}
+
+export default function Contact({ standalone = false }: ContactProps) {
   const t = useTranslations('contact');
   const locale = useLocale();
   const isRTL = locale === 'he';
@@ -86,13 +90,23 @@ export default function Contact() {
       <div className="container mx-auto px-6 lg:px-12 relative z-10">
         {/* Section Header */}
         <div ref={headerRef} className="text-center mb-20">
-          <h2
-            ref={titleRef}
-            className="section-title text-white"
-            style={{ opacity: 0, transform: 'translateY(30px)' }}
-          >
-            {t.rich('title', { highlight: (chunks) => <span>{chunks}</span> })}
-          </h2>
+          {standalone ? (
+            <h1
+              ref={titleRef}
+              className="section-title text-white"
+              style={{ opacity: 0, transform: 'translateY(30px)' }}
+            >
+              {t.rich('title', { highlight: (chunks) => <span>{chunks}</span> })}
+            </h1>
+          ) : (
+            <h2
+              ref={titleRef}
+              className="section-title text-white"
+              style={{ opacity: 0, transform: 'translateY(30px)' }}
+            >
+              {t.rich('title', { highlight: (chunks) => <span>{chunks}</span> })}
+            </h2>
+          )}
         </div>
 
         {/* Two-column layout */}

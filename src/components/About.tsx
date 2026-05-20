@@ -212,13 +212,13 @@ export default function About({ teaser = false }: AboutProps) {
 
       <div className="container mx-auto px-6 lg:px-12 relative z-10">
         <div ref={headerRef} className="text-center mb-16 lg:mb-20">
-          <h2
+          <h1
             ref={titleRef}
             className="section-title text-white"
             style={{ opacity: 0, transform: "translateY(30px)" }}
           >
             {t.rich('title', { highlight: (chunks) => <span>{chunks}</span> })}
-          </h2>
+          </h1>
         </div>
 
         <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-28 max-w-6xl mx-auto">

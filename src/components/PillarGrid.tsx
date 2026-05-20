@@ -224,6 +224,18 @@ export default function PillarGrid() {
                   </h3>
                 </div>
 
+                {/* Crawlable content — sr-only so sighted layout is untouched;
+                    provides tagline + project list to AI engines and screen readers
+                    without relying on hover-reveal interaction */}
+                <div className="sr-only">
+                  <p>{t(pillar.taglineKey)}</p>
+                  <ul>
+                    {pillar.projectKeys.map((key) => (
+                      <li key={key}>{PROJECT_LABELS[key] ?? key}</li>
+                    ))}
+                  </ul>
+                </div>
+
                 {/* Tagline – always visible on mobile (no hover state on touch) */}
                 <p className="block lg:hidden shrink-0 mt-3 text-[1.15rem] text-gray-500 leading-snug">
                   {t(pillar.taglineKey)}

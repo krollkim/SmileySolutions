@@ -28,7 +28,7 @@ export async function generateMetadata({
 
   const t = await getTranslations({ locale, namespace: 'pillars' });
   const title = `${t(pillar.titleKey)} | Smiley Solution`;
-  const description = t(pillar.taglineKey);
+  const description = t(`${pillar.taglineKey}_meta` as Parameters<typeof t>[0]);
 
   return {
     title,
@@ -73,8 +73,41 @@ export default async function PillarPage({
   const tp    = await getTranslations({ locale, namespace: 'projects' });
   const isRTL = locale === 'he';
 
+  const collectionSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: t(pillar.titleKey as Parameters<typeof t>[0]),
+    description: t(pillar.taglineKey as Parameters<typeof t>[0]),
+    url: `${BASE_URL}/${locale}/studio/${slug}`,
+    mainEntity: {
+      '@type': 'ItemList',
+      itemListElement: pillar.projectKeys
+        .map((key, index) => {
+          const project = PROJECT_DATA[key];
+          if (!project) return null;
+          return {
+            '@type': 'ListItem',
+            position: index + 1,
+            item: {
+              '@type': 'CreativeWork',
+              name: project.title,
+              description: `${t(`${key}_challenge` as Parameters<typeof t>[0])} ${t(`${key}_result` as Parameters<typeof t>[0])}`,
+              url: project.liveLink,
+              dateCreated: project.period,
+              technology: project.tags.join(', '),
+            },
+          };
+        })
+        .filter(Boolean),
+    },
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionSchema) }}
+      />
       <ProgressBar />
       <Header />
       <main

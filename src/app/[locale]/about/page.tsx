@@ -23,7 +23,7 @@ export async function generateMetadata({
 
   return {
     title,
-    description: t('bio1'),
+    description: t('meta_description'),
     metadataBase: new URL(BASE_URL),
     alternates: {
       canonical: `${BASE_URL}/${locale}/about`,
@@ -34,7 +34,7 @@ export async function generateMetadata({
     },
     openGraph: {
       title,
-      description: t('bio1'),
+      description: t('meta_description'),
       url: `${BASE_URL}/${locale}/about`,
       siteName: 'Smiley Solution',
       locale: isHe ? 'he_IL' : 'en_US',
@@ -48,10 +48,43 @@ export default async function AboutPage({
 }: {
   params: Promise<{ locale: string }>;
 }) {
-  await params;
+  const { locale } = await params;
+
+  const personSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    name: 'Kim Kroll',
+    jobTitle: 'Founder',
+    description:
+      'Full-stack developer and founder of Smiley Solution, a tech studio specializing in digital product development, SaaS platforms, and web applications.',
+    url: `${BASE_URL}/${locale}/about`,
+    worksFor: {
+      '@type': 'Organization',
+      name: 'Smiley Solution',
+      url: BASE_URL,
+    },
+    knowsAbout: [
+      'React',
+      'Next.js',
+      'TypeScript',
+      'Node.js',
+      'TailwindCSS',
+      'MongoDB',
+      'Docker',
+      'AWS',
+    ],
+    sameAs: [
+      'https://github.com/krollkim',
+      'https://www.linkedin.com/in/krollkimdev/',
+    ],
+  };
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
+      />
       <ProgressBar />
       <Header />
       <main className="min-h-dvh bg-[#0a0a0a] text-white pt-[70px] lg:pt-[90px]">

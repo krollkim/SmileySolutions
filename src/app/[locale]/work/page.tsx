@@ -62,6 +62,11 @@ export default async function WorkPage({
         {/* Page heading — top clearance accounts for fixed header */}
         <div className="container mx-auto px-6 lg:px-12 pt-[140px] pb-16 lg:pb-20">
           <h1 className="section-title text-white">{heading}</h1>
+          <p className="mt-6 text-[1.5rem] sm:text-[1.6rem] text-gray-400 max-w-2xl leading-relaxed antialiased">
+            {isHe
+              ? 'העבודות שלנו משתרעות על שלושה תחומים: חוויות ווב ברמה גבוהה, הנדסת פלטפורמות טכנולוגיות, וייעוץ דיגיטלי אסטרטגי. כל עמוד מייצג ממד שונה של הדרך שבה אנחנו בונים.'
+              : 'Our work spans three disciplines: high-end web experiences, technical platform engineering, and strategic digital consulting. Each pillar represents a different dimension of how we build.'}
+          </p>
         </div>
 
         {/* Studio triptych — three expandable pillar cards with built-in CTA */}

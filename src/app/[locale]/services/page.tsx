@@ -23,7 +23,7 @@ export async function generateMetadata({
 
   return {
     title,
-    description: t('subtitle'),
+    description: t('meta_description'),
     metadataBase: new URL(BASE_URL),
     alternates: {
       canonical: `${BASE_URL}/${locale}/services`,
@@ -34,7 +34,7 @@ export async function generateMetadata({
     },
     openGraph: {
       title,
-      description: t('subtitle'),
+      description: t('meta_description'),
       url: `${BASE_URL}/${locale}/services`,
       siteName: 'Smiley Solution',
       locale: isHe ? 'he_IL' : 'en_US',

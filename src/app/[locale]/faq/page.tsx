@@ -22,7 +22,7 @@ export async function generateMetadata({
 
   return {
     title,
-    description: t('a1'),
+    description: t('meta_description'),
     metadataBase: new URL(BASE_URL),
     alternates: {
       canonical: `${BASE_URL}/${locale}/faq`,
@@ -33,7 +33,7 @@ export async function generateMetadata({
     },
     openGraph: {
       title,
-      description: t('a1'),
+      description: t('meta_description'),
       url: `${BASE_URL}/${locale}/faq`,
       siteName: 'Smiley Solution',
       locale: isHe ? 'he_IL' : 'en_US',
@@ -54,7 +54,7 @@ export default async function FAQPage({
       <ProgressBar />
       <Header />
       <main className="min-h-dvh bg-[#0a0a0a] text-white pt-[70px] lg:pt-[90px]">
-        <FAQ />
+        <FAQ asH1 />
       </main>
       <Footer />
     </>

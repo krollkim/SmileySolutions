@@ -177,9 +177,29 @@ export default async function LocaleLayout({
               name: "Smiley Solution",
               alternateName: "Smiley Solution Tech Studio",
               url: "https://smileysolution.com",
-              logo: "https://smileysolution.com/images/profile_picture.png",
+              logo: {
+                "@type": "ImageObject",
+                url: "https://smileysolution.com/favicon/android-chrome-512x512.png",
+                width: 512,
+                height: 512,
+              },
               description:
                 "Tech Studio specializing in digital product development and scalable SaaS applications - built with React, Next.js, and Node.js, deployed on AWS with Docker and CI/CD automation.",
+              foundingDate: "2023",
+              numberOfEmployees: {
+                "@type": "QuantitativeValue",
+                minValue: 1,
+                maxValue: 5,
+              },
+              address: {
+                "@type": "PostalAddress",
+                addressCountry: "IL",
+              },
+              contactPoint: {
+                "@type": "ContactPoint",
+                url: "https://calendar.app.google/i5TALc1oJahNDeRw8",
+                contactType: "customer service",
+              },
               areaServed: "Worldwide",
               knowsAbout: [
                 "React",

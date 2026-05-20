@@ -5,9 +5,10 @@ import { FAQ_ITEMS, type FAQCategory } from '@/data/faq';
 interface FAQProps {
   category?: FAQCategory;
   showCTA?: boolean;
+  asH1?: boolean;
 }
 
-export default function FAQ({ category = 'general', showCTA = true }: FAQProps) {
+export default function FAQ({ category = 'general', showCTA = true, asH1 = false }: FAQProps) {
   const t = useTranslations('faq');
 
   const items = FAQ_ITEMS
@@ -41,9 +42,15 @@ export default function FAQ({ category = 'general', showCTA = true }: FAQProps) 
 
       <div className="container mx-auto px-6 lg:px-12 relative z-10">
         <div className="text-center mb-16 lg:mb-20">
-          <h2 className="section-title text-white inline-block">
-            {t.rich('title', { highlight: (chunks) => <span>{chunks}</span> })}
-          </h2>
+          {asH1 ? (
+            <h1 className="section-title text-white inline-block">
+              {t.rich('title', { highlight: (chunks) => <span>{chunks}</span> })}
+            </h1>
+          ) : (
+            <h2 className="section-title text-white inline-block">
+              {t.rich('title', { highlight: (chunks) => <span>{chunks}</span> })}
+            </h2>
+          )}
         </div>
 
         <div className="max-w-3xl mx-auto border-t border-gray-800">
