@@ -139,7 +139,7 @@ export default function Services({ teaser = false }: ServicesProps) {
                   i >= 2 ? 'border-t sm:border-t-0 border-white/[0.06]' : '',
                 ].join(' ')}
               >
-                <span className="text-[1rem] font-mono text-crimson/60 tracking-[0.2rem] mb-3">{step.num}</span>
+                <span className="text-[1rem] font-mono text-crimson tracking-[0.2rem] mb-3" aria-hidden="true">{step.num}</span>
                 <span className="text-[1.4rem] font-medium text-white text-center">{step.name}</span>
               </div>
             ))}
@@ -207,7 +207,7 @@ export default function Services({ teaser = false }: ServicesProps) {
               ].join(' ')}
               style={{ opacity: 0 }}
             >
-              <span className="text-sm font-mono text-crimson/60 tracking-[0.2rem] mb-4 block">
+              <span className="text-sm font-mono text-crimson tracking-[0.2rem] mb-4 block" aria-hidden="true">
                 {phase.number}
               </span>
               <h3 className="text-[1.8rem] font-semibold text-white mb-3 leading-snug">
