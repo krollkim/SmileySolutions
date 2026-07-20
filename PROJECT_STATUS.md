@@ -4,6 +4,34 @@
 
 ---
 
+## ⭐ Quick Reference — How many people contacted me from the site?
+
+**Open this in your browser:**
+
+```
+https://smileysolution.com/api/track-cta?token=<YOUR_TOKEN>
+```
+
+**The token is in [`.env.local`](./.env.local)** in this project root — open that file, copy the full ready-made URL from the comment block at the bottom, paste it into the browser. That file is git-ignored and never leaves your machine.
+
+You get back:
+
+```json
+{ "total": 42, "byMonth": { "2026-07": 31, "2026-08": 11 } }
+```
+
+| Response | Meaning |
+|---|---|
+| `{"total": N, …}` | N clicks on the WhatsApp button since launch |
+| `401 unauthorized` | Wrong or missing token |
+| `404` | Latest code not deployed to Netlify yet |
+
+> 🔒 **The token is deliberately NOT written in this file — this repository is public** (`krollkim/SmileySolutions`). Anything committed here is visible to the world. Keep the token in `.env.local` and in Netlify → Site settings → Environment variables (the two must match). If it ever leaks, generate a new one and update both places — nothing else depends on it.
+
+> **What the number means:** it counts *clicks*, not messages. The gap between this number and the WhatsApp messages you actually receive is your drop-off rate. Full detail in the WhatsApp CTA Migration section below.
+
+---
+
 ## 1. Project Overview
 
 **What the site is:**
@@ -200,15 +228,11 @@ The seven aria strings were rewritten (not merged) so each one **starts with its
 **Click tracking — how it works:**
 Storage is **Netlify Blobs**, store `cta-clicks`. Each click is written as its own record keyed `clicks/YYYY-MM/<iso-timestamp>-<random>`. Because every write has a unique key, concurrent clicks never race over a shared counter — the total is simply the record count. Stored fields are the timestamp and the button name only: no cookie, no IP, no device identifier.
 
-**How to read the number:**
-1. Set `CTA_STATS_TOKEN` to a secret value in Netlify → Site settings → Environment variables.
-2. `GET https://smileysolution.com/api/track-cta?token=<token>`
+**How to read the number:** see the ⭐ Quick Reference at the top of this document. The token lives in `.env.local` (git-ignored) and must match `CTA_STATS_TOKEN` in Netlify → Site settings → Environment variables. Without the env var set, `GET` returns `401` — the stats are never public.
 
-```json
-{ "total": 42, "byMonth": { "2026-07": 42 } }
-```
+✅ **Verified live in production on 2026-07-20** — the endpoint returned `{"total": 2, "byMonth": {"2026-07": 2}}` on the first read (those 2 are our own test clicks, i.e. the baseline).
 
-Without the env var set, `GET` returns `401` — the stats are never public.
+**Security note:** `.gitignore` previously had a `# env files` heading with **no patterns underneath**, so any `.env` file would have been committed to this public repository. Fixed in the same change — `.env`, `.env.*` are now ignored (`.env.example` excepted). Verified that no env file exists anywhere in the git history.
 
 **Caveat — local dev:** Netlify Blobs is only configured inside the Netlify runtime. Under plain `next dev`, `POST /api/track-cta` silently no-ops (returns `204` and stores nothing). Use `netlify dev` to exercise it locally. The CTA link itself works everywhere.
 
