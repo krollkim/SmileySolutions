@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import { useTranslations } from 'next-intl';
+import WhatsAppCta from './WhatsAppCta';
 
 export default function FloatingCTA() {
   const t = useTranslations('hero');
@@ -40,15 +41,13 @@ export default function FloatingCTA() {
         showCTA ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none'
       }`}
     >
-      <a
-        href="https://calendar.app.google/i5TALc1oJahNDeRw8"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label={t('book_aria')}
+      <WhatsAppCta
+        source="floating"
+        ariaLabel={t('book_aria')}
         className="flex items-center gap-2 px-5 py-3 bg-crimson text-white text-[1.2rem] font-medium uppercase tracking-[0.12rem] rounded-full shadow-lg shadow-black/40 hover:bg-crimson/85 hover:scale-[1.03] active:scale-[0.98] transition-all duration-200"
       >
         <span>{t('book_cta')}</span>
-      </a>
+      </WhatsAppCta>
     </div>
   );
 }

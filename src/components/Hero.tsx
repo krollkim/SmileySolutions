@@ -3,6 +3,7 @@ import { useEffect, useLayoutEffect, useRef, useMemo } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useTranslations, useLocale } from 'next-intl';
+import WhatsAppCta from './WhatsAppCta';
 
 gsap.registerPlugin(ScrollTrigger);
 ScrollTrigger.config({ limitCallbacks: true, ignoreMobileResize: true });
@@ -251,17 +252,15 @@ export default function Hero() {
 
           {/* CTAs */}
           <div ref={ctaRef} className="mt-10 flex flex-col sm:flex-row items-start gap-4">
-            {/* Primary — Book a Consultation */}
-            <a
-              href="https://calendar.app.google/i5TALc1oJahNDeRw8"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={t('book_aria')}
+            {/* Primary — WhatsApp */}
+            <WhatsAppCta
+              source="hero"
+              ariaLabel={t('book_aria')}
               className="inline-flex items-center gap-3 px-6 py-3 text-[1.4rem] font-medium uppercase tracking-[0.15rem] text-white bg-crimson border-2 border-crimson rounded-md hover:bg-crimson/85 transition-colors duration-300"
             >
               <span>{t('book_cta')}</span>
               <span ref={ctaArrowRef}>{t('book_arrow')}</span>
-            </a>
+            </WhatsAppCta>
 
             {/* Secondary — View Our Work */}
             <a

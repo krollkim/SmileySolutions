@@ -145,11 +145,16 @@ function EnContent() {
             through the WhatsApp link on this website.
           </li>
           <li>
-            <strong className="text-white">Google Calendar</strong> — scheduling
-            information provided when booking a discovery call.
+            <strong className="text-white">Anonymous CTA click counts</strong> —
+            when you click a WhatsApp button we record only a timestamp and which
+            button was clicked. No cookie, no IP address, no device identifier,
+            and nothing that could identify you.
           </li>
         </ul>
-        <p>We do not collect payment information. We do not collect anonymised usage data or website analytics.</p>
+        <p>
+          We do not collect payment information. Apart from the anonymous click
+          counts described above, we do not run website analytics.
+        </p>
       </div>
 
       {/* Section 3 */}
@@ -172,9 +177,15 @@ function EnContent() {
       <SectionHeading>4. Cookies and Tracking Technologies</SectionHeading>
       <div className="space-y-4 text-[1.7rem] text-gray-300 leading-relaxed">
         <p>
-          Our website does not use non-essential cookies or tracking technologies.
-          We do not run Google Analytics, advertising pixels, or any third-party
-          behavioural tracking.
+          Our website does not use non-essential cookies. We do not run Google
+          Analytics, advertising pixels, or any third-party behavioural tracking.
+        </p>
+        <p>
+          We do count how many times the WhatsApp buttons are clicked, so we can
+          tell how many enquiries the site generates. This counter is
+          <strong className="text-white"> first-party</strong> — it runs on our
+          own domain, sets no cookie, and stores only a timestamp and the name of
+          the button. It cannot identify you or follow you across websites.
         </p>
         <p>
           The only cookie this website sets is{' '}
@@ -191,10 +202,11 @@ function EnContent() {
         <p>
           The Smiley Solution website is hosted on{' '}
           <strong className="text-white">Netlify</strong>, with all traffic
-          served over HTTPS. We do not operate a database or backend server.
-          No personal information submitted through this website is stored in
-          any data store operated by us — all communication flows directly
-          through email, WhatsApp, or Google Calendar.
+          served over HTTPS. The only data we store is the anonymous click
+          counter described in Section 4, held in Netlify&apos;s storage. No
+          personal information submitted through this website is stored in any
+          data store operated by us — all communication flows directly through
+          email or WhatsApp.
         </p>
         <p>
           Any information you voluntarily share with us via those channels is
@@ -216,20 +228,18 @@ function EnContent() {
             this website is passed to Google.
           </li>
           <li>
-            <strong className="text-white">Google Calendar</strong> — a booking
-            link allows you to schedule a discovery call. Any information you
-            provide during scheduling is governed by Google&apos;s privacy policy.
-          </li>
-          <li>
             <strong className="text-white">WhatsApp</strong> — a direct
-            messaging link (wa.me) opens a conversation in your WhatsApp app.
-            Any information exchanged is governed by WhatsApp&apos;s privacy policy.
+            messaging link (wa.me) opens a conversation in your WhatsApp app,
+            with a suggested message you are free to edit or delete before
+            sending. Any information exchanged is governed by WhatsApp&apos;s
+            privacy policy.
           </li>
         </ul>
         <p>
           We do not use Google Analytics, Calendly, Facebook Pixel, or any other
-          advertising or behavioural tracking service. Each third-party service
-          listed above operates under its own privacy policy.
+          advertising or behavioural tracking service. The click counter
+          described in Section 4 is our own and is not shared with anyone. Each
+          third-party service listed above operates under its own privacy policy.
         </p>
       </div>
 
@@ -313,11 +323,16 @@ function HeContent() {
             דרך קישור WhatsApp באתר זה.
           </li>
           <li>
-            <strong className="text-white">Google Calendar</strong> — מידע
-            לוח זמנים שנמסר בעת קביעת שיחת היכרות.
+            <strong className="text-white">ספירת קליקים אנונימית</strong> — כאשר
+            לוחצים על כפתור WhatsApp אנו רושמים חותמת זמן ואת שם הכפתור בלבד.
+            ללא עוגייה, ללא כתובת IP, ללא מזהה מכשיר, וללא שום פרט שמאפשר לזהות
+            אותך.
           </li>
         </ul>
-        <p>איננו אוספים מידע תשלומי. איננו אוספים נתוני שימוש אנונימיים או אנליטיקת אתרים.</p>
+        <p>
+          איננו אוספים מידע תשלומי. מלבד ספירת הקליקים האנונימית שתוארה לעיל,
+          איננו מפעילים אנליטיקת אתרים.
+        </p>
       </div>
 
       {/* Section 3 */}
@@ -340,9 +355,15 @@ function HeContent() {
       <SectionHeading>4. עוגיות וטכנולוגיות מעקב</SectionHeading>
       <div className="space-y-4 text-[1.7rem] text-gray-300 leading-relaxed">
         <p>
-          האתר שלנו אינו משתמש בעוגיות לא חיוניות או בטכנולוגיות מעקב. איננו
-          מפעילים Google Analytics, פיקסלים פרסומיים, או כל מעקב התנהגותי אחר
-          של צד שלישי.
+          האתר שלנו אינו משתמש בעוגיות לא חיוניות. איננו מפעילים Google
+          Analytics, פיקסלים פרסומיים, או כל מעקב התנהגותי אחר של צד שלישי.
+        </p>
+        <p>
+          אנחנו כן סופרים כמה פעמים נלחצו כפתורי ה-WhatsApp, כדי לדעת כמה פניות
+          האתר מייצר. המונה הזה הוא
+          <strong className="text-white"> צד-ראשון</strong> — הוא רץ על הדומיין
+          שלנו, אינו מגדיר עוגייה, ושומר רק חותמת זמן ואת שם הכפתור. הוא אינו
+          יכול לזהות אותך או לעקוב אחריך בין אתרים.
         </p>
         <p>
           העוגייה היחידה שאתר זה מגדיר היא{' '}
@@ -358,9 +379,10 @@ function HeContent() {
         <p>
           אתר Smiley Solution מתארח על{' '}
           <strong className="text-white">Netlify</strong>, כאשר כל התעבורה
-          מוגשת דרך HTTPS. איננו מפעילים מסד נתונים או שרת backend. אין מידע
-          אישי שנשלח דרך אתר זה המאוחסן במאגר נתונים המנוהל על ידינו — כל
-          התקשורת זורמת ישירות דרך אימייל, WhatsApp, או Google Calendar.
+          מוגשת דרך HTTPS. הנתון היחיד שאנו שומרים הוא מונה הקליקים האנונימי
+          שתואר בסעיף 4, המאוחסן באחסון של Netlify. אין מידע אישי שנשלח דרך אתר
+          זה המאוחסן במאגר נתונים המנוהל על ידינו — כל התקשורת זורמת ישירות דרך
+          אימייל או WhatsApp.
         </p>
         <p>
           כל מידע שתשתף איתנו מרצונך דרך אותם ערוצים יישמר רק כל עוד נחוץ
@@ -379,19 +401,16 @@ function HeContent() {
             אישי מאתר זה.
           </li>
           <li>
-            <strong className="text-white">Google Calendar</strong> — קישור
-            הזמנה המאפשר לך לתזמן שיחת היכרות. כל מידע שתמסור בעת התזמון כפוף
-            למדיניות הפרטיות של Google.
-          </li>
-          <li>
             <strong className="text-white">WhatsApp</strong> — קישור הודעה
-            ישירה (wa.me) פותח שיחה באפליקציית WhatsApp שלך. כל מידע שתחליף
-            כפוף למדיניות הפרטיות של WhatsApp.
+            ישירה (wa.me) פותח שיחה באפליקציית WhatsApp שלך, עם הודעה מוצעת
+            שאתה חופשי לערוך או למחוק לפני השליחה. כל מידע שתחליף כפוף למדיניות
+            הפרטיות של WhatsApp.
           </li>
         </ul>
         <p>
           איננו משתמשים ב-Google Analytics, Calendly, Facebook Pixel, או כל
-          שירות מעקב פרסומי או התנהגותי אחר. כל שירות צד שלישי המפורט לעיל
+          שירות מעקב פרסומי או התנהגותי אחר. מונה הקליקים שתואר בסעיף 4 הוא
+          שלנו בלבד ואינו משותף עם אף גורם. כל שירות צד שלישי המפורט לעיל
           פועל תחת מדיניות הפרטיות שלו.
         </p>
       </div>

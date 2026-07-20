@@ -6,6 +6,7 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import { useTranslations, useLocale } from 'next-intl';
+import WhatsAppCta from './WhatsAppCta';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -327,16 +328,14 @@ export default function About({ teaser = false }: AboutProps) {
                 <FaLinkedin />
               </a>
               <span className="w-px h-8 bg-gray-700 mx-1" aria-hidden="true" />
-              <a
-                href="https://calendar.app.google/i5TALc1oJahNDeRw8"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={t('cta_aria')}
+              <WhatsAppCta
+                source="about"
+                ariaLabel={t('cta_aria')}
                 className="inline-flex items-center gap-3 px-6 py-3 text-[1.4rem] font-medium uppercase tracking-[0.15rem] text-white bg-crimson border-2 border-crimson rounded-md hover:bg-crimson/85 hover:scale-[1.03] active:scale-[0.98] transition-all duration-200"
               >
                 <span>{t('cta')}</span>
                 <span>{t('cta_arrow')}</span>
-              </a>
+              </WhatsAppCta>
             </div>
           </div>
         </div>

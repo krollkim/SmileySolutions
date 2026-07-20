@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useTranslations, useLocale } from 'next-intl';
+import WhatsAppCta from './WhatsAppCta';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -225,16 +226,14 @@ export default function Services({ teaser = false }: ServicesProps) {
 
         <div className="mt-20 flex flex-col items-center gap-4">
           <p className="text-[1.4rem] text-gray-400">{t('cta_label')}</p>
-          <a
-            href="https://calendar.app.google/i5TALc1oJahNDeRw8"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label={t('cta_aria')}
+          <WhatsAppCta
+            source="services"
+            ariaLabel={t('cta_aria')}
             className="inline-flex items-center gap-3 px-6 py-3 text-[1.4rem] font-medium uppercase tracking-[0.15rem] text-white bg-crimson border-2 border-crimson rounded-md hover:bg-crimson/85 hover:scale-[1.03] active:scale-[0.98] transition-all duration-200"
           >
             <span>{t('cta')}</span>
             <span>{t('cta_arrow')}</span>
-          </a>
+          </WhatsAppCta>
         </div>
 
       </div>

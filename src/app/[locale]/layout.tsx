@@ -6,6 +6,7 @@ import "../globals.css";
 import AccessibilityMenu from "@/components/AccessibilityMenu";
 import FloatingCTA from "@/components/FloatingCTA";
 import { locales } from "@/i18n/config";
+import { WHATSAPP_NUMBER } from "@/config/contact";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -197,8 +198,11 @@ export default async function LocaleLayout({
               },
               contactPoint: {
                 "@type": "ContactPoint",
-                url: "https://calendar.app.google/i5TALc1oJahNDeRw8",
+                url: `https://wa.me/${WHATSAPP_NUMBER}`,
+                telephone: `+${WHATSAPP_NUMBER}`,
                 contactType: "customer service",
+                contactOption: "TollFree",
+                availableLanguage: ["he", "en"],
               },
               areaServed: "Worldwide",
               knowsAbout: [

@@ -16,6 +16,10 @@
     "book_aria": "קביעת שיחה חינם עם Smiley Solution",
     "menu": "תפריט"
   },
+  "cta": {
+    "whatsapp_message": "היי, הגעתי מהאתר של Smiley Solution ומעניין אותי לשמוע עוד על בניית אתר / מוצר דיגיטלי. אפשר לדבר?",
+    "whatsapp_aria": "שליחת הודעת וואטסאפ ל-Smiley Solution"
+  },
   "hero": {
     "line1": "סטודיו לטכנולוגיה",
     "line2": "פיתוח מוצרים דיגיטליים",
@@ -24,8 +28,8 @@
     "cta": "לצפייה בעבודות שלנו",
     "cta_aria": "לצפייה בעבודות של Smiley Solution",
     "cta_arrow": "←",
-    "book_cta": "לקביעת שיחה",
-    "book_aria": "קביעת שיחה חינם עם Smiley Solution",
+    "book_cta": "בואו נדבר",
+    "book_aria": "בואו נדבר — שליחת הודעת וואטסאפ ל-Smiley Solution",
     "book_arrow": "←",
     "scroll": "גלול",
     "stat_1": "6 מוצרים שנשלחו",
@@ -51,7 +55,7 @@
     "cta_label": "מוכנים להתחיל?",
     "cta": "בואו נדבר",
     "cta_arrow": "←",
-    "cta_aria": "לקביעת שיחה עם Smiley Solution",
+    "cta_aria": "בואו נדבר — הודעת וואטסאפ על פיתוח Full Stack ו-SaaS",
     "process_label": "איך אנחנו בונים",
     "process_1": "גילוי",
     "process_2": "ארכיטקטורה",
@@ -118,7 +122,7 @@
     "meet_founder": "הכירו את המייסד",
     "cta": "בואו נעבוד יחד",
     "cta_arrow": "←",
-    "cta_aria": "קביעת שיחה עם קים קרול",
+    "cta_aria": "בואו נעבוד יחד — שליחת הודעת וואטסאפ לקים קרול",
     "founder_name": "קים קרול",
     "profile_alt": "קים קרול - מייסד, Smiley Solution"
   },
@@ -128,8 +132,8 @@
     "heading_accent": "משהו שיעשה רעש?",
     "subtext": "בואו נעבוד על פרויקטים מעניינים ונהפוך רעיונות טובים למשהו אמיתי.",
     "meta_description": "קבעו ייעוץ חינם עם Smiley Solution. אנחנו מגיבים תוך 24 שעות ומספקים הצעת פרויקט מפורטת תוך 48 שעות. קבעו ישירות דרך היומן המקוון.",
-    "book_cta": "לקביעת שיחה",
-    "book_aria": "קביעת שיחה עם Smiley Solution"
+    "book_cta": "בואו נדבר",
+    "book_aria": "בואו נדבר — שליחת הודעת וואטסאפ ל-Smiley Solution"
   },
   "pillars": {
     "web_title": "High-End Web",
@@ -144,7 +148,7 @@
     "cta_label": "רוצים תוצאות כאלה?",
     "cta": "נתחיל פרויקט",
     "cta_arrow": "←",
-    "cta_aria": "התחלת פרויקט עם Smiley Solution",
+    "cta_aria": "נתחיל פרויקט — שליחת הודעת וואטסאפ ל-Smiley Solution",
     "back": "חזרה לסטודיו",
     "challenge_label": "האתגר",
     "result_label": "התוצאה",
@@ -192,15 +196,15 @@
     "q13": "האם אתם מציעים תמיכה ותחזוקה לאחר ההשקה?",
     "a13": "כן. אנחנו מציעים ריטיינרים מובנים לאחר ההשקה הכוללים ניטור, עדכוני ביצועים ושיפורים מדורגים. כל פרויקט שאנחנו מוסרים מגיע עם תיעוד מקיף ומסירה מסודרת - המטרה היא תמיד להשאיר אתכם עצמאיים יותר, לא תלויים בנו.",
     "cta_label": "עדיין יש שאלות?",
-    "cta": "לקביעת שיחה",
+    "cta": "בואו נדבר",
     "cta_arrow": "←",
-    "cta_aria": "קביעת שיחה חינם עם Smiley Solution"
+    "cta_aria": "בואו נדבר — שליחת שאלה בוואטסאפ ל-Smiley Solution"
   },
   "footer": {
     "rights": "כל הזכויות שמורות.",
     "tagline": "אנחנו בונים מוצרים דיגיטליים שמחזיקים לאורך זמן.",
-    "book_cta": "לקביעת שיחה",
-    "book_aria": "קביעת שיחה חינם עם Smiley Solution",
+    "book_cta": "בואו נדבר",
+    "book_aria": "בואו נדבר — שליחת הודעת וואטסאפ ל-Smiley Solution",
     "services_heading": "שירותים",
     "link_fullstack": "פיתוח Full Stack",
     "link_saas": "פלטפורמות SaaS",

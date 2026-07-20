@@ -1,5 +1,6 @@
 import { useTranslations } from 'next-intl';
 import FAQAccordion from './FAQAccordion';
+import WhatsAppCta from './WhatsAppCta';
 import { FAQ_ITEMS, type FAQCategory } from '@/data/faq';
 
 interface FAQProps {
@@ -60,16 +61,14 @@ export default function FAQ({ category = 'general', showCTA = true, asH1 = false
         {showCTA && (
           <div className="mt-16 flex flex-col items-center gap-4">
             <p className="text-[1.4rem] text-gray-400">{t('cta_label')}</p>
-            <a
-              href="https://calendar.app.google/i5TALc1oJahNDeRw8"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={t('cta_aria')}
+            <WhatsAppCta
+              source="faq"
+              ariaLabel={t('cta_aria')}
               className="inline-flex items-center gap-3 px-6 py-3 text-[1.4rem] font-medium uppercase tracking-[0.15rem] text-white bg-crimson border-2 border-crimson rounded-md hover:bg-crimson/85 hover:scale-[1.03] active:scale-[0.98] transition-all duration-200"
             >
               <span>{t('cta')}</span>
               <span>{t('cta_arrow')}</span>
-            </a>
+            </WhatsAppCta>
           </div>
         )}
       </div>

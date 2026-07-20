@@ -136,6 +136,84 @@ Replaced the previous scroll-hijacking horizontal Projects section:
 - Pause on hover (`isHoveredRef`) and during drag (`isDraggingRef`)
 - `ResizeObserver` for responsive remeasurement
 
+### WhatsApp CTA Migration ✅ (2026-07-20)
+
+**Why:** The Google Calendar booking CTA was not converting — visitors were not booking calls. Every primary CTA now opens a pre-filled WhatsApp message instead. This removes the visitor's effort of composing an opening line, and the conversation arrives with context already attached.
+
+> **History note:** an early WhatsApp implementation existed around Step 7.5, but a later site-wide redesign replaced all CTAs with the Google Calendar link. This step re-establishes WhatsApp deliberately and centrally, rather than as scattered hrefs.
+
+**New files:**
+
+| File | Role |
+|---|---|
+| `src/config/contact.ts` | Single source of truth — `WHATSAPP_NUMBER`, `buildWhatsAppUrl()`, and `BOOKING_URL` |
+| `src/components/WhatsAppCta.tsx` | Client component rendering the CTA anchor: builds the wa.me URL, injects the localized message, fires the click beacon |
+| `src/lib/trackCtaClick.ts` | Fire-and-forget `navigator.sendBeacon` to our own endpoint |
+| `src/app/api/track-cta/route.ts` | `POST` records a click · `GET` returns totals |
+
+**Booking code is retained, not deleted.** `BOOKING_URL` in `src/config/contact.ts` still holds the Google Calendar link, marked deprecated and wired to nothing. To revert, swap `WhatsAppCta` back to `<a href={BOOKING_URL}>` in the 8 components below.
+
+**CTAs migrated (8):** `Hero`, `Services`, `About`, `FAQ`, `PillarGrid`, `Contact`, `Footer`, `FloatingCTA`. Each passes a distinct `source` prop, so per-surface conversion is visible in the stats.
+
+`WhatsAppCta` keeps each surface's original `className` and `children`, so no layout changes were introduced — only the destination, the copy, the icon and the tracking.
+
+**Button copy — booking language removed.** "Book a Consultation" / "לקביעת שיחה" described an action the site no longer performs. Four keys were changed to the conversational phrasing already used by `services.cta`, so every primary CTA now speaks in one voice:
+
+| Key | Before (HE / EN) | After (HE / EN) |
+|---|---|---|
+| `hero.book_cta` | לקביעת שיחה / Book a Consultation | **בואו נדבר / Let's Talk** |
+| `faq.cta` | לקביעת שיחה / Book a Consultation | **בואו נדבר / Let's Talk** |
+| `contact.book_cta` | לקביעת שיחה / Book a Consultation | **בואו נדבר / Let's Talk** |
+| `footer.book_cta` | לקביעת שיחה / Book a Consultation | **בואו נדבר / Let's Talk** |
+
+`services.cta` (בואו נדבר), `about.cta` (בואו נעבוד יחד) and `pillars.cta` (נתחיל פרויקט) were already action-oriented and were left as they are.
+
+**The WhatsApp mark is rendered by `WhatsAppCta` itself**, not by each caller — so every CTA that opens WhatsApp is visually identifiable as such, and no future surface can forget it. The icon is sized in `em`, so it scales with whatever `text-[…]` the caller sets. Pass `showIcon={false}` to opt out.
+
+**Accessible labels stay per-surface.** Each of the eight callers keeps passing its own `ariaLabel` from its own namespace (`book_aria` / `cta_aria`). These are deliberately distinct and descriptive — they carry contextual keywords that matter for SEO/GEO and for assistive tech, and must not be collapsed into one shared string. `WhatsAppCta` does expose a shared `cta.whatsapp_aria` fallback, but it is only used when a caller passes no `ariaLabel`.
+
+The seven aria strings were rewritten (not merged) so each one **starts with its own visible label** and then describes the WhatsApp action. This satisfies WCAG 2.5.3 (Label in Name) — previously violated, since the accessible name said "קביעת שיחה" while the visible label said "בואו נדבר" — while preserving the distinct, keyword-bearing phrasing:
+
+| Key | HE | EN |
+|---|---|---|
+| `hero.book_aria` | בואו נדבר — שליחת הודעת וואטסאפ ל-Smiley Solution | Let's Talk — send a WhatsApp message to Smiley Solution |
+| `services.cta_aria` | בואו נדבר — הודעת וואטסאפ על פיתוח Full Stack ו-SaaS | Let's Talk — WhatsApp us about Full Stack and SaaS development |
+| `about.cta_aria` | בואו נעבוד יחד — שליחת הודעת וואטסאפ לקים קרול | Work With Me — send a WhatsApp message to Kim Kroll |
+| `pillars.cta_aria` | נתחיל פרויקט — שליחת הודעת וואטסאפ ל-Smiley Solution | Start a Project — send a WhatsApp message to Smiley Solution |
+| `faq.cta_aria` | בואו נדבר — שליחת שאלה בוואטסאפ ל-Smiley Solution | Let's Talk — send your question to Smiley Solution on WhatsApp |
+| `contact.book_aria` | בואו נדבר — שליחת הודעת וואטסאפ ל-Smiley Solution | Let's Talk — send a WhatsApp message to Smiley Solution |
+| `footer.book_aria` | בואו נדבר — שליחת הודעת וואטסאפ ל-Smiley Solution | Let's Talk — send a WhatsApp message to Smiley Solution |
+
+**Deliberately left untouched** — these are not WhatsApp CTAs and share confusingly similar strings with the ones above:
+- `projects.cta_aria` ("התחלת פרויקט עם Smiley Solution") — byte-identical to the old `pillars.cta_aria`
+- `hero.cta_aria` ("לצפייה בעבודות") — the secondary "View Our Work" link
+- `nav.book_aria` / `nav.book_cta` — orphaned, referenced by no component
+
+> **Note on aria-label and SEO:** `aria-label` is not a Google ranking signal and is not indexed as content. Its value here is (a) accessibility and (b) GEO — LLM-based crawlers read the DOM to describe what a page offers, and the old "book a consultation" wording would have led them to describe the site as offering calendar booking, which it no longer does.
+
+**Other changes:**
+- `layout.tsx` — JSON-LD `contactPoint` now points at `wa.me` + `telephone` instead of the calendar link
+- i18n — new `cta` namespace (`whatsapp_message`, `whatsapp_aria`) in `he.json` and `en.json`
+- Privacy policy (both locales) — Google Calendar removed as an active channel; the first-party click counter is now disclosed in Sections 2, 4, 5 and 6
+- `website-for-therapists` / `website-for-small-business` needed no change — their CTAs point at `#contact`, which now resolves to WhatsApp
+
+**Click tracking — how it works:**
+Storage is **Netlify Blobs**, store `cta-clicks`. Each click is written as its own record keyed `clicks/YYYY-MM/<iso-timestamp>-<random>`. Because every write has a unique key, concurrent clicks never race over a shared counter — the total is simply the record count. Stored fields are the timestamp and the button name only: no cookie, no IP, no device identifier.
+
+**How to read the number:**
+1. Set `CTA_STATS_TOKEN` to a secret value in Netlify → Site settings → Environment variables.
+2. `GET https://smileysolution.com/api/track-cta?token=<token>`
+
+```json
+{ "total": 42, "byMonth": { "2026-07": 42 } }
+```
+
+Without the env var set, `GET` returns `401` — the stats are never public.
+
+**Caveat — local dev:** Netlify Blobs is only configured inside the Netlify runtime. Under plain `next dev`, `POST /api/track-cta` silently no-ops (returns `204` and stores nothing). Use `netlify dev` to exercise it locally. The CTA link itself works everywhere.
+
+**What the number actually means:** the true conversion metric is the WhatsApp messages you actually receive. This counter measures *click intent* — including visitors who click but never send — so the gap between the two is your drop-off rate.
+
 ---
 
 ## 3. Current Known Issues
@@ -195,7 +273,10 @@ Replaced the previous scroll-hijacking horizontal Projects section:
 | **Arabic locale** | The architecture supports it. Would need `ar.json`, RTL is identical to Hebrew handling |
 | **Cookie persistence** | Currently locale is only read from cookie, never written by the app. A language switcher (Step 8) will resolve this |
 | **Hero h1 mixed language** | Lines 1–2–3 are: `Kim Kroll / Full Stack / מפתח`. Whether to keep "Full Stack" in English or translate to "פול סטאק" is a brand decision |
-| **WhatsApp message per locale** | ✅ Resolved in Step 7.5 — both About and Contact now use locale-aware `whatsapp_text` translation key |
+| **WhatsApp message per locale** | ✅ Resolved in the WhatsApp CTA Migration (2026-07-20) — the pre-filled message lives in the shared `cta.whatsapp_message` key in both locales, read by `WhatsAppCta`. The earlier per-namespace `whatsapp_text` key no longer exists |
+| **Per-surface WhatsApp message** | `WhatsAppCta` accepts an optional `message` prop that overrides the shared default. Not used yet — a tailored opener on `/website-for-therapists` ("...מעניין אותי אתר למטפלים") would likely convert better than the generic one |
+| **CTA button copy** | ✅ Resolved 2026-07-20 — booking language replaced with "בואו נדבר" / "Let's Talk" across the four primary CTAs, plus a WhatsApp mark rendered by `WhatsAppCta`. See the migration section above |
+| **Orphaned i18n keys** | `nav.book_cta` / `nav.book_aria` are not referenced by any component. The `book_aria` / `cta_aria` keys are also no longer read now that aria labels are unified. Safe to delete in a cleanup pass |
 | **CV file locale** | Only one CV file (`/CV-KIM-KROLL-2025.pdf`) exists. A Hebrew-tailored CV could be added later |
 | **Accessibility widget translation** | `AccessibilityMenu.tsx` text (labels, statement text) is still hardcoded in English. This was intentionally left out of Step 7 |
 | **Projects section momentum** | Drag release currently stops immediately. Inertia/momentum could be added with a short `gsap.to` deceleration |

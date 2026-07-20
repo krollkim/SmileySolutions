@@ -16,6 +16,10 @@
     "book_aria": "Book a free consultation with Smiley Solution",
     "menu": "Menu"
   },
+  "cta": {
+    "whatsapp_message": "Hi, I came from the Smiley Solution website and I'd like to hear more about building a site / digital product. Can we talk?",
+    "whatsapp_aria": "Send a WhatsApp message to Smiley Solution"
+  },
   "hero": {
     "line1": "Tech Studio",
     "line2": "Digital Product",
@@ -24,8 +28,8 @@
     "cta": "View Our Work",
     "cta_aria": "View Smiley Solution's work",
     "cta_arrow": "→",
-    "book_cta": "Book a Consultation",
-    "book_aria": "Book a free consultation with Smiley Solution",
+    "book_cta": "Let's Talk",
+    "book_aria": "Let's Talk — send a WhatsApp message to Smiley Solution",
     "book_arrow": "→",
     "scroll": "Scroll",
     "stat_1": "6 Products Shipped",
@@ -51,7 +55,7 @@
     "cta_label": "Ready to start your project?",
     "cta": "Let's Talk",
     "cta_arrow": "→",
-    "cta_aria": "Book a consultation with Smiley Solution",
+    "cta_aria": "Let's Talk — WhatsApp us about Full Stack and SaaS development",
     "process_label": "How We Build",
     "process_1": "Discover",
     "process_2": "Architect",
@@ -118,7 +122,7 @@
     "meet_founder": "Meet the founder",
     "cta": "Work With Me",
     "cta_arrow": "→",
-    "cta_aria": "Book a consultation with Kim Kroll",
+    "cta_aria": "Work With Me — send a WhatsApp message to Kim Kroll",
     "founder_name": "Kim Kroll",
     "profile_alt": "Kim Kroll - Founder, Smiley Solution"
   },
@@ -128,8 +132,8 @@
     "heading_accent": "something amazing?",
     "subtext": "We take on meaningful projects and build things that last. Let's create something extraordinary together.",
     "meta_description": "Book a free consultation with Smiley Solution. We respond within 24 hours and provide a detailed project proposal within 48 hours. Schedule directly via our online calendar.",
-    "book_cta": "Book a Consultation",
-    "book_aria": "Book a consultation with Smiley Solution"
+    "book_cta": "Let's Talk",
+    "book_aria": "Let's Talk — send a WhatsApp message to Smiley Solution"
   },
   "pillars": {
     "web_title": "High-End Web",
@@ -144,7 +148,7 @@
     "cta_label": "Want results like these?",
     "cta": "Start a Project",
     "cta_arrow": "→",
-    "cta_aria": "Start a project with Smiley Solution",
+    "cta_aria": "Start a Project — send a WhatsApp message to Smiley Solution",
     "back": "Back to Studio",
     "challenge_label": "Challenge",
     "result_label": "Result",
@@ -192,15 +196,15 @@
     "q13": "Do you offer support and maintenance after launch?",
     "a13": "Yes. We offer structured post-launch retainers covering monitoring, performance updates, and iterative improvements. Every project also ships with thorough documentation and a clean handoff - the goal is always to leave you more capable and independent, not reliant on us to keep things running.",
     "cta_label": "Still have questions?",
-    "cta": "Book a Consultation",
+    "cta": "Let's Talk",
     "cta_arrow": "→",
-    "cta_aria": "Book a free consultation with Smiley Solution"
+    "cta_aria": "Let's Talk — send your question to Smiley Solution on WhatsApp"
   },
   "footer": {
     "rights": "All rights reserved.",
     "tagline": "We build digital products that last.",
-    "book_cta": "Book a Consultation",
-    "book_aria": "Book a free consultation with Smiley Solution",
+    "book_cta": "Let's Talk",
+    "book_aria": "Let's Talk — send a WhatsApp message to Smiley Solution",
     "services_heading": "Services",
     "link_fullstack": "Full Stack Engineering",
     "link_saas": "SaaS Platforms",

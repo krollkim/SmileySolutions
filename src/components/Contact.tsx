@@ -2,9 +2,10 @@
 import { useRef, useLayoutEffect } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { FaGithub, FaLinkedin, FaCalendarAlt } from 'react-icons/fa';
+import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import { useTranslations, useLocale } from 'next-intl';
 import ContactTerminal from './ContactTerminal';
+import WhatsAppCta from './WhatsAppCta';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -151,17 +152,14 @@ export default function Contact({ standalone = false }: ContactProps) {
                 </a>
               </div>
 
-              {/* Primary CTA */}
-              <a
-                href="https://calendar.app.google/i5TALc1oJahNDeRw8"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={t('book_aria')}
+              {/* Primary CTA — WhatsApp */}
+              <WhatsAppCta
+                source="contact"
+                ariaLabel={t('book_aria')}
                 className="inline-flex items-center gap-4 px-8 py-4 text-[1.6rem] font-medium uppercase tracking-[0.2rem] text-white bg-crimson rounded-lg hover:bg-crimson/85 hover:scale-[1.03] active:scale-[0.98] transition-all duration-200"
               >
-                <FaCalendarAlt className="text-[1.8rem]" />
                 <span>{t('book_cta')}</span>
-              </a>
+              </WhatsAppCta>
 
             </div>
           </div>

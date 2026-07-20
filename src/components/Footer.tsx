@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { useLocale, useTranslations } from 'next-intl';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
+import WhatsAppCta from './WhatsAppCta';
 
 export default function Footer() {
   const locale = useLocale();
@@ -44,16 +45,14 @@ export default function Footer() {
             <p className="text-[1.8rem] lg:text-[2rem] font-light text-gray-300 leading-relaxed mb-8 max-w-[280px]">
               {t('tagline')}
             </p>
-            <a
-              href="https://calendar.app.google/i5TALc1oJahNDeRw8"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={t('book_aria')}
+            <WhatsAppCta
+              source="footer"
+              ariaLabel={t('book_aria')}
               className="inline-flex items-center gap-3 px-6 py-3 text-[1.3rem] font-medium uppercase tracking-[0.15rem] text-white bg-crimson border-2 border-crimson rounded-md hover:bg-crimson/85 hover:scale-[1.03] active:scale-[0.98] transition-all duration-200"
             >
               <span>{t('book_cta')}</span>
               <span aria-hidden="true">{isRTL ? '←' : '→'}</span>
-            </a>
+            </WhatsAppCta>
           </div>
 
           {/* Right — 3 navigation columns */}
