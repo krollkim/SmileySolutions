@@ -238,6 +238,20 @@ Storage is **Netlify Blobs**, store `cta-clicks`. Each click is written as its o
 
 **What the number actually means:** the true conversion metric is the WhatsApp messages you actually receive. This counter measures *click intent* — including visitors who click but never send — so the gap between the two is your drop-off rate.
 
+### Analytics decision — Microsoft Clarity deferred (2026-07-21)
+
+**Decision: not adding Clarity (or any behavioural analytics) for now.** The integration was built, evaluated, and fully reverted — no trace remains in code or dependencies.
+
+**Why (Kim's call):** Session recordings only pay off when watching *strangers*. On a low-traffic image/brand site, most sessions would be Kim's own, which teach nothing. The cost — setting cookies, rewriting the privacy policy away from its "no behavioural tracking" stance, and taking analytics on visitors — isn't justified by the current traffic. Revisit **when a campaign drives dozens–hundreds of real visitors**; then watching how strangers use the site becomes worthwhile.
+
+**Consequence:** the privacy policy stays as-is (first-party click counter only, no cookies beyond `NEXT_LOCALE`, no third-party tracking). That statement remains true.
+
+**To enable later (≈10 minutes):**
+1. `npm i @microsoft/clarity`
+2. Create `src/components/ClarityAnalytics.tsx` — a `'use client'` component that calls `Clarity.init('xtqpu0esdj')` inside `useEffect`. **Import is a default export:** `import Clarity from '@microsoft/clarity'` (not `{ clarity }`). Project ID `xtqpu0esdj` is not a secret — it ships in the client bundle regardless.
+3. Mount `<ClarityAnalytics />` inside `NextIntlClientProvider` in `layout.tsx`.
+4. **Update the privacy policy first** — Clarity sets cookies and records sessions, so Sections 2, 4, 5 and 6 (both locales) must disclose it and drop the "no behavioural tracking / no non-essential cookies" claims. Under EU/IL law, consider a consent banner (Clarity exposes `consentV2()` to gate loading until the visitor agrees).
+
 ---
 
 ## 3. Current Known Issues
